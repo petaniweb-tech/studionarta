@@ -1,4 +1,6 @@
 import Image from "next/image";
+import BannerComponent from "@/components/banners";
+import AboutComponent from "@/components/about";
 
 export default function Home() {
   return (
@@ -108,6 +110,8 @@ export default function Home() {
           </p>
         </a>
       </div>
+      <BannerComponent type="hero" />
+      <AboutComponent />
     </main>
   );
 }
