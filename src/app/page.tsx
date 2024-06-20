@@ -1,117 +1,172 @@
 import Image from "next/image";
-import BannerComponent from "@/components/banners";
-import AboutComponent from "@/components/about";
+
+// Import Components //
+import HeroCarousel from "@/components/hero-carousel";
+
+// Import Components //
+import AboutCarousel from "@/components/about-carousel";
+
+// Import Assets //
+import aboutdummy1 from "@/assets/images/img-dummy-3.jpg";
+import aboutdummy2 from "@/assets/images/img-dummy-5.jpg";
+import aboutdummy3 from "@/assets/images/img-dummy-4.jpg";
+import aboutdummy4 from "@/assets/images/img-dummy-7.jpg";
+import aboutdummy5 from "@/assets/images/img-dummy-8.jpg";
+import aboutdummy6 from "@/assets/images/img-dummy-9.jpg";
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+	return (
+		<>
+			{/* <-- ==== Hero Section Start ==== --> */}
+			<section className="w-full h-screen">
+				<HeroCarousel />
+			</section>
+			{/* <-- ==== Hero Section End ==== --> */}
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+			{/* <-- ==== About Section End ==== --> */}
+			<section className="w-full px-sectionpxsm lg:px-sectionpxlg pt-20 lg:pt-36">
+				<p className="text-[22px] lg:text-2xl lg:leading-relaxed text-black lg:px-16">
+					Studionarta is a creative studio based in Malang and Jakarta
+					that values creativity and design excellence. Our team of
+					experts is dedicated to helping businesses and individuals
+					create unique, memorable brands that resonate with their
+					audiences. Discover how we can transform your vision into
+					reality.
+				</p>
+			</section>
+			{/* <-- ==== About Section End ==== --> */}
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+			{/* <-- ==== About Section Mobile Start ==== --> */}
+			<section className="block lg:hidden w-full px-sectionpxsm pt-24 pb-28">
+				<div className="flex gap-6 items-start">
+					<p className="text-lg text-black [writing-mode:vertical-rl] rotate-180 leading-none">
+						About us
+					</p>
+					<div className="flex flex-col gap-5">
+						<div className="relative">
+							<div className="absolute inset-0 items-end flex px-7 pb-7">
+								<p className="text-xl leading-none text-white">
+									Lorem ipsum dolor
+								</p>
+							</div>
+							<Image
+								src={aboutdummy1}
+								alt="About Dummy"
+								priority={true}
+								className="w-full h-auto"
+							/>
+						</div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+						<div className="relative">
+							<div className="absolute inset-0 items-end flex px-7 pb-7">
+								<p className="text-xl leading-none text-white">
+									Lorem ipsum dolor
+								</p>
+							</div>
+							<Image
+								src={aboutdummy2}
+								alt="About Dummy"
+								priority={true}
+								className="w-full h-auto"
+							/>
+						</div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+						<div className="relative">
+							<div className="absolute inset-0 items-end flex px-7 pb-7">
+								<p className="text-xl leading-none text-white">
+									Lorem ipsum dolor
+								</p>
+							</div>
+							<Image
+								src={aboutdummy3}
+								alt="About Dummy"
+								priority={true}
+								className="w-full h-auto"
+							/>
+						</div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-      <BannerComponent type="hero" />
-      <AboutComponent />
-    </main>
-  );
+						<AboutCarousel />
+					</div>
+				</div>
+
+				<div className="w-full pt-16">
+					<div className="w-full py-4 border-b-[1px] border-black border-opacity-25">
+						<p className="text-[26px] text-black">Project</p>
+					</div>
+					<div className="w-full py-4 border-b-[1px] border-black border-opacity-25">
+						<p className="text-[26px] text-black">Contact</p>
+					</div>
+				</div>
+			</section>
+			{/* <-- ==== About Section Mobile End ==== --> */}
+
+			{/* <-- ==== About Section Desktop Start ==== --> */}
+			<section className="hidden lg:block w-full pt-36 pb-52">
+				<div className="relative">
+					<div className="absolute inset-0 flex px-36 items-start">
+						<p className="text-lg text-black [writing-mode:vertical-rl] tracking-wider rotate-180 leading-none">
+							About us
+						</p>
+					</div>
+					<div className="flex items-center w-full gap-4 justify-center px-sectionpxlg">
+						<div className="relative">
+							<div className="absolute inset-0 items-end flex px-7 pb-7">
+								<p className="text-xl leading-none text-white">
+									Lorem ipsum dolor
+								</p>
+							</div>
+							<Image
+								src={aboutdummy4}
+								alt="About Dummy"
+								priority={true}
+								className="w-full h-auto"
+							/>
+						</div>
+
+						<div className="relative">
+							<div className="absolute inset-0 items-end flex px-7 pb-7">
+								<p className="text-xl leading-none text-white">
+									Lorem ipsum dolor
+								</p>
+							</div>
+							<Image
+								src={aboutdummy5}
+								alt="About Dummy"
+								priority={true}
+								className="w-full h-auto"
+							/>
+						</div>
+
+						<div className="relative">
+							<div className="absolute inset-0 items-end flex px-7 pb-7">
+								<p className="text-xl leading-none text-white">
+									Lorem ipsum dolor
+								</p>
+							</div>
+							<Image
+								src={aboutdummy6}
+								alt="About Dummy"
+								priority={true}
+								className="w-full h-auto"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div className="px-sectionpxlg w-full mt-4">
+					<AboutCarousel />
+				</div>
+
+				<div className="px-sectionpxlg w-full mt-32 flex flex-col gap-3">
+					<div className="w-full py-3 border-b-[1px] border-black border-opacity-25">
+						<p className="text-[26px] text-black">Project</p>
+					</div>
+					<div className="w-full py-3 border-b-[1px] border-black border-opacity-25">
+						<p className="text-[26px] text-black">Contact</p>
+					</div>
+				</div>
+			</section>
+			{/* <-- ==== About Section Desktop End ==== --> */}
+		</>
+	);
 }
