@@ -11,12 +11,15 @@ const config = {
 	prefix: "",
 	theme: {
 		extend: {
+			fontFamily: {
+				supportingfont: "var(--supporting-font)",
+			},
 			padding: {
 				// sm //
-				sectionpxsm: "20px",
+				sectionpxsm: "22px",
 				// md //
 				// lg //
-				sectionpxlg: "100px",
+				sectionpxlg: "200px",
 				// 2xl //
 				sectionpx2xl: "160px",
 			},
