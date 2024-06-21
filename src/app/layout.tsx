@@ -6,6 +6,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import FooterDesktop from "@/components/footer-desktop";
+import BackToTop from "@/components/back-to-top";
 
 const mainFont = Cormorant_Garamond({
 	subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
 			<body className="bg-bgbase">
 				<Navbar />
 				{children}
+				<BackToTop />
 				<Footer />
 				<FooterDesktop />
 			</body>
