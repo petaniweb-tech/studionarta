@@ -2,9 +2,8 @@ import Image from "next/image";
 
 // Import Components //
 import HeroCarousel from "@/components/hero-carousel";
-
-// Import Components //
 import AboutCarousel from "@/components/about-carousel";
+import BackToTop from "@/components/back-to-top";
 
 // Import Assets //
 import aboutdummy1 from "@/assets/images/img-dummy-3.jpg";
@@ -17,6 +16,10 @@ import aboutdummy6 from "@/assets/images/img-dummy-9.jpg";
 export default function Home() {
 	return (
 		<>
+			{/* <-- ==== Scroll to Top Start ==== --> */}
+			<BackToTop />
+			{/* <-- ==== Scroll to Top End ==== --> */}
+
 			{/* <-- ==== Hero Section Start ==== --> */}
 			<section className="w-full h-screen">
 				<HeroCarousel />
