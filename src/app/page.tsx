@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 
 // Import Components //
@@ -92,7 +93,13 @@ export default function Home() {
 						<p className="text-[26px] text-black">Project</p>
 					</div>
 					<div className="w-full py-4 border-b-[1px] border-black border-opacity-25">
-						<p className="text-[26px] text-black">Contact</p>
+						<div className="w-fit">
+							<Link href="/contact">
+								<p className="text-[26px] text-black">
+									Contact
+								</p>
+							</Link>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -160,7 +167,13 @@ export default function Home() {
 						<p className="text-[26px] text-black">Project</p>
 					</div>
 					<div className="w-full py-3 border-b-[1px] border-black border-opacity-25">
-						<p className="text-[26px] text-black">Contact</p>
+						<div className="w-fit">
+							<Link href="/contact">
+								<p className="text-[26px] text-black cursor-pointer">
+									Contact
+								</p>
+							</Link>
+						</div>
 					</div>
 				</div>
 			</section>

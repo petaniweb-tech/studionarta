@@ -4,6 +4,7 @@ import "./globals.css";
 
 // Import Components //
 import Navbar from "@/components/navbar";
+import ConditionalNavbar from "@/components/conditional-navbar";
 import Footer from "@/components/footer";
 import FooterDesktop from "@/components/footer-desktop";
 import BackToTop from "@/components/back-to-top";
@@ -36,7 +37,7 @@ export default function RootLayout({
 			className={`scroll-smooth ${mainFont.variable} ${supportingFont.variable}`}
 		>
 			<body className="bg-bgbase">
-				<Navbar />
+				<ConditionalNavbar />
 				{children}
 				<BackToTop />
 				<Footer />

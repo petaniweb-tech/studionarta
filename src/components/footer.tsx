@@ -13,7 +13,7 @@ export default function Footer() {
 						src={logoblack}
 						alt="Narta Studio Logo"
 						priority={true}
-						className="w-8 h-auto"
+						className="w-7 h-auto"
 					/>
 
 					<div className="flex flex-col mt-14 gap-2">
@@ -33,9 +33,11 @@ export default function Footer() {
 						<p className="text-xl text-black font-medium">
 							Project
 						</p>
-						<p className="text-xl text-black font-medium">
-							Contact
-						</p>
+						<Link href="/contact">
+							<p className="text-xl text-black font-medium">
+								Contact
+							</p>
+						</Link>
 					</div>
 
 					<div className="flex flex-col mt-12 gap-2">
