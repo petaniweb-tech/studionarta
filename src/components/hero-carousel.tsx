@@ -6,24 +6,21 @@ import Autoplay from "embla-carousel-autoplay";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
 
-import { BannersType, Client, Hero } from "@/types/bannersType";
+import { Hero } from "@/types/bannersType";
 import { Image as ImageType } from "@/types/commonType";
-import { queryHero, queryClient } from "@/services/bannersService";
+import { queryHero } from "@/services/bannersService";
 import { fetch } from "@/services/sanity";
 
 // Import Assets //
 import logowhite from "@/assets/images/img-logowhite.png";
 
-async function fetchData(type: BannersType): Promise<Hero | Client> {
-	const query = type === "our-client" ? queryClient : queryHero;
-	return fetch(query);
-}
+async function fetchHeroBanner(): Promise<Hero> { return fetch(queryHero) }
 
 export default function HeroCarousel() {
 	const [banners, setBanners] = useState<ImageType[]>([]);
 
 	useEffect(() => {
-		fetchData("hero").then((data) => {
+		fetchHeroBanner().then((data) => {
 			const { banners } = data;
 			setBanners(banners)
 		}).catch((err) => console.error(err));
