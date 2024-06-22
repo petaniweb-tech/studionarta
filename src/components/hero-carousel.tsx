@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
 import { queryHero, queryClient } from "@/services/bannersService";
 import { BannersType, Client, Hero } from "@/types/bannersType";
+import { Image as ImageType } from "@/types/commonType";
+
 import { fetch } from "@/services/sanity";
 
 // Import Assets //
@@ -21,7 +22,7 @@ async function fetchData(type: BannersType): Promise<Hero | Client> {
 }
 
 export default function HeroCarousel() {
-	const [banners, setBanners] = useState<Image[]>([]);
+	const [banners, setBanners] = useState<ImageType[]>([]);
 
 	useEffect(() => {
 		fetchData("hero").then((data) => {
@@ -48,12 +49,16 @@ export default function HeroCarousel() {
 			<CarouselContent>
 				<CarouselItem className="block lg:hidden w-full object-cover">
 					<div className="relative">
-						<Image
-							src={carouselitem1}
-							alt="Carousel Item 1"
-							priority={true}
-							className="object-cover object-center h-screen w-auto"
-						/>
+						{ banners?.map((banner, index) => (
+							<Image
+								src={banner.url}
+								alt={`banner-image-${index}`}
+								priority={index === 0}
+								width={10}
+								height={10}
+								className="object-cover object-center h-screen w-auto"
+							/>
+						))}
 						<div className="absolute inset-0 flex items-center justify-center">
 							<Image
 								src={logowhite}
