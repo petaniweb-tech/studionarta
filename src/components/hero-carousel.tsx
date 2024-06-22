@@ -5,15 +5,13 @@ import { useEffect, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
-import { queryHero, queryClient } from "@/services/bannersService";
+
 import { BannersType, Client, Hero } from "@/types/bannersType";
 import { Image as ImageType } from "@/types/commonType";
-
+import { queryHero, queryClient } from "@/services/bannersService";
 import { fetch } from "@/services/sanity";
 
 // Import Assets //
-import carouselitem1 from "@/assets/images/img-dummy-1.jpg";
-import carouselitemlg from "@/assets/images/img-dummy-6.jpg";
 import logowhite from "@/assets/images/img-logowhite.png";
 
 async function fetchData(type: BannersType): Promise<Hero | Client> {
@@ -32,7 +30,7 @@ export default function HeroCarousel() {
 	}, []);
 
 	console.log("banners", banners)
-	
+
 	return (
 		<Carousel
 			opts={{
@@ -47,47 +45,28 @@ export default function HeroCarousel() {
 			className="w-full h-screen"
 		>
 			<CarouselContent>
-				<CarouselItem className="block lg:hidden w-full object-cover">
-					<div className="relative">
-						{ banners?.map((banner, index) => (
+				{banners?.map((banner, index) => (
+					<CarouselItem className={"block w-full object-cover"} key={`banner-${index}`}>
+						<div className="relative">
 							<Image
 								src={banner.url}
 								alt={`banner-image-${index}`}
 								priority={index === 0}
-								width={10}
-								height={10}
+								width={400}
+								height={400}
 								className="object-cover object-center h-screen w-auto"
 							/>
-						))}
-						<div className="absolute inset-0 flex items-center justify-center">
-							<Image
-								src={logowhite}
-								alt="Studio Narta Logo"
-								priority={true}
-								className="h-14 w-auto"
-							/>
+							<div className="absolute inset-0 flex items-center justify-center">
+								<Image
+									src={logowhite}
+									alt="Studio Narta Logo"
+									priority={true}
+									className="h-14 w-auto"
+								/>
+							</div>
 						</div>
-					</div>
-				</CarouselItem>
-
-				<CarouselItem className="hidden lg:block w-full">
-					<div className="relative">
-						<Image
-							src={carouselitemlg}
-							alt="Carousel Item 1"
-							priority={true}
-							className="object-cover object-center w-full h-screen"
-						/>
-						<div className="absolute inset-0 flex items-center justify-center">
-							<Image
-								src={logowhite}
-								alt="Studio Narta Logo"
-								priority={true}
-								className="h-[70px] w-auto"
-							/>
-						</div>
-					</div>
-				</CarouselItem>
+					</CarouselItem>
+				))}
 			</CarouselContent>
 		</Carousel>
 	);
