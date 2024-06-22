@@ -28,6 +28,10 @@ const config = {
 				bgbase: "#F1ECE9",
 			},
 
+			backgroundImage: {
+				bgcontact: "url('../assets/images/img-dummy-14.jpg')",
+			},
+
 			keyframes: {
 				"accordion-down": {
 					from: { height: "0" },

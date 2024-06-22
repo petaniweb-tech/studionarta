@@ -28,16 +28,18 @@ export default function FooterDesktop() {
 							<br />
 							euis
 						</p>
-						<div className="flex items-end justify-start gap-2 mt-[30px]">
+						<div className="flex items-end justify-start gap-3 mt-[30px]">
 							<p className="text-base text-black font-medium">
 								About Us
 							</p>
 							<p className="text-base text-black font-medium">
 								Project
 							</p>
-							<p className="text-base text-black font-medium">
-								Contact
-							</p>
+							<Link href="/contact">
+								<p className="text-base text-black font-medium">
+									Contact
+								</p>
+							</Link>
 						</div>
 					</div>
 				</div>
