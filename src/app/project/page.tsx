@@ -66,7 +66,7 @@ export default async function Project() {
 						{projects.map((project) => (
 							<div
 								key={project.slug}
-								className="flex flex-col gap-8"
+								className="flex flex-col gap-6 lg:gap-7"
 							>
 								{project?.thumbnail?.url && (
 									<Link href={`/project/${project.slug}`}>
