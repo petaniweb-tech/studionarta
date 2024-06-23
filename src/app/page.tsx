@@ -36,7 +36,10 @@ export default function Home() {
 			{/* <-- ==== About Section End ==== --> */}
 
 			{/* <-- ==== About Section Mobile Start ==== --> */}
-			<section className="block lg:hidden w-full px-sectionpxsm pt-24 pb-28">
+			<section
+				id="about"
+				className="block lg:hidden w-full px-sectionpxsm pt-24 pb-28"
+			>
 				<div className="flex gap-6 items-start">
 					<p className="text-lg text-black [writing-mode:vertical-rl] rotate-180 leading-none">
 						About us
@@ -106,7 +109,7 @@ export default function Home() {
 			{/* <-- ==== About Section Mobile End ==== --> */}
 
 			{/* <-- ==== About Section Desktop Start ==== --> */}
-			<section className="hidden lg:block w-full pt-36 mb-52">
+			<section id="about" className="hidden lg:block w-full pt-36 mb-52">
 				<div className="relative">
 					<div className="absolute inset-0 flex px-36 items-start">
 						<p className="text-lg text-black [writing-mode:vertical-rl] tracking-wider rotate-180 leading-none">
