@@ -7,11 +7,11 @@ export default function Contact() {
 				<div className="flex flex-col w-full lg:w-[36%] h-auto px-11 pt-12 lg:pt-14 pb-14 lg:pb-16 gap-9 bg-white">
 					<div className="flex flex-col gap-3">
 						<h5 className="text-2xl text-black font-medium">
-							Studio Narta.
+							Studionarta.
 						</h5>
 						<p className="text-[13px] text-black opacity-65 leading-relaxed font-supportingfont">
-							Lorem ipsum dolor sit amet, consectetur adipiscing
-							elit, sed diam nonummy nibh euis
+							Studionarta is a creative studio based in Malang and
+							Jakarta that values creativity and design excellence
 						</p>
 					</div>
 

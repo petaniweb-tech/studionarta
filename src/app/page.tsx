@@ -45,7 +45,7 @@ export default function Home() {
 						<div className="relative">
 							<div className="absolute inset-0 items-end flex px-7 pb-7">
 								<p className="text-xl leading-none text-white">
-									Lorem ipsum dolor
+									Innovation
 								</p>
 							</div>
 							<Image
@@ -59,7 +59,7 @@ export default function Home() {
 						<div className="relative">
 							<div className="absolute inset-0 items-end flex px-7 pb-7">
 								<p className="text-xl leading-none text-white">
-									Lorem ipsum dolor
+									Design Excellence
 								</p>
 							</div>
 							<Image
@@ -73,7 +73,7 @@ export default function Home() {
 						<div className="relative">
 							<div className="absolute inset-0 items-end flex px-7 pb-7">
 								<p className="text-xl leading-none text-white">
-									Lorem ipsum dolor
+									Collaborative approach
 								</p>
 							</div>
 							<Image
@@ -106,7 +106,7 @@ export default function Home() {
 			{/* <-- ==== About Section Mobile End ==== --> */}
 
 			{/* <-- ==== About Section Desktop Start ==== --> */}
-			<section className="hidden lg:block w-full pt-36 pb-52">
+			<section className="hidden lg:block w-full pt-36 mb-52">
 				<div className="relative">
 					<div className="absolute inset-0 flex px-36 items-start">
 						<p className="text-lg text-black [writing-mode:vertical-rl] tracking-wider rotate-180 leading-none">
@@ -117,7 +117,7 @@ export default function Home() {
 						<div className="relative">
 							<div className="absolute inset-0 items-end flex px-7 pb-7">
 								<p className="text-xl leading-none text-white">
-									Lorem ipsum dolor
+									Innovation
 								</p>
 							</div>
 							<Image
@@ -131,7 +131,7 @@ export default function Home() {
 						<div className="relative">
 							<div className="absolute inset-0 items-end flex px-7 pb-7">
 								<p className="text-xl leading-none text-white">
-									Lorem ipsum dolor
+									Design Excellence
 								</p>
 							</div>
 							<Image
@@ -145,7 +145,7 @@ export default function Home() {
 						<div className="relative">
 							<div className="absolute inset-0 items-end flex px-7 pb-7">
 								<p className="text-xl leading-none text-white">
-									Lorem ipsum dolor
+									Collaborative Approach
 								</p>
 							</div>
 							<Image
