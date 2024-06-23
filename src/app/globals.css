@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-	font-family: var(--main-font);
+@layer base {
+	html {
+		@apply scroll-smooth;
+		font-family: var(--main-font);
+	}
 }
