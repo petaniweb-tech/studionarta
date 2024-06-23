@@ -3,10 +3,8 @@ import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import "./globals.css";
 
 // Import Components //
-import Navbar from "@/components/navbar";
 import ConditionalNavbar from "@/components/conditional-navbar";
 import Footer from "@/components/footer";
-import FooterDesktop from "@/components/footer-desktop";
 import BackToTop from "@/components/back-to-top";
 
 const mainFont = Cormorant_Garamond({
@@ -41,7 +39,6 @@ export default function RootLayout({
 				{children}
 				<BackToTop />
 				<Footer />
-				<FooterDesktop />
 			</body>
 		</html>
 	);
