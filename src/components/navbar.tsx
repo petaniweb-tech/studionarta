@@ -70,41 +70,53 @@ function Navbar() {
 				<div
 					className={`flex items-center w-full justify-between px-sectionpxsm py-5 ${
 						scrolling
-							? "bg-white bg-opacity-10 backdrop-blur-2xl"
+							? "bg-white bg-opacity-15 backdrop-blur-2xl"
 							: "bg-transparent"
 					}
                     
                     `}
 				>
-					{isOpen ? (
-						<Image
-							src={logoblack}
-							alt="Studio Narta Logo"
-							priority={true}
-							className="h-7 w-auto"
-						/>
+					{isOpen || scrolling ? (
+						<Link href="/">
+							<Image
+								src={logoblack}
+								alt="Studio Narta Logo"
+								priority={true}
+								className="h-7 w-auto"
+							/>
+						</Link>
 					) : (
-						<Image
-							src={logowhite}
-							alt="Studio Narta Logo"
-							priority={true}
-							className="h-7 w-auto"
-						/>
+						<Link href="/">
+							<Image
+								src={logowhite}
+								alt="Studio Narta Logo"
+								priority={true}
+								className="h-7 w-auto"
+							/>
+						</Link>
 					)}
 
 					{/* <-- === Navbar Toggle === --> */}
 					<div
 						onClick={toggleMenu}
 						className={`w-fit h-fit flex items-center justify-center rounded-md px-2 py-2 border cursor-pointer ${
-							isOpen
-								? "border-black border-opacity-15"
-								: "border-white border-opacity-80"
+							isOpen || scrolling
+								? "border-black border-opacity-25"
+								: "border-white border-opacity-70"
 						}`}
 					>
 						{isOpen ? (
 							<Cross2Icon className="w-[22px] h-[22px] text-black" />
 						) : (
-							<HamburgerMenuIcon className="w-[22px] h-[22px] text-white" />
+							<HamburgerMenuIcon
+								className={`w-[22px] h-[22px] ${
+									scrolling
+										? "text-black opacity-70"
+										: "text-white"
+								}
+                                
+                                `}
+							/>
 						)}
 					</div>
 					{/* <-- === Navbar Toggle === --> */}
@@ -161,23 +173,42 @@ function Navbar() {
 			<nav
 				className={`hidden lg:flex fixed w-full px-sectionpxlg 2xl:px-sectionpx2xl z-[100] py-9 items-center justify-between ${
 					scrolling
-						? "bg-white bg-opacity-10 backdrop-blur-2xl"
+						? "bg-white bg-opacity-15 backdrop-blur-2xl"
 						: "bg-transparent"
-				}`}
+				}
+                `}
 			>
-				<Link href="/">
-					<Image
-						src={logowhite}
-						alt="Studio Narta"
-						priority={true}
-						className="h-[26px] w-auto"
-					/>
-				</Link>
+				{scrolling ? (
+					<Link href="/">
+						<Image
+							src={logoblack}
+							alt="Studio Narta Logo"
+							priority={true}
+							className="h-7 w-auto"
+						/>
+					</Link>
+				) : (
+					<Link href="/">
+						<Image
+							src={logowhite}
+							alt="Studio Narta Logo"
+							priority={true}
+							className="h-7 w-auto"
+						/>
+					</Link>
+				)}
 
 				{/* <-- === Navbar Links Start === --> */}
 				<div className="flex items-center justify-center gap-7">
 					{navLinks.map((link, index) => (
-						<div key={index} className="w-fit text-xl text-white">
+						<div
+							key={index}
+							className={`w-fit text-xl ${
+								scrolling ? "text-black" : "text-white"
+							}
+                            
+                            `}
+						>
 							<NavItem
 								key={index}
 								text={link.text}

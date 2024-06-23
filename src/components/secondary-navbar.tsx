@@ -69,18 +69,20 @@ function SecondaryNavbar() {
 				<div
 					className={`flex items-center w-full justify-between px-sectionpxsm py-5 ${
 						scrolling
-							? "bg-white bg-opacity-10 backdrop-blur-2xl"
+							? "bg-white bg-opacity-15 backdrop-blur-2xl"
 							: "bg-transparent"
 					}
                     
                     `}
 				>
-					<Image
-						src={logoblack}
-						alt="Studio Narta Logo"
-						priority={true}
-						className="h-7 w-auto"
-					/>
+					<Link href="/">
+						<Image
+							src={logoblack}
+							alt="Studio Narta Logo"
+							priority={true}
+							className="h-7 w-auto"
+						/>
+					</Link>
 
 					{/* <-- === Navbar Toggle === --> */}
 					<div
@@ -147,7 +149,7 @@ function SecondaryNavbar() {
 			<nav
 				className={`hidden lg:flex fixed w-full px-sectionpxlg 2xl:px-sectionpx2xl z-[100] py-9 items-center justify-between ${
 					scrolling
-						? "bg-white bg-opacity-10 backdrop-blur-2xl"
+						? "bg-white bg-opacity-15 backdrop-blur-2xl"
 						: "bg-transparent"
 				}`}
 			>
