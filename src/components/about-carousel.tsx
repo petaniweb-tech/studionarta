@@ -1,33 +1,30 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import Autoplay from "embla-carousel-autoplay";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
-import { About } from "@/types/bannersType";
 import { Image as ImageType } from "@/types/commonType";
 import { queryAbout } from "@/services/bannersService";
 import { fetch } from "@/services/sanity";
 
-async function fetchAboutBanner(): Promise<About> {
-	return fetch(queryAbout);
-}
-
 export default function AboutCarousel() {
 	const [banners, setBanners] = useState<ImageType[]>([]);
+	const hasFetched = useRef(false);
 
 	useEffect(() => {
-		fetchAboutBanner()
+		if (!hasFetched.current) {
+			fetch(queryAbout)
 			.then((data) => {
 				const { banners } = data;
 				setBanners(banners);
 			})
 			.catch((err) => console.error(err));
+			hasFetched.current = true;
+		}
 	}, []);
-
-	console.log("banners", banners);
 
 	return (
 		<Carousel

@@ -1,12 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef  } from "react";
 
 import Autoplay from "embla-carousel-autoplay";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
-import { Hero } from "@/types/bannersType";
 import { Image as ImageType } from "@/types/commonType";
 import { queryHero } from "@/services/bannersService";
 import { fetch } from "@/services/sanity";
@@ -14,23 +13,21 @@ import { fetch } from "@/services/sanity";
 // Import Assets //
 import logowhite from "@/assets/images/img-logowhite.png";
 
-async function fetchHeroBanner(): Promise<Hero> {
-	return fetch(queryHero);
-}
-
 export default function HeroCarousel() {
 	const [banners, setBanners] = useState<ImageType[]>([]);
+	const hasFetched = useRef(false);
 
 	useEffect(() => {
-		fetchHeroBanner()
+		if (!hasFetched.current) {
+			fetch(queryHero)
 			.then((data) => {
 				const { banners } = data;
 				setBanners(banners);
 			})
 			.catch((err) => console.error(err));
+			hasFetched.current = true;
+		}
 	}, []);
-
-	console.log("banners", banners);
 
 	return (
 		<Carousel
