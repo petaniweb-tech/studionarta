@@ -70,7 +70,7 @@ function Navbar() {
 				<div
 					className={`flex items-center w-full justify-between px-sectionpxsm py-5 ${
 						scrolling
-							? "bg-white bg-opacity-15 backdrop-blur-2xl"
+							? "bg-white bg-opacity-20 backdrop-blur-xl"
 							: "bg-transparent"
 					}
                     
@@ -127,8 +127,8 @@ function Navbar() {
 				className={`fixed w-full h-screen z-[90] lg:hidden
             ${
 				isOpen
-					? "top-0 left-0 transition-all duration-500 ease-in-out"
-					: "-top-full left-0 transition-all duration-500 ease-in-out"
+					? "top-0 left-0 transition-all duration-500 ease-in-out opacity-100"
+					: "-top-full left-0 transition-all duration-500 ease-in-out opacity-0"
 			}`}
 			>
 				<div className="w-full flex flex-col h-full bg-bgbase bg-opacity-60 backdrop-blur-xl px-sectionpxsm pb-20 pt-40 justify-between items-start">

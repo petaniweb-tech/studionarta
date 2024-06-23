@@ -6,20 +6,20 @@ import { useEffect, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
-import { About } from "@/types/bannersType";
+import { Client } from "@/types/bannersType";
 import { Image as ImageType } from "@/types/commonType";
-import { queryAbout } from "@/services/bannersService";
+import { queryClient } from "@/services/bannersService";
 import { fetch } from "@/services/sanity";
 
-async function fetchAboutBanner(): Promise<About> {
-	return fetch(queryAbout);
+async function fetchClientBanner(): Promise<Client> {
+	return fetch(queryClient);
 }
 
-export default function AboutCarousel() {
+export default function OurClientCarousel() {
 	const [banners, setBanners] = useState<ImageType[]>([]);
 
 	useEffect(() => {
-		fetchAboutBanner()
+		fetchClientBanner()
 			.then((data) => {
 				const { banners } = data;
 				setBanners(banners);
@@ -37,25 +37,27 @@ export default function AboutCarousel() {
 			}}
 			plugins={[
 				Autoplay({
-					delay: 3000,
+					delay: 4000,
 				}),
 			]}
-			className="w-full h-full"
+			className="w-full h-auto"
 		>
 			<CarouselContent>
 				{banners?.map((banner, index) => (
 					<CarouselItem
 						key={`banner-${index}`}
-						className="block w-full object-cover h-full"
+						className="block w-full object-cover"
 					>
-						<Image
-							src={banner.url}
-							alt={`about-image-${index}`}
-							priority={true}
-							width={1000}
-							height={400}
-							className="object-cover object-center w-full h-full"
-						/>
+						<div>
+							<Image
+								src={banner.url}
+								alt={`banner-image-${index}`}
+								priority={true}
+								width={400}
+								height={400}
+								className="object-cover object-center h-auto w-full"
+							/>
+						</div>
 					</CarouselItem>
 				))}
 			</CarouselContent>

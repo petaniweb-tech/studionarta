@@ -55,7 +55,7 @@ export default function HeroCarousel() {
 							<Image
 								src={banner.url}
 								alt={`banner-image-${index}`}
-								priority={index === 0}
+								priority={true}
 								width={400}
 								height={400}
 								className="object-cover object-center h-screen w-full"

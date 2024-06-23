@@ -8,7 +8,7 @@ export const queryProducts: string = `
   }`;
 
 export const queryProductBySlug = (slug: string): string => {
-  return `
+	return `
   *[_type=='projects' && slug.current == '${slug}'][0]
     {
       title,
