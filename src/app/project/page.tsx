@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { fetch } from "@/services/sanity";
 import { queryProducts } from "@/services/projectsService";
 import { ProjectDataType } from "@/types/projectsType";
@@ -23,11 +24,11 @@ export default async function Project() {
 			{/* <-- ==== Project Section Start ==== --> */}
 			<section className="w-full px-sectionpxsm lg:px-sectionpxlg pt-32 lg:pt-40">
 				{/* <-- ==== Headline Mobile Start ==== --> */}
-				<div className="flex lg:hidden flex-col lg:flex-row gap-[14px] lg:gap-[70px] lg:justify-between">
+				<div className="flex lg:hidden flex-col gap-[14px]">
 					<h5 className="text-[28px] text-black font-medium tracking-wide">
 						Project.
 					</h5>
-					<p className="text-[15px] lg:text-sm text-black font-supportingfont opacity-60 leading-relaxed lg:leading-[1.8] lg:pt-3">
+					<p className="text-[15px] text-black font-supportingfont opacity-60 leading-relaxed">
 						Studionarta is proud to present our latest projects.
 						These projects showcase our expertise. We collaborated
 						closely with our clients to understand their unique
@@ -68,14 +69,16 @@ export default async function Project() {
 								className="flex flex-col gap-8"
 							>
 								{project?.thumbnail?.url && (
-									<Image
-										src={project.thumbnail.url}
-										alt={project.title}
-										priority={true}
-										width={1000}
-										height={1000}
-										className="w-full h-full"
-									/>
+									<Link href={`/project/${project.slug}`}>
+										<Image
+											src={project.thumbnail.url}
+											alt={project.title}
+											priority={true}
+											width={1000}
+											height={1000}
+											className="w-full h-full lg:cursor-pointer"
+										/>
+									</Link>
 								)}
 								<div className="flex flex-col gap-1">
 									<p className="text-[21px] text-black font-semibold">
@@ -85,7 +88,7 @@ export default async function Project() {
 										{project.description}
 									</p>
 								</div>
-								<div className="w-full h-[1px] bg-black opacity-20 mt-1 lg:mb-5"></div>
+								<div className="w-full h-[1px] bg-black opacity-15 mt-1 lg:mb-5"></div>
 							</div>
 						))}
 					</div>
