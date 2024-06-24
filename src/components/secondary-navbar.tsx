@@ -116,7 +116,7 @@ function SecondaryNavbar() {
             ${
 				isOpen
 					? "top-0 left-0 transition-all duration-500 ease-in-out"
-					: "-top-full left-0 -translate-y-11 transition-all duration-500 ease-in-out"
+					: "-top-full left-0 -translate-y-32 transition-all duration-500 ease-in-out"
 			}`}
 			>
 				<div className="w-full flex flex-col h-full bg-bgbase bg-opacity-50 backdrop-blur-xl px-sectionpxsm pb-24 pt-40 justify-between items-start">
