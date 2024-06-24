@@ -20,7 +20,7 @@ const supportingFont = Montserrat({
 });
 
 export const metadata: Metadata = {
-	title: "Studio Narta",
+	title: "Studionarta",
 	description: "Professional Creative Solutions",
 };
 

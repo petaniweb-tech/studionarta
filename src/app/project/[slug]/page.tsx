@@ -10,7 +10,7 @@ async function fetchData(slug: string): Promise<ProjectDataType> {
 export default async function ProjectDetail({ params }: ProjectProps) {
 	const project = await fetchData(params.slug);
 
-	if (!project.slug) {
+	if (!project?.slug) {
 		// handle not found data
 		return null;
 	}
