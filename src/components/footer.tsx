@@ -23,13 +23,13 @@ export default function Footer() {
               CP - Devina{" "}
               <span>
                 <Link href="https://wa.me/628123024660">+62 81 2302 4660</Link>
-              </span>
+              </span>{" "}
               (WA only)
             </p>
           </div>
 
           <div className="flex flex-col mt-12 gap-2">
-            <Link href="/about">
+            <Link href="/#about">
               <p className="text-lg text-black font-medium">About Us</p>
             </Link>
             <Link href="/project">
@@ -69,7 +69,7 @@ export default function Footer() {
             <div className="pt-2 w-fit h-fit">
               <Image
                 src={logoblack}
-                alt="Studio Narta"
+                alt="Studionarta"
                 priority={true}
                 className="w-[34px] h-auto"
               />
@@ -82,8 +82,8 @@ export default function Footer() {
                   <Link href="https://wa.me/628123024660">
                     +62 81 2302 4660
                   </Link>
-                </span>
-                {' '}(WA only)
+                </span>{" "}
+                (WA only)
               </p>
               <div className="flex items-end justify-start gap-3 mt-[30px]">
                 <Link href="/#about">
