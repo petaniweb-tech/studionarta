@@ -1,10 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 
-// Import Icons //
+// Import Radix Icons //
 import { HamburgerMenuIcon, Cross2Icon } from "@radix-ui/react-icons";
 
 // Import Assets //
@@ -36,6 +36,12 @@ function Navbar() {
 		setOpen((prevOpen) => !prevOpen);
 	};
 
+	// External Link Path //
+	interface NavItemProps {
+		text: string;
+		path: string;
+	}
+
 	// Navbar Items //
 	interface NavItemProps {
 		text: string;
@@ -48,14 +54,18 @@ function Navbar() {
 	// Navbar Background //
 	const [scrolling, setScrolling] = useState(false);
 
+	const handleScroll = () => {
+		if (window.scrollY > 0) {
+			setScrolling(true);
+		} else {
+			setScrolling(false);
+		}
+	};
+
 	useEffect(() => {
-		const handleScroll = () => {
-			if (window.scrollY > 0) {
-				setScrolling(true);
-			} else {
-				setScrolling(false);
-			}
-		};
+		if (window.scrollY > 0) {
+			setScrolling(true);
+		}
 
 		window.addEventListener("scroll", handleScroll);
 		return () => {
@@ -66,21 +76,21 @@ function Navbar() {
 	return (
 		<>
 			{/* <-- ==== Navbar Mobile Start ==== --> */}
-			<nav className="fixed flex w-full z-[100] lg:hidden">
+			<nav className="fixed flex w-full z-[100] top-0 lg:hidden">
 				<div
-					className={`flex items-center w-full justify-between px-sectionpxsm py-5 ${
-						scrolling
-							? "bg-white bg-opacity-20 backdrop-blur-xl"
-							: "bg-transparent"
-					}
-                    
-                    `}
+					className={`flex items-center w-full justify-between px-sectionpxsm py-[18px] transition-all duration-500 ${
+						isOpen
+							? "bg-transparent"
+							: scrolling
+								? "bg-white bg-opacity-20 backdrop-blur-2xl"
+								: "bg-transparent"
+					}`}
 				>
 					{isOpen || scrolling ? (
 						<Link href="/">
 							<Image
 								src={logoblack}
-								alt="Studio Narta Logo"
+								alt="Studionarta Logo"
 								priority={true}
 								className="h-7 w-auto"
 							/>
@@ -89,14 +99,14 @@ function Navbar() {
 						<Link href="/">
 							<Image
 								src={logowhite}
-								alt="Studio Narta Logo"
+								alt="Studionarta Logo"
 								priority={true}
 								className="h-7 w-auto"
 							/>
 						</Link>
 					)}
 
-					{/* <-- === Navbar Toggle === --> */}
+					{/* <-- === Navbar Toggle Start === --> */}
 					<div
 						onClick={toggleMenu}
 						className={`w-fit h-fit flex items-center justify-center rounded-md px-2 py-2 border cursor-pointer ${
@@ -119,25 +129,26 @@ function Navbar() {
 							/>
 						)}
 					</div>
-					{/* <-- === Navbar Toggle === --> */}
+					{/* <-- === Navbar Toggle End === --> */}
 				</div>
 			</nav>
+
 			{/* <-- ==== Navbar Open Start ==== --> */}
 			<div
-				className={`fixed w-full h-screen z-[90] lg:hidden
+				className={`fixed w-full h-screen z-[80] lg:hidden
             ${
 				isOpen
-					? "top-0 left-0 transition-all duration-500 ease-in-out opacity-100"
-					: "-top-full left-0 transition-all duration-500 ease-in-out opacity-0"
+					? "top-0 left-0 transition-all duration-500 ease-in-out"
+					: "-top-full left-0 -translate-y-11 transition-all duration-500 ease-in-out"
 			}`}
 			>
-				<div className="w-full flex flex-col h-full bg-bgbase bg-opacity-60 backdrop-blur-xl px-sectionpxsm pb-20 pt-40 justify-between items-start">
+				<div className="w-full flex flex-col h-full bg-bgbase bg-opacity-50 backdrop-blur-xl px-sectionpxsm pb-24 pt-40 justify-between items-start">
 					<div className="flex flex-col w-full">
 						{/* <-- === Navbar Links Start === --> */}
 						{navLinks.map((link, index) => (
 							<div
 								key={index}
-								className="w-full py-3 text-5xl text-black"
+								className="w-full py-2 text-5xl text-black"
 							>
 								<NavItem
 									key={index}
@@ -148,6 +159,7 @@ function Navbar() {
 						))}
 						{/* <-- === Navbar Links End === --> */}
 					</div>
+
 					<div className="flex flex-col gap-14">
 						<div className="w-full flex flex-col gap-[6px]">
 							<h5 className="text-[22px] text-black font-medium">
@@ -158,11 +170,17 @@ function Navbar() {
 							</p>
 						</div>
 
-						<div className="flex w-fit pb-2 border-b-[1px] border-black border-opacity-25">
-							<p className="text-base font-medium text-black">
-								INSTAGRAM
-							</p>
-						</div>
+						<Link
+							href="https://www.instagram.com/studionarta"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<div className="flex w-fit pb-2 border-b-[1px] border-black border-opacity-25">
+								<p className="text-base font-medium text-black">
+									INSTAGRAM
+								</p>
+							</div>
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -171,12 +189,11 @@ function Navbar() {
 
 			{/* <-- ==== Navbar Desktop Start ==== --> */}
 			<nav
-				className={`hidden lg:flex fixed w-full px-sectionpxlg 2xl:px-sectionpx2xl z-[100] py-9 items-center justify-between ${
+				className={`hidden lg:flex fixed w-full px-sectionpxlg 2xl:px-sectionpx2xl z-[100] py-9 items-center justify-between transition-all duration-300 ${
 					scrolling
-						? "bg-white bg-opacity-15 backdrop-blur-2xl"
+						? "bg-bgbase bg-opacity-20 backdrop-blur-2xl"
 						: "bg-transparent"
-				}
-                `}
+				}`}
 			>
 				{scrolling ? (
 					<Link href="/">
@@ -216,9 +233,10 @@ function Navbar() {
 							/>
 						</div>
 					))}
-					{/* <-- === Navbar Links End === --> */}
 				</div>
+				{/* <-- === Navbar Links End === --> */}
 			</nav>
+
 			{/* <-- ==== Navbar Desktop End ==== --> */}
 		</>
 	);

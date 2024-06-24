@@ -20,22 +20,23 @@ const supportingFont = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Studionarta",
-  description: "Creative studio based in Malang and Jakarta that values creativity and design excellence",
-  openGraph: {
-    title: "Studionarta",
-    description: "Studionarta creative studio",
-    siteName: "Studionarta",
-    images: [
-		{
-			url:  "/img-logowhite.png",
-			width:  1200,
-			height:  630,
-		},
-	],
-    locale: "en_US",
-    type: "website",
-  },
+	title: "Studionarta",
+	description:
+		"Creative studio based in Malang and Jakarta that values creativity and design excellence",
+	openGraph: {
+		title: "Studionarta",
+		description: "Studionarta creative studio",
+		siteName: "Studionarta",
+		images: [
+			{
+				url: "/img-logowhite.png",
+				width: 1200,
+				height: 630,
+			},
+		],
+		locale: "en_US",
+		type: "website",
+	},
 };
 
 export default function RootLayout({
@@ -44,16 +45,16 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-    <html
-      lang="en"
-      className={`scroll-smooth ${mainFont.variable} ${supportingFont.variable}`}
-    >
-      <body className="bg-bgbase">
-        <ConditionalNavbar />
-        {children}
-        <BackToTop />
-        <Footer />
-      </body>
-    </html>
-  );
+		<html
+			lang="en"
+			className={`scroll-smooth ${mainFont.variable} ${supportingFont.variable}`}
+		>
+			<body className="bg-bgbase">
+				<ConditionalNavbar />
+				{children}
+				<BackToTop />
+				<Footer />
+			</body>
+		</html>
+	);
 }

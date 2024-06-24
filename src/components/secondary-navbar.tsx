@@ -35,6 +35,12 @@ function SecondaryNavbar() {
 		setOpen((prevOpen) => !prevOpen);
 	};
 
+	// External Link Path //
+	interface NavItemProps {
+		text: string;
+		path: string;
+	}
+
 	// Navbar Items //
 	interface NavItemProps {
 		text: string;
@@ -47,14 +53,18 @@ function SecondaryNavbar() {
 	// Navbar Background //
 	const [scrolling, setScrolling] = useState(false);
 
+	const handleScroll = () => {
+		if (window.scrollY > 0) {
+			setScrolling(true);
+		} else {
+			setScrolling(false);
+		}
+	};
+
 	useEffect(() => {
-		const handleScroll = () => {
-			if (window.scrollY > 0) {
-				setScrolling(true);
-			} else {
-				setScrolling(false);
-			}
-		};
+		if (window.scrollY > 0) {
+			setScrolling(true);
+		}
 
 		window.addEventListener("scroll", handleScroll);
 		return () => {
@@ -65,12 +75,14 @@ function SecondaryNavbar() {
 	return (
 		<>
 			{/* <-- ==== Navbar Mobile Start ==== --> */}
-			<nav className="fixed flex w-full z-[100] lg:hidden">
+			<nav className="fixed flex w-full z-[100] top-0 lg:hidden">
 				<div
-					className={`flex items-center w-full justify-between px-sectionpxsm py-5 ${
-						scrolling
-							? "bg-white bg-opacity-20 backdrop-blur-xl"
-							: "bg-transparent"
+					className={`flex items-center w-full justify-between px-sectionpxsm py-[18px] transition-all duration-500 ${
+						isOpen
+							? "bg-transparent"
+							: scrolling
+								? "bg-white bg-opacity-20 backdrop-blur-2xl"
+								: "bg-transparent"
 					}
                     
                     `}
@@ -100,20 +112,20 @@ function SecondaryNavbar() {
 			</nav>
 			{/* <-- ==== Navbar Open Start ==== --> */}
 			<div
-				className={`fixed w-full h-screen z-[90] lg:hidden
+				className={`fixed w-full h-screen z-[80] lg:hidden
             ${
 				isOpen
-					? "top-0 left-0 transition-all duration-500 ease-in-out opacity-100"
-					: "-top-full left-0 transition-all duration-500 ease-in-out opacity-0"
+					? "top-0 left-0 transition-all duration-500 ease-in-out"
+					: "-top-full left-0 -translate-y-11 transition-all duration-500 ease-in-out"
 			}`}
 			>
-				<div className="w-full flex flex-col h-full bg-bgbase bg-opacity-60 backdrop-blur-xl px-sectionpxsm pb-20 pt-40 justify-between items-start">
+				<div className="w-full flex flex-col h-full bg-bgbase bg-opacity-50 backdrop-blur-xl px-sectionpxsm pb-24 pt-40 justify-between items-start">
 					<div className="flex flex-col w-full">
 						{/* <-- === Navbar Links Start === --> */}
 						{navLinks.map((link, index) => (
 							<div
 								key={index}
-								className="w-full py-3 text-5xl text-black"
+								className="w-full py-2 text-5xl text-black"
 							>
 								<NavItem
 									key={index}
@@ -134,11 +146,17 @@ function SecondaryNavbar() {
 							</p>
 						</div>
 
-						<div className="flex w-fit pb-2 border-b-[1px] border-black border-opacity-25">
-							<p className="text-base font-medium text-black">
-								INSTAGRAM
-							</p>
-						</div>
+						<Link
+							href="https://www.instagram.com/studionarta"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<div className="flex w-fit pb-2 border-b-[1px] border-black border-opacity-25">
+								<p className="text-base font-medium text-black">
+									INSTAGRAM
+								</p>
+							</div>
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -147,9 +165,9 @@ function SecondaryNavbar() {
 
 			{/* <-- ==== Navbar Desktop Start ==== --> */}
 			<nav
-				className={`hidden lg:flex fixed w-full px-sectionpxlg 2xl:px-sectionpx2xl z-[100] py-9 items-center justify-between ${
+				className={`hidden lg:flex fixed w-full px-sectionpxlg 2xl:px-sectionpx2xl z-[100] py-9 items-center justify-between transition-all duration-300 ${
 					scrolling
-						? "bg-white bg-opacity-15 backdrop-blur-2xl"
+						? "bg-white bg-opacity-20 backdrop-blur-2xl"
 						: "bg-transparent"
 				}`}
 			>
@@ -173,8 +191,8 @@ function SecondaryNavbar() {
 							/>
 						</div>
 					))}
-					{/* <-- === Navbar Links End === --> */}
 				</div>
+				{/* <-- === Navbar Links End === --> */}
 			</nav>
 			{/* <-- ==== Navbar Desktop End ==== --> */}
 		</>
