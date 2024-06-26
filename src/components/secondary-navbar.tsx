@@ -119,13 +119,13 @@ function SecondaryNavbar() {
 					: "-top-full left-0 -translate-y-32 transition-all duration-500 ease-in-out"
 			}`}
 			>
-				<div className="w-full flex flex-col h-full bg-bgbase bg-opacity-50 backdrop-blur-xl px-sectionpxsm pb-24 pt-40 justify-between items-start">
+				<div className="w-full flex flex-col h-full bg-bgbase bg-opacity-50 backdrop-blur-xl px-sectionpxsm pb-24 pt-36 justify-between items-start">
 					<div className="flex flex-col w-full">
 						{/* <-- === Navbar Links Start === --> */}
 						{navLinks.map((link, index) => (
 							<div
 								key={index}
-								className="w-full py-2 text-5xl text-black"
+								className="w-full py-[10px] text-[40px] text-black border-black border-b-[1px] border-opacity-20"
 							>
 								<NavItem
 									key={index}
@@ -136,7 +136,7 @@ function SecondaryNavbar() {
 						))}
 						{/* <-- === Navbar Links End === --> */}
 					</div>
-					<div className="flex flex-col gap-14">
+					<div className="flex flex-col gap-11">
 						<div className="w-full flex flex-col gap-[6px]">
 							<h5 className="text-[22px] text-black font-medium">
 								Contact

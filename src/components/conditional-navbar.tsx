@@ -6,7 +6,11 @@ import Navbar from "@/components/navbar";
 const ConditionalNavbar = () => {
 	const pathname = usePathname();
 
-	if (pathname.startsWith("/project/") || pathname === "/contact") {
+	if (
+		pathname === "/project" ||
+		pathname.startsWith("/project/") ||
+		pathname === "/contact"
+	) {
 		return null;
 	}
 
