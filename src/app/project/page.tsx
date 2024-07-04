@@ -48,7 +48,7 @@ export default async function Project() {
 			{/* <-- === Breadcrumb Start === --> */}
 
 			{/* <-- ==== Project Section Start ==== --> */}
-			<section className="w-full px-sectionpxsm lg:px-sectionpxlg mt-[88px] lg:pt-40">
+			<section className="w-full px-sectionpxsm lg:px-sectionpxlg pt-[88px] lg:pt-40">
 				{/* <-- === Headline Mobile Start === --> */}
 				<div className="flex lg:hidden flex-col gap-[14px] mt-5">
 					<h5 className="text-[28px] text-black font-medium tracking-wide">
