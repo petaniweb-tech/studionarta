@@ -12,7 +12,7 @@ const config: ClientConfig = {
 	dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
 	projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
 	apiVersion: "2024-05-19",
-	useCdn: true,
+	useCdn: false,
 	perspective: perspective,
 };
 
