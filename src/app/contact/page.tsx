@@ -26,7 +26,7 @@ export default function Contact() {
 							<p className="text-[12px] text-neutral-500 font-supportingfont">
 								<span className="text-black">
 									<Link href="https://wa.me/628123024660">
-										+62 81 2302 4660
+										+62 812 3024 660
 									</Link>
 								</span>{" "}
 								(WA only)
@@ -38,7 +38,7 @@ export default function Contact() {
 						<h5 className="text-2xl text-black font-medium">
 							Follow Us.
 						</h5>
-						<Link href="">
+						<Link href="https://instagram.com/studionarta">
 							<div className="py-2 border-b-[1px] w-fit border-black border-opacity-25">
 								<p className="text-[13px] text-black font-medium">
 									INSTAGRAM

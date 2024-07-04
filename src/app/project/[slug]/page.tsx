@@ -78,9 +78,9 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 									className="w-screen h-full"
 								/>
 							)}
-							<div className="w-full items-center justify-center block px-sectionpxsm lg:px-sectionpxlg">
+							{/* <div className="w-full items-center justify-center block px-sectionpxsm lg:px-sectionpxlg">
 								<div className="w-full lg:px-sectionpxlg h-[1px] bg-black bg-opacity-15 mb-9 lg:mb-14"></div>
-							</div>
+							</div> */}
 						</div>
 					))}
 				</div>

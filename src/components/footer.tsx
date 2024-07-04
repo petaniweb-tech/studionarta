@@ -25,7 +25,7 @@ export default function Footer() {
 							CP - Devina{" "}
 							<span>
 								<Link href="https://wa.me/628123024660">
-									+62 81 2302 4660
+									+62 812 3024 660
 								</Link>
 							</span>{" "}
 							(WA only)
@@ -96,7 +96,7 @@ export default function Footer() {
 								CP - Devina{" "}
 								<span className="text-black">
 									<Link href="https://wa.me/628123024660">
-										+62 81 2302 4660
+										+62 812 3024 660
 									</Link>
 								</span>{" "}
 								(WA only)
