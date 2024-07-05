@@ -64,7 +64,7 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 				</div>
 			</section>
 
-			<section className="flex w-full lg:gap-16 items-center justify-center mt-16 mb-[76px] lg:mb-[56px] lg:mt-24">
+			<section className="flex w-full lg:gap-16 items-center justify-center mt-16 mb-28 lg:mt-24">
 				<div className="flex w-full flex-col">
 					{project.images?.map((image) => (
 						<div key={image.url} className="flex flex-col gap-14">
