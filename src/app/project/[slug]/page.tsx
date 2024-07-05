@@ -66,8 +66,21 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 
 			<section className="flex w-full lg:gap-16 items-center justify-center mt-16 mb-28 lg:mt-24">
 				<div className="flex w-full flex-col">
+					<div className="w-full object-cover object-center">
+						{project.video?.url && (
+							<video
+								src={project.video.url}
+								autoPlay={true}
+								muted={true}
+								loop={true}
+								controls={false}
+								playsInline
+								className="w-screen h-full object-cover"
+							/>
+						)}
+					</div>
 					{project.images?.map((image) => (
-						<div key={image.url} className="flex flex-col gap-14">
+						<div key={image.url} className="-translate-y-1">
 							{image.url && (
 								<Image
 									src={image.url}
@@ -75,12 +88,9 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 									priority={true}
 									width={1000}
 									height={1000}
-									className="w-screen h-full"
+									className="w-screen h-full object-cover"
 								/>
 							)}
-							{/* <div className="w-full items-center justify-center block px-sectionpxsm lg:px-sectionpxlg">
-								<div className="w-full lg:px-sectionpxlg h-[1px] bg-black bg-opacity-15 mb-9 lg:mb-14"></div>
-							</div> */}
 						</div>
 					))}
 				</div>
