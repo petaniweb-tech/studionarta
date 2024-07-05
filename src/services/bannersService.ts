@@ -8,8 +8,10 @@ export const queryAbout: string = `
 export const queryHero: string = `
   *[_type=='banners' && section=='hero'][0]
   {
-    'banners': images[]{'url': asset->url},
-    'video': video {'url': asset->url}
+    'banners': [
+      ...images[]{'url': asset->url, 'type': 'image'},
+      {'url': video.asset->url, 'type': 'video'}
+    ]
   }`;
 
 export const queryClient: string = `
