@@ -14,6 +14,7 @@ export const queryProductBySlug = (slug: string): string => {
       title,
       description,
       'slug' : slug.current,
-      'images': images[]{'url': asset->url}
+      'images': images[]{'url': asset->url},
+      'video': video {'url': asset->url}
     }`;
 };
