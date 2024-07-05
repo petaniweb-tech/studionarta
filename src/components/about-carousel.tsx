@@ -17,11 +17,11 @@ export default function AboutCarousel() {
 	useEffect(() => {
 		if (!hasFetched.current) {
 			fetch(queryAbout)
-			.then((data) => {
-				const { banners } = data;
-				setBanners(banners);
-			})
-			.catch((err) => console.error(err));
+				.then((data) => {
+					const { banners } = data;
+					setBanners(banners);
+				})
+				.catch((err) => console.error(err));
 			hasFetched.current = true;
 		}
 	}, []);
@@ -43,14 +43,14 @@ export default function AboutCarousel() {
 				{banners?.map((banner, index) => (
 					<CarouselItem
 						key={`banner-${index}`}
-						className="block w-full object-cover h-full"
+						className="block w-full h-full aspect-square lg:aspect-auto"
 					>
 						<Image
 							src={banner.url}
 							alt={`about-image-${index}`}
 							priority={true}
 							width={1000}
-							height={400}
+							height={1000}
 							className="object-cover object-center w-full h-full"
 						/>
 					</CarouselItem>

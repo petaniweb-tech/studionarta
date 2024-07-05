@@ -44,7 +44,7 @@ export default function Home() {
 					<p className="text-lg text-black [writing-mode:vertical-rl] rotate-180 leading-none">
 						About us
 					</p>
-					<div className="flex flex-col gap-5">
+					<div className="w-full flex flex-col gap-5">
 						<div className="relative">
 							<div className="absolute inset-0 items-end flex px-7 pb-7">
 								<p className="text-xl leading-none text-white">
@@ -55,7 +55,7 @@ export default function Home() {
 								src={aboutdummy1}
 								alt="About Dummy"
 								priority={true}
-								className="w-full h-auto"
+								className="w-full h-[200px] object-cover"
 							/>
 						</div>
 
@@ -69,7 +69,7 @@ export default function Home() {
 								src={aboutdummy2}
 								alt="About Dummy"
 								priority={true}
-								className="w-full h-auto"
+								className="w-full h-[200px] object-cover"
 							/>
 						</div>
 
@@ -83,7 +83,7 @@ export default function Home() {
 								src={aboutdummy3}
 								alt="About Dummy"
 								priority={true}
-								className="w-full h-auto"
+								className="w-full h-[200px] object-cover"
 							/>
 						</div>
 
@@ -123,7 +123,7 @@ export default function Home() {
 						</p>
 					</div>
 					<div className="flex items-center w-full gap-4 justify-center px-sectionpxlg">
-						<div className="relative">
+						<div className="relative w-full">
 							<div className="absolute inset-0 items-end flex px-7 pb-7">
 								<p className="text-xl leading-none text-white">
 									Innovation
@@ -133,11 +133,11 @@ export default function Home() {
 								src={aboutdummy4}
 								alt="About Dummy"
 								priority={true}
-								className="w-full h-auto"
+								className="w-full h-[210px] object-cover"
 							/>
 						</div>
 
-						<div className="relative">
+						<div className="relative w-full">
 							<div className="absolute inset-0 items-end flex px-7 pb-7">
 								<p className="text-xl leading-none text-white">
 									Design Excellence
@@ -147,11 +147,11 @@ export default function Home() {
 								src={aboutdummy5}
 								alt="About Dummy"
 								priority={true}
-								className="w-full h-auto"
+								className="w-full h-[210px] object-cover"
 							/>
 						</div>
 
-						<div className="relative">
+						<div className="relative w-full">
 							<div className="absolute inset-0 items-end flex px-7 pb-7">
 								<p className="text-xl leading-none text-white">
 									Collaborative Approach
@@ -161,7 +161,7 @@ export default function Home() {
 								src={aboutdummy6}
 								alt="About Dummy"
 								priority={true}
-								className="w-full h-auto"
+								className="w-full h-[210px] object-cover"
 							/>
 						</div>
 					</div>
