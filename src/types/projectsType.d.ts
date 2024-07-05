@@ -4,6 +4,7 @@ export interface ProjectDataType {
 	description: string;
 	thumbnail?: Image;
 	images?: Image[];
+	video?: { url: string };
 }
 
 export interface ProjectProps {
