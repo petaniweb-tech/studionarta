@@ -12,7 +12,7 @@ const config: ClientConfig = {
 	dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
 	projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
 	apiVersion: "2024-05-19",
-	useCdn: false,
+	useCdn: true,
 	perspective: perspective,
 };
 
@@ -20,5 +20,5 @@ const sanityClient: SanityClient = createClient(config);
 
 export const fetch = async (query: string): Promise<any> => {
 	const parseQuery = groq`${query}`;
-	return sanityClient.fetch(parseQuery);
+	return sanityClient.fetch(parseQuery, {}, { cache: 'no-store' });
 };
