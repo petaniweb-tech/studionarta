@@ -78,17 +78,18 @@ export default function Footer() {
 
 			{/* <-- ==== Footer Destop Start ==== --> */}
 			<section className="hidden lg:block w-full">
-				<div className="flex items-start justify-between px-sectionpxlg pb-20">
-					<div className="flex gap-20 w-full h-full">
-						<div className="pt-2 w-fit h-fit">
-							<Image
-								src={logoblack}
-								alt="Studionarta"
-								priority={true}
-								className="w-[34px] h-auto"
-							/>
-						</div>
-						<div className="flex flex-col h-full w-full self-start">
+				<div className="flex items-start justify-between gap-24 px-sectionpxlg pb-20">
+					<div className="w-fit flex pt-2">
+						<Image
+							src={logoblack}
+							alt="Studionarta"
+							priority={true}
+							className="w-8 h-auto"
+						/>
+					</div>
+
+					<div className="flex justify-between w-full">
+						<div className="flex flex-col w-full h-full">
 							<h5 className="text-xl text-black font-medium">
 								Contact Us
 							</h5>
@@ -99,49 +100,58 @@ export default function Footer() {
 										+62 812 3024 660
 									</Link>
 								</span>{" "}
-								(WA only)
+								(Whatsapp Only)
 							</p>
-							<div className="flex items-end justify-start gap-3 mt-[30px]">
+							<div className="flex items-end justify-start gap-[14px] mt-[30px]">
 								<Link href="/#about">
-									<p className="text-lg text-black font-medium">
+									<p className="text-[15px] text-neutral-500 leading-tight hover:text-black duration-300 font-supportingfont">
 										About Us
 									</p>
 								</Link>
+
+								<div className="w-[1px] h-auto self-stretch bg-neutral-400"></div>
+
 								<Link href="/project">
-									<p className="text-lg text-black font-medium">
+									<p className="text-[15px] text-neutral-500 leading-tight hover:text-black duration-300 font-supportingfont">
 										Project
 									</p>
 								</Link>
+
+								<div className="w-[1px] h-auto self-stretch bg-neutral-400"></div>
+
 								<Link href="/contact">
-									<p className="text-lg text-black font-medium">
+									<p className="text-[15px] text-neutral-500 leading-tight hover:text-black duration-300 font-supportingfont">
 										Contact
 									</p>
 								</Link>
 							</div>
 						</div>
-					</div>
 
-					<div className="flex flex-col h-full w-full self-start">
-						<h5 className="text-xl text-black font-medium">
-							Office Studio
-						</h5>
-						<p className="text-sm text-neutral-500 font-supportingfont mt-3">
-							Raya wendit barat No. 7 Malang, 65154
-						</p>
-					</div>
+						<div className="flex flex-col w-full h-full">
+							<h5 className="text-xl text-black font-medium">
+								Office Studio
+							</h5>
+							<p className="text-sm text-neutral-500 font-supportingfont mt-3">
+								Raya wendit barat No. 7 Malang, 65154
+							</p>
+						</div>
 
-					<div className="flex flex-col gap-5 h-full">
-						<Link
-							href="https://www.instagram.com/studionarta"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<div className="w-fit">
-								<p className="text-lg text-black font-medium">
-									INSTAGRAM
-								</p>
-							</div>
-						</Link>
+						<div className="flex flex-col w-fit h-full whitespace-nowrap">
+							<h5 className="text-xl text-black font-medium text-nowrap">
+								Social Media
+							</h5>
+							<Link
+								href="https://www.instagram.com/studionarta"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<div className="w-fit cursor-pointer">
+									<p className="text-sm text-neutral-500 hover:text-black duration-300 font-supportingfont mt-3 text-nowrap">
+										Instagram
+									</p>
+								</div>
+							</Link>
+						</div>
 					</div>
 				</div>
 			</section>

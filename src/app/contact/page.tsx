@@ -29,7 +29,7 @@ export default function Contact() {
 										+62 812 3024 660
 									</Link>
 								</span>{" "}
-								(WA only)
+								(Whatsapp Only)
 							</p>
 						</div>
 					</div>
@@ -38,10 +38,14 @@ export default function Contact() {
 						<h5 className="text-2xl text-black font-medium">
 							Follow Us.
 						</h5>
-						<Link href="https://instagram.com/studionarta">
-							<div className="py-2 border-b-[1px] w-fit border-black border-opacity-25">
-								<p className="text-[13px] text-black font-medium">
-									INSTAGRAM
+						<Link
+							href="https://www.instagram.com/studionarta"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<div className="pt-2">
+								<p className="text-[13px] text-black opacity-65 font-supportingfont">
+									Instagram
 								</p>
 							</div>
 						</Link>
