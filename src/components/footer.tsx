@@ -19,7 +19,7 @@ export default function Footer() {
 
 					<div className="flex flex-col mt-14 gap-2">
 						<p className="text-2xl text-black font-medium">
-							Studionarta
+							Contact Us
 						</p>
 						<p className="text-sm text-neutral-500 font-supportingfont">
 							CP - Devina{" "}
@@ -52,7 +52,7 @@ export default function Footer() {
 
 					<div className="flex flex-col mt-12 gap-2">
 						<p className="text-2xl text-black font-medium">
-							Contact
+							Office Studio
 						</p>
 						<p className="text-sm text-neutral-500 font-supportingfont">
 							Raya wendit barat No. 7 Malang, 65154
@@ -65,7 +65,7 @@ export default function Footer() {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<div className="py-2 border-b-[1px] w-fit border-black border-opacity-25">
+							<div className="w-fit">
 								<p className="text-lg text-black font-medium">
 									INSTAGRAM
 								</p>
@@ -90,7 +90,7 @@ export default function Footer() {
 						</div>
 						<div className="flex flex-col h-full w-full self-start">
 							<h5 className="text-xl text-black font-medium">
-								Studionarta
+								Contact Us
 							</h5>
 							<p className="text-sm text-neutral-500 font-supportingfont mt-3">
 								CP - Devina{" "}
@@ -123,7 +123,7 @@ export default function Footer() {
 
 					<div className="flex flex-col h-full w-full self-start">
 						<h5 className="text-xl text-black font-medium">
-							Contact
+							Office Studio
 						</h5>
 						<p className="text-sm text-neutral-500 font-supportingfont mt-3">
 							Raya wendit barat No. 7 Malang, 65154
@@ -136,8 +136,8 @@ export default function Footer() {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<div className="pb-2 border-b-[1px] w-fit border-black border-opacity-25">
-								<p className="text-sm text-black font-medium">
+							<div className="w-fit">
+								<p className="text-lg text-black font-medium">
 									INSTAGRAM
 								</p>
 							</div>

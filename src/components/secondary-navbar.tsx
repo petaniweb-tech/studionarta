@@ -120,12 +120,12 @@ function SecondaryNavbar() {
 			}`}
 			>
 				<div className="w-full flex flex-col h-full bg-bgbase bg-opacity-50 backdrop-blur-xl px-sectionpxsm pb-24 pt-36 justify-between items-start">
-					<div className="flex flex-col w-full">
+					<div className="flex flex-col w-full gap-6">
 						{/* <-- === Navbar Links Start === --> */}
 						{navLinks.map((link, index) => (
 							<div
 								key={index}
-								className="w-full py-[10px] text-[40px] text-black border-black border-b-[1px] border-opacity-20"
+								className="w-full pb-3 text-3xl text-black border-black border-b-[1px] border-opacity-20"
 							>
 								<NavItem
 									key={index}
@@ -151,7 +151,7 @@ function SecondaryNavbar() {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<div className="flex w-fit pb-2 border-b-[1px] border-black border-opacity-25">
+							<div className="flex w-fit">
 								<p className="text-base font-medium text-black">
 									INSTAGRAM
 								</p>
