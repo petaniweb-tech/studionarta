@@ -32,7 +32,7 @@ export default async function Project() {
 	return (
 		<>
 			{/* <-- === Breadcrumb Start === --> */}
-			<div className="sticky w-full px-sectionpxsm lg:px-sectionpxlg z-[90] top-[76px] lg:top-[99px] bg-bgbase py-[14px] lg:py-4">
+			<div className="sticky w-full px-sectionpxsm lg:px-sectionpxlg z-[70] top-[76px] lg:top-[99px] bg-bgbase py-[14px] lg:py-4">
 				<Breadcrumb className="font-supportingfont">
 					<BreadcrumbList>
 						<BreadcrumbItem>
