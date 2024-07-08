@@ -3,7 +3,6 @@ import Image from "next/image";
 
 // Import Components //
 import HeroCarousel from "@/components/hero-carousel";
-import HeroCarouselNew from "@/components/hero-carousel-new";
 import AboutCarousel from "@/components/about-carousel";
 
 // Import Assets //
@@ -19,8 +18,7 @@ export default function Home() {
 		<>
 			{/* <-- ==== Hero Section Start ==== --> */}
 			<section className="w-full h-screen">
-				{/* <HeroCarousel /> */}
-				<HeroCarouselNew />
+				<HeroCarousel />
 			</section>
 			{/* <-- ==== Hero Section End ==== --> */}
 
