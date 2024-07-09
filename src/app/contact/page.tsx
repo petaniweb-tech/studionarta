@@ -29,7 +29,7 @@ export default function Contact() {
 										+62 812 3024 660
 									</Link>
 								</span>{" "}
-								(Whatsapp Only)
+								(WhatsApp Only)
 							</p>
 						</div>
 					</div>
@@ -43,7 +43,7 @@ export default function Contact() {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<div className="pt-2">
+							<div className="pb-2">
 								<p className="text-[13px] text-black opacity-65 font-supportingfont">
 									Instagram
 								</p>

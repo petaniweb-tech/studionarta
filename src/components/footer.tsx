@@ -21,32 +21,38 @@ export default function Footer() {
 						<p className="text-2xl text-black font-medium">
 							Contact Us
 						</p>
-						<p className="text-sm text-neutral-500 font-supportingfont">
+						<p className="text-[15px] text-neutral-500 font-supportingfont">
 							CP - Devina{" "}
 							<span>
 								<Link href="https://wa.me/628123024660">
 									+62 812 3024 660
 								</Link>
 							</span>{" "}
-							(WA only)
+							(WhatsApp only)
 						</p>
 					</div>
 
-					<div className="flex flex-col mt-12 gap-2">
+					<div className="flex flex-col mt-12 gap-[18px]">
 						<Link href="/#about">
-							<p className="text-lg text-black font-medium">
-								About Us
-							</p>
+							<div className="w-fit pb-[6px] border-b border-black border-opacity-35">
+								<p className="text-base text-neutral-500 font-supportingfont">
+									About Us
+								</p>
+							</div>
 						</Link>
 						<Link href="/project">
-							<p className="text-lg text-black font-medium">
-								Project
-							</p>
+							<div className="w-fit pb-[6px] border-b border-black border-opacity-35">
+								<p className="text-base text-neutral-500 font-supportingfont">
+									Project
+								</p>
+							</div>
 						</Link>
 						<Link href="/contact">
-							<p className="text-lg text-black font-medium">
-								Contact
-							</p>
+							<div className="w-fit pb-[6px] border-b border-black border-opacity-35">
+								<p className="text-base text-neutral-500 font-supportingfont">
+									Contact
+								</p>
+							</div>
 						</Link>
 					</div>
 
@@ -54,20 +60,23 @@ export default function Footer() {
 						<p className="text-2xl text-black font-medium">
 							Office Studio
 						</p>
-						<p className="text-sm text-neutral-500 font-supportingfont">
+						<p className="text-[15px] text-neutral-500 font-supportingfont">
 							Raya wendit barat No. 7 Malang, 65154
 						</p>
 					</div>
 
-					<div className="flex flex-col mt-12 gap-3">
+					<div className="flex flex-col mt-12 gap-2">
+						<p className="text-2xl text-black font-medium">
+							Social Media
+						</p>
 						<Link
 							href="https://www.instagram.com/studionarta"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
 							<div className="w-fit">
-								<p className="text-lg text-black font-medium">
-									INSTAGRAM
+								<p className="text-[15px] text-neutral-500 font-supportingfont">
+									Instagram
 								</p>
 							</div>
 						</Link>
@@ -100,7 +109,7 @@ export default function Footer() {
 										+62 812 3024 660
 									</Link>
 								</span>{" "}
-								(Whatsapp Only)
+								(WhatsApp Only)
 							</p>
 							<div className="flex items-end justify-start gap-[14px] mt-[30px]">
 								<Link href="/#about">
