@@ -160,15 +160,10 @@ function Navbar() {
 						{/* <-- === Navbar Links End === --> */}
 					</div>
 
-					<div className="flex flex-col gap-11">
-						<div className="w-full flex flex-col gap-[6px]">
-							<h5 className="text-[22px] text-black font-medium">
-								Contact
-							</h5>
-							<p className="text-lg text-black">
-								Raya wendit barat No. 7 Malang, 65154
-							</p>
-						</div>
+					<div className="w-full flex flex-col gap-3">
+						<h5 className="text-2xl text-black font-medium">
+							Social Media
+						</h5>
 
 						<Link
 							href="https://www.instagram.com/studionarta"
@@ -176,8 +171,8 @@ function Navbar() {
 							rel="noopener noreferrer"
 						>
 							<div className="flex w-fit">
-								<p className="text-base font-medium text-black">
-									INSTAGRAM
+								<p className="text-base font-supportingfont text-neutral-500">
+									Instagram
 								</p>
 							</div>
 						</Link>
