@@ -103,7 +103,7 @@ export default async function Project() {
 												priority={true}
 												width={1000}
 												height={1000}
-												className="w-full h-full lg:cursor-pointer"
+												className="w-full h-full lg:cursor-pointer object-cover"
 											/>
 										</div>
 									)}
