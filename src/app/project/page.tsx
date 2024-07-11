@@ -88,7 +88,7 @@ export default async function Project() {
 					<p className="text-lg text-black [writing-mode:vertical-rl] rotate-180 leading-none tracking-wider">
 						Project.
 					</p>
-					<div className="grid grid-cols-1 lg:grid-cols-3 gap-16 lg:gap-8">
+					<div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-16 lg:gap-8">
 						{projects.map((project) => (
 							<Link href={`/project/${project.slug}`}>
 								<div
@@ -96,14 +96,16 @@ export default async function Project() {
 									className="flex flex-col gap-6 lg:gap-7"
 								>
 									{project?.thumbnail?.url && (
-										<Image
-											src={project.thumbnail.url}
-											alt={project.title}
-											priority={true}
-											width={1000}
-											height={1000}
-											className="w-full h-full lg:cursor-pointer"
-										/>
+										<div className="w-full h-60 lg:h-48 relative">
+											<Image
+												src={project.thumbnail.url}
+												alt={project.title}
+												priority={true}
+												width={1000}
+												height={1000}
+												className="w-full h-full lg:cursor-pointer object-cover"
+											/>
+										</div>
 									)}
 									<div className="flex flex-col gap-1">
 										<p className="text-[21px] text-black font-semibold">
