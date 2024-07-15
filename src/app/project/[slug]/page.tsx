@@ -13,6 +13,8 @@ import {
 	BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
+import testdarcy from "@/assets/images/test-darcy.jpg";
+
 async function fetchData(slug: string): Promise<ProjectDataType> {
 	return fetch(queryProductBySlug(slug));
 }
@@ -66,6 +68,12 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 
 			<section className="flex w-full lg:gap-16 items-center justify-center mt-16 mb-28 lg:mt-24">
 				<div className="flex w-full flex-col">
+					<Image
+						src={testdarcy}
+						alt="Test Darcy"
+						priority={true}
+						className="w-screen h-full object-cover"
+					/>
 					<div className="w-full object-cover object-center">
 						{project.video?.url && (
 							<video

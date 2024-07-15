@@ -107,15 +107,15 @@ export default async function Project() {
 											/>
 										</div>
 									)}
-									<div className="flex flex-col gap-1">
+									<div className="flex flex-col gap-1 lg:mb-5">
 										<p className="text-[21px] text-black font-semibold">
 											{project.title}
 										</p>
-										<p className="text-sm text-neutral-500 font-supportingfont">
+										{/* <p className="text-sm text-neutral-500 font-supportingfont">
 											{project.description}
-										</p>
+										</p> */}
 									</div>
-									<div className="w-full h-[1px] bg-black opacity-15 mt-1 lg:mb-5"></div>
+									{/* <div className="w-full h-[1px] bg-black opacity-15 mt-1 lg:mb-5"></div> */}
 								</div>
 							</Link>
 						))}
