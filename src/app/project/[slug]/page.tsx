@@ -75,6 +75,12 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 						className="w-screen h-full object-cover"
 						unoptimized={true}
 					/>
+					<Image
+						src={testdarcy}
+						alt="Test"
+						priority={true}
+						className="w-screen h-full object-cover"
+					/>
 					<div className="w-full object-cover object-center">
 						{project.video?.url && (
 							<video
