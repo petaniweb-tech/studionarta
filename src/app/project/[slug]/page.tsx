@@ -91,8 +91,10 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 									src={image.url}
 									alt={project.title}
 									priority={true}
-									width={1000}
-									height={1000}
+									width={0}
+									height={0}
+									sizes="100vw"
+									quality={100}
 									className="w-screen h-full object-cover"
 								/>
 							)}
