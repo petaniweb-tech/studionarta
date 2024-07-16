@@ -87,7 +87,7 @@ export default function Footer() {
 
 			{/* <-- ==== Footer Destop Start ==== --> */}
 			<section className="hidden lg:block w-full">
-				<div className="flex items-start justify-between gap-24 px-sectionpxlg pb-20">
+				<div className="flex items-start justify-between gap-24 px-sectionpxlg 2xl:px-sectionpx2xl pb-20">
 					<div className="w-fit flex pt-2">
 						<Image
 							src={logoblack}

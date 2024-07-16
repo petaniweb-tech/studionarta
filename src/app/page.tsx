@@ -23,7 +23,7 @@ export default function Home() {
 			{/* <-- ==== Hero Section End ==== --> */}
 
 			{/* <-- ==== About Section End ==== --> */}
-			<section className="w-full px-sectionpxsm lg:px-sectionpxlg pt-20 lg:pt-36">
+			<section className="w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl pt-20 lg:pt-36">
 				<p className="text-[22px] lg:text-2xl lg:leading-relaxed text-black lg:px-16">
 					Studionarta is a creative studio based in Malang and Jakarta
 					that values creativity and design excellence. Our team of
@@ -117,12 +117,12 @@ export default function Home() {
 			{/* <-- ==== About Section Desktop Start ==== --> */}
 			<section id="about" className="hidden lg:block w-full pt-36 mb-52">
 				<div className="relative">
-					<div className="absolute inset-0 flex px-36 items-start">
+					<div className="absolute inset-0 flex px-36 2xl:px-[102px] items-start">
 						<p className="text-lg text-black [writing-mode:vertical-rl] tracking-wider rotate-180 leading-none">
 							About us
 						</p>
 					</div>
-					<div className="flex items-center w-full gap-4 justify-center px-sectionpxlg">
+					<div className="flex items-center w-full gap-4 justify-center px-sectionpxlg 2xl:px-sectionpx2xl">
 						<div className="relative w-full">
 							<div className="absolute inset-0 items-end flex px-7 pb-7">
 								<p className="text-xl leading-none text-white">
@@ -167,11 +167,11 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div className="px-sectionpxlg w-full mt-4">
+				<div className="px-sectionpxlg 2xl:px-sectionpx2xl w-full mt-4">
 					<AboutCarousel />
 				</div>
 
-				<div className="px-sectionpxlg w-full mt-32 flex flex-col gap-3">
+				<div className="px-sectionpxlg 2xl:px-sectionpx2xl w-full mt-32 flex flex-col gap-3">
 					<div className="w-full py-3 border-b-[1px] border-black border-opacity-20">
 						<div className="w-fit">
 							<Link href="/project">

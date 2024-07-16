@@ -30,7 +30,7 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 	return (
 		<>
 			{/* <-- === Breadcrumb Start === --> */}
-			<div className="sticky w-full px-sectionpxsm lg:px-sectionpxlg z-[70] top-[76px] lg:top-[99px] bg-bgbase py-[14px] lg:py-4">
+			<div className="sticky w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl z-[70] top-[76px] lg:top-[99px] bg-bgbase py-[14px] lg:py-4">
 				<Breadcrumb className="font-supportingfont">
 					<BreadcrumbList>
 						<BreadcrumbItem>
@@ -55,7 +55,7 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 			</div>
 			{/* <-- === Breadcrumb Start === --> */}
 
-			<section className="w-full px-sectionpxsm lg:px-sectionpxlg pt-32 lg:pt-40">
+			<section className="w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl pt-32 lg:pt-40">
 				<div className="flex flex-col gap-[14px]">
 					<h5 className="text-[28px] text-black font-medium tracking-wide">
 						{project.title}

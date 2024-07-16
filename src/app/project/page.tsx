@@ -32,7 +32,7 @@ export default async function Project() {
 	return (
 		<>
 			{/* <-- === Breadcrumb Start === --> */}
-			<div className="sticky w-full px-sectionpxsm lg:px-sectionpxlg z-[70] top-[76px] lg:top-[99px] bg-bgbase py-[14px] lg:py-4">
+			<div className="sticky w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl z-[70] top-[76px] lg:top-[99px] bg-bgbase py-[14px] lg:py-4">
 				<Breadcrumb className="font-supportingfont">
 					<BreadcrumbList>
 						<BreadcrumbItem>
@@ -48,7 +48,7 @@ export default async function Project() {
 			{/* <-- === Breadcrumb Start === --> */}
 
 			{/* <-- ==== Project Section Start ==== --> */}
-			<section className="w-full px-sectionpxsm lg:px-sectionpxlg pt-[88px] lg:pt-40">
+			<section className="w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl pt-[88px] lg:pt-40">
 				{/* <-- === Headline Mobile Start === --> */}
 				<div className="flex lg:hidden flex-col gap-[14px] mt-5">
 					<h5 className="text-[28px] text-black font-medium tracking-wide">
@@ -96,7 +96,7 @@ export default async function Project() {
 									className="flex flex-col gap-6 lg:gap-7"
 								>
 									{project?.thumbnail?.url && (
-										<div className="w-full h-60 lg:h-48 relative">
+										<div className="w-full h-60 lg:h-52 2xl:h-64 relative">
 											<Image
 												src={project.thumbnail.url}
 												alt={project.title}
@@ -115,7 +115,7 @@ export default async function Project() {
 											{project.description}
 										</p> */}
 									</div>
-									{/* <div className="w-full h-[1px] bg-black opacity-15 mt-1 lg:mb-5"></div> */}
+									<div className="w-full h-[1px] bg-black opacity-15 mt-1 lg:mb-5"></div>
 								</div>
 							</Link>
 						))}
@@ -125,7 +125,7 @@ export default async function Project() {
 			{/* <-- ==== Project Section End ==== --> */}
 
 			{/* <-- ==== Our Client Section Start ==== --> */}
-			<section className="w-full px-sectionpxsm lg:px-sectionpxlg pt-24">
+			<section className="w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl pt-24">
 				<h5 className="block lg:hidden text-[28px] text-black font-medium tracking-wide">
 					Our Client.
 				</h5>
