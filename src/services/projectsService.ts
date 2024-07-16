@@ -4,8 +4,10 @@ export const queryProducts: string = `
     title,
     description,
     'slug' : slug.current,
-    'thumbnail': images[0]{'url': asset->url}
-  }`;
+    'thumbnail': images[0]{'url': asset->url},
+    _createdAt,
+    _updatedAt
+  } | order(_createdAt desc)`;
 
 export const queryProductBySlug = (slug: string): string => {
 	return `
