@@ -60,20 +60,17 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 					<h5 className="text-[28px] text-black font-medium tracking-wide">
 						{project.title}
 					</h5>
-					<p className="text-[15px] lg:text-sm text-black font-supportingfont opacity-60 leading-relaxed lg:leading-[1.8] lg:pt-3">
-						{project.description}
-					</p>
+					<p
+						className="text-[15px] lg:text-sm text-black font-supportingfont opacity-60 leading-relaxed lg:leading-[1.8] lg:pt-3"
+						dangerouslySetInnerHTML={{
+							__html: project.description,
+						}}
+					></p>
 				</div>
 			</section>
 
 			<section className="flex w-full lg:gap-16 items-center justify-center mt-16 mb-28 lg:mt-24">
 				<div className="flex w-full flex-col">
-					<Image
-						src={testdarcy}
-						alt="Test Darcy"
-						priority={true}
-						className="w-screen h-full object-cover"
-					/>
 					<div className="w-full object-cover object-center">
 						{project.video?.url && (
 							<video
