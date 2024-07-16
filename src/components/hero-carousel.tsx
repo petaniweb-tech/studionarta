@@ -104,7 +104,7 @@ export default function HeroCarousel() {
 							/>
 						</div>
 
-						<div className="absolute inset-0 flex justify-center w-full px-sectionpxsm lg:px-sectionpxlg items-end pb-10 lg:pb-[70px]">
+						<div className="absolute inset-0 flex justify-center w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl items-end pb-10 lg:pb-[70px]">
 							<div className="w-full flex items-end bg-white h-[1px] bg-opacity-70">
 								<div className="flex w-full">
 									{banners.map((_, index) => (
