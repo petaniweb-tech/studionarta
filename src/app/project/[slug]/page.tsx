@@ -13,8 +13,6 @@ import {
 	BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-import testdarcy from "@/assets/images/test-darcy.jpg";
-
 async function fetchData(slug: string): Promise<ProjectDataType> {
 	return fetch(queryProductBySlug(slug));
 }
@@ -76,7 +74,7 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 							<video
 								src={project.video.url}
 								autoPlay={true}
-								muted={false}
+								muted={true}
 								loop={true}
 								controls={false}
 								playsInline
