@@ -76,7 +76,7 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 							<video
 								src={project.video.url}
 								autoPlay={true}
-								muted={true}
+								muted={false}
 								loop={true}
 								controls={false}
 								playsInline
