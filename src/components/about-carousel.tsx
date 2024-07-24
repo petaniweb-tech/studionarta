@@ -101,6 +101,23 @@ export default function AboutCarousel() {
         <div className="px-sectionpxlg 2xl:px-sectionpx2xl w-full mt-4">
           {renderCarousel()}
         </div>
+
+        <div className="px-sectionpxlg 2xl:px-sectionpx2xl w-full mt-32 flex flex-col gap-3">
+          <div className="w-full py-3 border-b-[1px] border-black border-opacity-20">
+            <div className="w-fit">
+              <Link href="/project">
+                <p className="text-[26px] text-black cursor-pointer">Project</p>
+              </Link>
+            </div>
+          </div>
+          <div className="w-full py-3 border-b-[1px] border-black border-opacity-20">
+            <div className="w-fit">
+              <Link href="/contact">
+                <p className="text-[26px] text-black cursor-pointer">Contact</p>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="block lg:hidden">
