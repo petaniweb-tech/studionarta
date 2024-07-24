@@ -80,8 +80,10 @@ export default function HeroCarousel() {
 								src={banner.url}
 								alt={`banner-image-${index}`}
 								priority={true}
-								width={400}
-								height={400}
+								width={0}
+								height={0}
+								sizes="100vw"
+								quality={100}
 								className="object-cover object-center h-screen w-full"
 							/>
 						) : (
@@ -95,14 +97,6 @@ export default function HeroCarousel() {
 								className="object-cover object-center h-screen w-full"
 							/>
 						)}
-						<div className="absolute inset-0 flex items-center justify-center">
-							<Image
-								src={logowhite}
-								alt="Studio Narta Logo"
-								priority={true}
-								className="h-14 lg:h-[70px] w-auto"
-							/>
-						</div>
 
 						<div className="absolute inset-0 flex justify-center w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl items-end pb-10 lg:pb-[70px]">
 							<div className="w-full flex items-end bg-white h-[1px] bg-opacity-70">
