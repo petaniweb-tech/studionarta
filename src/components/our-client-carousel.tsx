@@ -27,8 +27,6 @@ export default function OurClientCarousel() {
 			.catch((err) => console.error(err));
 	}, []);
 
-	console.log("banners", banners);
-
 	return (
 		<Carousel
 			opts={{
