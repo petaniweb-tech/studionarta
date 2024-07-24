@@ -116,60 +116,7 @@ export default function Home() {
 
 			{/* <-- ==== About Section Desktop Start ==== --> */}
 			<section id="about" className="hidden lg:block w-full pt-36 mb-52">
-				<div className="relative">
-					<div className="absolute inset-0 flex px-36 2xl:px-[102px] items-start">
-						<p className="text-lg text-black [writing-mode:vertical-rl] tracking-wider rotate-180 leading-none">
-							About us
-						</p>
-					</div>
-					<div className="flex items-center w-full gap-4 justify-center px-sectionpxlg 2xl:px-sectionpx2xl">
-						<div className="relative w-full">
-							<div className="absolute inset-0 items-end flex px-7 pb-7">
-								<p className="text-xl leading-none text-white">
-									Innovation
-								</p>
-							</div>
-							<Image
-								src={aboutdummy4}
-								alt="About Dummy"
-								priority={true}
-								className="w-full h-[210px] object-cover"
-							/>
-						</div>
-
-						<div className="relative w-full">
-							<div className="absolute inset-0 items-end flex px-7 pb-7">
-								<p className="text-xl leading-none text-white">
-									Design Excellence
-								</p>
-							</div>
-							<Image
-								src={aboutdummy5}
-								alt="About Dummy"
-								priority={true}
-								className="w-full h-[210px] object-cover"
-							/>
-						</div>
-
-						<div className="relative w-full">
-							<div className="absolute inset-0 items-end flex px-7 pb-7">
-								<p className="text-xl leading-none text-white">
-									Collaborative Approach
-								</p>
-							</div>
-							<Image
-								src={aboutdummy6}
-								alt="About Dummy"
-								priority={true}
-								className="w-full h-[210px] object-cover"
-							/>
-						</div>
-					</div>
-				</div>
-
-				<div className="px-sectionpxlg 2xl:px-sectionpx2xl w-full mt-4">
-					<AboutCarousel />
-				</div>
+				<AboutCarousel />
 
 				<div className="px-sectionpxlg 2xl:px-sectionpx2xl w-full mt-32 flex flex-col gap-3">
 					<div className="w-full py-3 border-b-[1px] border-black border-opacity-20">
