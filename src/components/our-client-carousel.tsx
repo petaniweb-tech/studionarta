@@ -53,8 +53,10 @@ export default function OurClientCarousel() {
 								src={banner.url}
 								alt={`banner-image-${index}`}
 								priority={true}
-								width={400}
-								height={400}
+								width={0}
+								height={0}
+								sizes="100vw"
+								quality={100}
 								className="object-cover object-center h-auto w-full"
 							/>
 						</div>
