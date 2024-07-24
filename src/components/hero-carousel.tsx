@@ -69,8 +69,12 @@ export default function HeroCarousel() {
 			onSwiper={setSwiperRef}
 			className="w-full h-screen"
 		>
-			{banners?.map((banner, index) => (
-				<SwiperSlide
+			{banners?.map((banner, index) => {
+				if (!banner?.url) {
+					return ""
+				}
+				
+				return (<SwiperSlide
 					key={`banner-${index}`}
 					className="block w-full object-cover"
 				>
@@ -111,8 +115,8 @@ export default function HeroCarousel() {
 							</div>
 						</div>
 					</div>
-				</SwiperSlide>
-			))}
+				</SwiperSlide>)
+			})}
 		</Swiper>
 	);
 }
