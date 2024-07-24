@@ -1,17 +1,6 @@
-import Link from "next/link";
-import Image from "next/image";
-
 // Import Components //
 import HeroCarousel from "@/components/hero-carousel";
 import AboutCarousel from "@/components/about-carousel";
-
-// Import Assets //
-import aboutdummy1 from "@/assets/images/img-dummy-3.jpg";
-import aboutdummy2 from "@/assets/images/img-dummy-5.jpg";
-import aboutdummy3 from "@/assets/images/img-dummy-4.jpg";
-import aboutdummy4 from "@/assets/images/img-dummy-7.jpg";
-import aboutdummy5 from "@/assets/images/img-dummy-8.jpg";
-import aboutdummy6 from "@/assets/images/img-dummy-9.jpg";
 
 export default function Home() {
 	return (
@@ -35,109 +24,8 @@ export default function Home() {
 			</section>
 			{/* <-- ==== About Section End ==== --> */}
 
-			{/* <-- ==== About Section Mobile Start ==== --> */}
-			<section
-				id="about"
-				className="block lg:hidden w-full px-sectionpxsm pt-24 pb-28"
-			>
-				<div className="flex gap-6 items-start">
-					<p className="text-lg text-black [writing-mode:vertical-rl] rotate-180 leading-none">
-						About us
-					</p>
-					<div className="w-full flex flex-col gap-5">
-						<div className="relative">
-							<div className="absolute inset-0 items-end flex px-7 pb-7">
-								<p className="text-xl leading-none text-white">
-									Innovation
-								</p>
-							</div>
-							<Image
-								src={aboutdummy1}
-								alt="About Dummy"
-								priority={true}
-								className="w-full h-[200px] object-cover"
-							/>
-						</div>
-
-						<div className="relative">
-							<div className="absolute inset-0 items-end flex px-7 pb-7">
-								<p className="text-xl leading-none text-white">
-									Design Excellence
-								</p>
-							</div>
-							<Image
-								src={aboutdummy2}
-								alt="About Dummy"
-								priority={true}
-								className="w-full h-[200px] object-cover"
-							/>
-						</div>
-
-						<div className="relative">
-							<div className="absolute inset-0 items-end flex px-7 pb-7">
-								<p className="text-xl leading-none text-white">
-									Collaborative approach
-								</p>
-							</div>
-							<Image
-								src={aboutdummy3}
-								alt="About Dummy"
-								priority={true}
-								className="w-full h-[200px] object-cover"
-							/>
-						</div>
-
-						<AboutCarousel />
-					</div>
-				</div>
-
-				<div className="w-full pt-16">
-					<div className="w-full py-4 border-b-[1px] border-black border-opacity-20">
-						<div className="w-fit">
-							<Link href="/project">
-								<p className="text-[26px] text-black">
-									Project
-								</p>
-							</Link>
-						</div>
-					</div>
-					<div className="w-full py-4 border-b-[1px] border-black border-opacity-20">
-						<div className="w-fit">
-							<Link href="/contact">
-								<p className="text-[26px] text-black">
-									Contact
-								</p>
-							</Link>
-						</div>
-					</div>
-				</div>
-			</section>
-			{/* <-- ==== About Section Mobile End ==== --> */}
-
-			{/* <-- ==== About Section Desktop Start ==== --> */}
-			<section id="about" className="hidden lg:block w-full pt-36 mb-52">
+			<section id="about" className="w-full px-sectionpxsm pt-24 pb-28 lg:pt-36 lg:mb-52 lg:px-0 ">
 				<AboutCarousel />
-
-				<div className="px-sectionpxlg 2xl:px-sectionpx2xl w-full mt-32 flex flex-col gap-3">
-					<div className="w-full py-3 border-b-[1px] border-black border-opacity-20">
-						<div className="w-fit">
-							<Link href="/project">
-								<p className="text-[26px] text-black cursor-pointer">
-									Project
-								</p>
-							</Link>
-						</div>
-					</div>
-					<div className="w-full py-3 border-b-[1px] border-black border-opacity-20">
-						<div className="w-fit">
-							<Link href="/contact">
-								<p className="text-[26px] text-black cursor-pointer">
-									Contact
-								</p>
-							</Link>
-						</div>
-					</div>
-				</div>
 			</section>
 			{/* <-- ==== About Section Desktop End ==== --> */}
 		</>
