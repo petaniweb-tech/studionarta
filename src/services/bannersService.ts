@@ -9,8 +9,7 @@ export const queryHero: string = `
   *[_type=='banners' && section=='hero'][0]
   {
     'banners': [
-      ...images[]{'url': asset->url, 'type': 'image'},
-      {'url': video.asset->url, 'type': 'video'}
+      ...images[]{'url': asset->url},
     ]
   }`;
 

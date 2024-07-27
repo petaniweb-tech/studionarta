@@ -1,21 +1,16 @@
-import Image from "next/image";
 import Link from "next/link";
+
+// Import services
 import { fetch } from "@/services/sanity";
 import { queryProducts } from "@/services/projectsService";
-import { ProjectDataType } from "@/types/projectsType";
 
-// Import Breadcrumb //
-import {
-	Breadcrumb,
-	BreadcrumbItem,
-	BreadcrumbLink,
-	BreadcrumbList,
-	BreadcrumbPage,
-	BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+// Import data type
+import { ProjectDataType } from "@/types/projectsType";
 
 // Import Components //
 import OurClientCarousel from "@/components/our-client-carousel";
+import DynamicBreadcrumb from "@/components/dynamic-breadcrumb";
+import RenderAsset from "@/components/render-asset";
 
 async function fetchData(): Promise<ProjectDataType[]> {
 	return fetch(queryProducts);
@@ -33,17 +28,7 @@ export default async function Project() {
 		<>
 			{/* <-- === Breadcrumb Start === --> */}
 			<div className="sticky w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl z-[70] top-[76px] lg:top-[99px] bg-bgbase py-[14px] lg:py-4">
-				<Breadcrumb className="font-supportingfont">
-					<BreadcrumbList>
-						<BreadcrumbItem>
-							<BreadcrumbLink href="/">Home</BreadcrumbLink>
-						</BreadcrumbItem>
-						<BreadcrumbSeparator />
-						<BreadcrumbItem>
-							<BreadcrumbPage>Project</BreadcrumbPage>
-						</BreadcrumbItem>
-					</BreadcrumbList>
-				</Breadcrumb>
+				<DynamicBreadcrumb />
 			</div>
 			{/* <-- === Breadcrumb Start === --> */}
 
@@ -97,13 +82,15 @@ export default async function Project() {
 								>
 									{project?.thumbnail?.url && (
 										<div className="w-full h-60 lg:h-52 2xl:h-64 relative">
-											<Image
-												src={project.thumbnail.url}
-												alt={project.title}
-												priority={true}
-												width={1000}
-												height={1000}
-												className="w-full h-full lg:cursor-pointer object-cover"
+											<RenderAsset
+											key={`${project.title}}`}
+											url={project.thumbnail.url}
+											imageClassName="w-full h-full lg:cursor-pointer object-cover"
+											imageAlt={`${project.title}}`}
+											videoClassName="w-full h-full lg:cursor-pointer object-cover"
+											videoAutoPlay={true}
+											videoLoop={true}
+											videoMute={true}
 											/>
 										</div>
 									)}

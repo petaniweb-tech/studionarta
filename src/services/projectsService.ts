@@ -1,13 +1,14 @@
 export const queryProducts: string = `
-  *[_type=='projects']
+ *[_type=='projects']
   {
     title,
     description,
     'slug' : slug.current,
-    'thumbnail': images[0]{'url': asset->url},
+    'thumbnail': images[@._type == 'image']{'url': asset->url}[0],
+    position,
     _createdAt,
     _updatedAt
-  } | order(_createdAt desc)`;
+  } | order(position asc)`;
 
 export const queryProductBySlug = (slug: string): string => {
 	return `
@@ -17,6 +18,5 @@ export const queryProductBySlug = (slug: string): string => {
       description,
       'slug' : slug.current,
       'images': images[]{'url': asset->url},
-      'video': video {'url': asset->url}
     }`;
 };

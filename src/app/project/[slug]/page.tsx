@@ -1,105 +1,70 @@
-import Image from "next/image";
+// Import services
 import { fetch } from "@/services/sanity";
 import { queryProductBySlug } from "@/services/projectsService";
+
+// Import data type
 import { ProjectDataType, ProjectProps } from "@/types/projectsType";
 
-// Import Breadcrumb //
-import {
-	Breadcrumb,
-	BreadcrumbItem,
-	BreadcrumbLink,
-	BreadcrumbList,
-	BreadcrumbPage,
-	BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+// Import Component
+import RenderAsset from "@/components/render-asset";
+import DynamicBreadcrumb from "@/components/dynamic-breadcrumb";
+
+const INDEX_DOUBLE_ASSETS = [
+  2, 3, 9, 10, 16, 17, 23, 24, 30, 31, 37, 38, 44, 45,
+];
 
 async function fetchData(slug: string): Promise<ProjectDataType> {
-	return fetch(queryProductBySlug(slug));
+  return fetch(queryProductBySlug(slug));
 }
 
 export default async function ProjectDetail({ params }: ProjectProps) {
-	const project = await fetchData(params.slug);
+  const project = await fetchData(params.slug);
 
-	if (!project?.slug) {
-		// handle not found data
-		return null;
-	}
+  if (!project?.slug) {
+    // handle not found data
+    return null;
+  }
 
-	return (
-		<>
-			{/* <-- === Breadcrumb Start === --> */}
-			<div className="sticky w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl z-[70] top-[76px] lg:top-[99px] bg-bgbase py-[14px] lg:py-4">
-				<Breadcrumb className="font-supportingfont">
-					<BreadcrumbList>
-						<BreadcrumbItem>
-							<BreadcrumbLink href="/">Home</BreadcrumbLink>
-						</BreadcrumbItem>
+  return (
+    <>
+      {/* <-- === Breadcrumb Start === --> */}
+      <div className="sticky w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl z-[70] top-[76px] lg:top-[99px] bg-bgbase py-[14px] lg:py-4">
+        <DynamicBreadcrumb />
+      </div>
+      {/* <-- === Breadcrumb Start === --> */}
 
-						<BreadcrumbSeparator />
+      <section className="w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl pt-32 lg:pt-40">
+        <div className="flex flex-col gap-[14px]">
+          <h5 className="text-[28px] text-black font-medium tracking-wide">
+            {project.title}
+          </h5>
+          <p
+            className="text-[15px] lg:text-sm text-black font-supportingfont opacity-60 leading-relaxed lg:leading-[1.8] lg:pt-3"
+            dangerouslySetInnerHTML={{
+              __html: project.description,
+            }}
+          ></p>
+        </div>
+      </section>
 
-						<BreadcrumbItem>
-							<BreadcrumbLink href="/project">
-								Project
-							</BreadcrumbLink>
-						</BreadcrumbItem>
-
-						<BreadcrumbSeparator />
-
-						<BreadcrumbItem>
-							<BreadcrumbPage>{project.title}</BreadcrumbPage>
-						</BreadcrumbItem>
-					</BreadcrumbList>
-				</Breadcrumb>
-			</div>
-			{/* <-- === Breadcrumb Start === --> */}
-
-			<section className="w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl pt-32 lg:pt-40">
-				<div className="flex flex-col gap-[14px]">
-					<h5 className="text-[28px] text-black font-medium tracking-wide">
-						{project.title}
-					</h5>
-					<p
-						className="text-[15px] lg:text-sm text-black font-supportingfont opacity-60 leading-relaxed lg:leading-[1.8] lg:pt-3"
-						dangerouslySetInnerHTML={{
-							__html: project.description,
-						}}
-					></p>
-				</div>
-			</section>
-
-			<section className="flex w-full lg:gap-16 items-center justify-center mt-16 mb-28 lg:mt-24">
-				<div className="flex w-full flex-col">
-					<div className="w-full object-cover object-center">
-						{project.video?.url && (
-							<video
-								src={project.video.url}
-								autoPlay={true}
-								muted={true}
-								loop={true}
-								controls={false}
-								playsInline
-								className="w-screen h-full object-cover"
-							/>
-						)}
-					</div>
-					{project.images?.map((image) => (
-						<div key={image.url} className="-translate-y-1">
-							{image.url && (
-								<Image
-									src={image.url}
-									alt={project.title}
-									priority={true}
-									width={0}
-									height={0}
-									sizes="100vw"
-									quality={100}
-									className="w-screen h-full object-cover"
-								/>
-							)}
-						</div>
-					))}
-				</div>
-			</section>
-		</>
-	);
+      <section className="w-full grid grid-cols-2 gap-2 mt-16 mb-28 lg:mt-24">
+        {project.images?.map((image, index) => (
+          <div
+            className={`${INDEX_DOUBLE_ASSETS.includes(index) ? "lg:col-span-1 col-span-2" : "col-span-2"}`} key={`wrapper-${project.title}-${index}`}
+          >
+            <RenderAsset
+              key={`${project.title}-${index}`}
+              url={image.url}
+              imageClassName="w-screen h-full object-cover"
+              imageAlt={`${project.title}-${index}`}
+              videoClassName="w-screen h-full object-cover"
+              videoAutoPlay={true}
+              videoLoop={true}
+              videoMute={true}
+            />
+          </div>
+        ))}
+      </section>
+    </>
+  );
 }
