@@ -16,7 +16,7 @@ async function fetchData(): Promise<ProjectDataType[]> {
 	return fetch(queryProducts);
 }
 
-export default async function Project() {
+export default async function Ourwork() {
 	const projects = await fetchData();
 
 	if (!projects.length) {
@@ -37,7 +37,7 @@ export default async function Project() {
 				{/* <-- === Headline Mobile Start === --> */}
 				<div className="flex lg:hidden flex-col gap-[14px] mt-5">
 					<h5 className="text-[28px] text-black font-medium tracking-wide">
-						Project.
+						Our Work.
 					</h5>
 					<p className="text-[15px] text-black font-supportingfont opacity-60 leading-relaxed">
 						Studionarta is proud to present our latest projects.
@@ -55,8 +55,8 @@ export default async function Project() {
 						XXX
 					</p>
 					<div className="flex gap-16 justify-between">
-						<h5 className="text-[28px] text-black font-medium tracking-wide">
-							Project.
+						<h5 className="text-[28px] text-black font-medium tracking-wide whitespace-nowrap">
+							Our Work.
 						</h5>
 						<p className="text-sm text-black font-supportingfont opacity-60 leading-[1.8] pt-3">
 							Studionarta is proud to present our latest projects.
@@ -71,11 +71,11 @@ export default async function Project() {
 
 				<div className="flex gap-6 lg:gap-16 items-start mt-16 lg:mt-24">
 					<p className="text-lg text-black [writing-mode:vertical-rl] rotate-180 leading-none tracking-wider">
-						Project.
+						Our Work.
 					</p>
 					<div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-16 lg:gap-8">
 						{projects.map((project) => (
-							<Link href={`/project/${project.slug}`}>
+							<Link href={`/our-work/${project.slug}`}>
 								<div
 									key={project.slug}
 									className="flex flex-col gap-6 lg:gap-7"
@@ -83,14 +83,15 @@ export default async function Project() {
 									{project?.thumbnail?.url && (
 										<div className="w-full h-60 lg:h-52 2xl:h-64 relative">
 											<RenderAsset
-											key={`${project.title}}`}
-											url={project.thumbnail.url}
-											imageClassName="w-full h-full lg:cursor-pointer object-cover"
-											imageAlt={`${project.title}}`}
-											videoClassName="w-full h-full lg:cursor-pointer object-cover"
-											videoAutoPlay={true}
-											videoLoop={true}
-											videoMute={true}
+												key={`${project.title}}`}
+												url={project.thumbnail.url}
+												imageClassName="w-full h-full lg:cursor-pointer object-cover"
+												imageAlt={`${project.title}}`}
+												videoClassName="w-full h-full lg:cursor-pointer object-cover"
+												videoAutoPlay={true}
+												videoLoop={true}
+												videoMute={true}
+												showButton={false}
 											/>
 										</div>
 									)}

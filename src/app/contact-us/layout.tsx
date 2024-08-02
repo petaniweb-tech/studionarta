@@ -1,7 +1,7 @@
 // Import Components //
 import SecondaryNavbar from "@/components/secondary-navbar";
 
-export default function ContactLayout({
+export default function ContactUsLayout({
 	children,
 }: {
 	children: React.ReactNode;

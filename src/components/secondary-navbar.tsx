@@ -14,16 +14,16 @@ function SecondaryNavbar() {
 	// Navbar Links //
 	const navLinks = [
 		{
-			text: "Project",
-			path: "/project",
+			text: "Our Work",
+			path: "/our-work",
 		},
 		{
-			text: "About Us",
-			path: "/#about",
+			text: "Contact Us",
+			path: "/contact-us",
 		},
 		{
-			text: "Contact",
-			path: "/contact",
+			text: "Join Us",
+			path: "/join-us",
 		},
 	];
 
@@ -33,6 +33,11 @@ function SecondaryNavbar() {
 	// Navbar Toggle //
 	const toggleMenu = () => {
 		setOpen((prevOpen) => !prevOpen);
+	};
+
+	// Close menu when navigating //
+	const closeMenu = () => {
+		setOpen(false);
 	};
 
 	// External Link Path //
@@ -47,7 +52,11 @@ function SecondaryNavbar() {
 		path: string;
 	}
 	const NavItem = ({ text, path }: NavItemProps) => {
-		return <Link href={path}>{text}</Link>;
+		return (
+			<Link href={path} onClick={closeMenu}>
+				{text}
+			</Link>
+		);
 	};
 
 	// Navbar Background //
@@ -172,14 +181,17 @@ function SecondaryNavbar() {
 						src={logoblack}
 						alt="Studio Narta Logo"
 						priority={true}
-						className="h-7 w-auto"
+						className="h-7 2xl:h-[30px] w-auto"
 					/>
 				</Link>
 
 				{/* <-- === Navbar Links Start === --> */}
-				<div className="flex items-center justify-center gap-7">
+				<div className="flex items-center justify-center gap-[30px]">
 					{navLinks.map((link, index) => (
-						<div key={index} className="w-fit text-xl text-black">
+						<div
+							key={index}
+							className="w-fit text-xl 2xl:text-[22px] text-black"
+						>
 							<NavItem
 								key={index}
 								text={link.text}
