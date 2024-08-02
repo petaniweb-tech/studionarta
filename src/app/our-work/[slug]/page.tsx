@@ -62,10 +62,7 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 							videoAutoPlay={true}
 							videoLoop={true}
 							videoMute={true}
-							// Optional props for VideoPlayer
-							showButton={true} // example of optional prop
-							aspect="16 / 9" // example of optional prop
-							aspectClasses="aspect-square lg:aspect-[16/10]" // example of optional prop
+							showButton={true}
 						/>
 					</div>
 				))}
