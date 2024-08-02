@@ -28,7 +28,7 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 	return (
 		<>
 			{/* <-- === Breadcrumb Start === --> */}
-			<div className="sticky w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl z-[70] top-[76px] lg:top-[99px] bg-bgbase py-[14px] lg:py-4">
+			<div className="sticky w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl z-[70] top-[76px] lg:top-[83px] 2xl:top-[95px] bg-bgbase py-[14px] lg:pt-[14px] lg:pb-4 2xl:pt-[15px] 2xl:pb-[17px]">
 				<DynamicBreadcrumb />
 			</div>
 			{/* <-- === Breadcrumb Start === --> */}

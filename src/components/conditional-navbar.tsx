@@ -7,9 +7,10 @@ const ConditionalNavbar = () => {
 	const pathname = usePathname();
 
 	if (
-		pathname === "/project" ||
-		pathname.startsWith("/project/") ||
-		pathname === "/contact"
+		pathname === "/our-work" ||
+		pathname.startsWith("/our-work/") ||
+		pathname === "/contact-us" ||
+		pathname === "/join-us"
 	) {
 		return null;
 	}
