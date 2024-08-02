@@ -36,7 +36,7 @@ export default function Home() {
 			{/* <-- ==== Our Client Section Start ==== --> */}
 			<section className="w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl mt-28 lg:mt-36">
 				<div className="w-full flex items-center justify-start">
-					<h3 className="text-[26px] lg:text-[33px] 2xl:text-[41px] text-black cursor-pointer">
+					<h3 className="text-[28px] lg:text-[33px] 2xl:text-[41px] text-black cursor-pointer">
 						Our Client.
 					</h3>
 				</div>
@@ -52,7 +52,7 @@ export default function Home() {
 					<Link href="/our-work">
 						<div className="w-full py-2 border-b-[1px] border-black border-opacity-15 lg:hover:border-opacity-35 duration-300 cursor-pointer">
 							<div className="w-fit">
-								<h3 className="text-[26px] lg:text-[33px] 2xl:text-[41px] text-black">
+								<h3 className="text-[28px] lg:text-[33px] 2xl:text-[41px] text-black">
 									Our Work
 								</h3>
 							</div>
@@ -62,7 +62,7 @@ export default function Home() {
 					<Link href="/contact-us">
 						<div className="w-full py-2 border-b-[1px] border-black border-opacity-15 lg:hover:border-opacity-35 duration-300 cursor-pointer">
 							<div className="w-fit">
-								<h3 className="text-[26px] lg:text-[33px] 2xl:text-[41px] text-black">
+								<h3 className="text-[28px] lg:text-[33px] 2xl:text-[41px] text-black">
 									Contact Us
 								</h3>
 							</div>
@@ -72,7 +72,7 @@ export default function Home() {
 					<Link href="/join-us">
 						<div className="w-full py-2 border-b-[1px] border-black border-opacity-15 lg:hover:border-opacity-35 duration-300 cursor-pointer">
 							<div className="w-fit">
-								<h3 className="text-[26px] lg:text-[33px] 2xl:text-[41px] text-black">
+								<h3 className="text-[28px] lg:text-[33px] 2xl:text-[41px] text-black">
 									Join Us
 								</h3>
 							</div>
