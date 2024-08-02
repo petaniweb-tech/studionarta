@@ -170,7 +170,7 @@ function SecondaryNavbar() {
 
 			{/* <-- ==== Navbar Desktop Start ==== --> */}
 			<nav
-				className={`hidden lg:flex fixed w-full px-sectionpxlg 2xl:px-sectionpx2xl z-[100] py-9 items-center justify-between transition-all duration-300 ${
+				className={`hidden lg:flex fixed w-full px-sectionpxlg 2xl:px-sectionpx2xl z-[100] py-7 2xl:py-8 items-center justify-between transition-all duration-300 ${
 					scrolling
 						? "bg-white bg-opacity-20 backdrop-blur-2xl"
 						: "bg-transparent"
@@ -181,16 +181,16 @@ function SecondaryNavbar() {
 						src={logoblack}
 						alt="Studio Narta Logo"
 						priority={true}
-						className="h-7 2xl:h-[30px] w-auto"
+						className="h-7 2xl:h-8 w-auto"
 					/>
 				</Link>
 
 				{/* <-- === Navbar Links Start === --> */}
-				<div className="flex items-center justify-center gap-[30px]">
+				<div className="flex items-center justify-center gap-[30px] 2xl:gap-8">
 					{navLinks.map((link, index) => (
 						<div
 							key={index}
-							className="w-fit text-xl 2xl:text-[22px] text-black"
+							className="w-fit text-xl 2xl:text-2xl text-black"
 						>
 							<NavItem
 								key={index}
