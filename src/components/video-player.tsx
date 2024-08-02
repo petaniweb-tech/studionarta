@@ -29,6 +29,7 @@ export default function VideoPlayer({
 	ignoreAspectRatio = false,
 }: VideoPlayerProps) {
 	const [isPlaying, setIsPlaying] = useState(false);
+	const [isMuted, setIsMuted] = useState(muted);
 	const videoRef = useRef<HTMLVideoElement>(null);
 
 	const handlePlayPause = () => {
@@ -37,6 +38,8 @@ export default function VideoPlayer({
 				videoRef.current.pause();
 			} else {
 				videoRef.current.play();
+				setIsMuted(false);
+				videoRef.current.muted = false;
 			}
 			setIsPlaying(!isPlaying);
 		}
@@ -57,7 +60,7 @@ export default function VideoPlayer({
 				<video
 					ref={videoRef}
 					autoPlay={autoPlay}
-					muted={muted}
+					muted={isMuted}
 					loop={loop}
 					controls={false}
 					playsInline
