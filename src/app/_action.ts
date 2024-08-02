@@ -2,13 +2,13 @@
 
 import { z } from "zod";
 import { Resend } from "resend";
-import { JoinUsFormSchema } from "@/lib/schema";
+import { JoinUsPayloadSchema } from "@/lib/schema";
 import JoinUsFormEmail from "../../emails/join-us-form-email";
 
-type JoinUsFormInputs = z.infer<typeof JoinUsFormSchema>;
+type JoinUsFormInputs = z.infer<typeof JoinUsPayloadSchema>;
 
 export async function addEntry(data: JoinUsFormInputs) {
-	const result = JoinUsFormSchema.safeParse(data);
+	const result = JoinUsPayloadSchema.safeParse(data);
 
 	if (result.success) {
 		return { success: true, data: result.data };
@@ -19,10 +19,10 @@ export async function addEntry(data: JoinUsFormInputs) {
 	}
 }
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
 export async function sendEmail(data: JoinUsFormInputs) {
-	const result = JoinUsFormSchema.safeParse(data);
+	const result = JoinUsPayloadSchema.safeParse(data);
 
 	if (result.success) {
 		const { name, email, phone, location, resumeAndPortfolio } =

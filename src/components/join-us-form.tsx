@@ -1,16 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { JoinUsFormSchema } from "@/lib/schema";
+import { JoinUsFormSchema, JoinUsPayloadSchema } from "@/lib/schema";
 import { sendEmail } from "@/app/_action";
 import { useToast } from "./ui/use-toast";
 
 export type JoinUsFormInputs = z.infer<typeof JoinUsFormSchema>;
 
 export default function JoinUsForm() {
+	const inputRef = useRef<HTMLInputElement>(null);
 	const {
 		register,
 		handleSubmit,
@@ -22,9 +23,44 @@ export default function JoinUsForm() {
 
 	const { toast } = useToast();
 
+	const readFileAsBuffer = (file: File): Promise<Uint8Array> => {
+		return new Promise((resolve, reject) => {
+		  const reader = new FileReader();
+		  reader.onload = () => {
+			if (reader.result) {
+			  resolve(new Uint8Array(reader.result as ArrayBuffer));
+			} else {
+			  reject(new Error('Failed to read file'));
+			}
+		  };
+		  reader.onerror = () => reject(reader.error || new Error('File reading error'));
+		  reader.readAsArrayBuffer(file);
+		});
+	  };
+	
+
 	const processForm: SubmitHandler<JoinUsFormInputs> = async (data) => {
-		console.log("data", data);
-		const result = await sendEmail(data);
+		const fileInput = inputRef.current;
+		if (!fileInput || !fileInput.files || fileInput.files.length <= 0) {
+			// TODO: implement toast for validation
+			alert("Resume & Portfolio is required");
+			return;
+		}
+
+		const fileName = fileInput.files[0].name;
+		const buffer = await readFileAsBuffer(fileInput.files[0]);
+
+		const payload = {
+			...data,
+			resumeAndPortfolio: {
+				name: fileName,
+				file: buffer,
+			}
+		}
+
+		console.log("payload", JoinUsPayloadSchema.safeParse(payload))
+
+		const result = await sendEmail(payload);
 
 		if (result?.success) {
 			console.log({ data: result.data });
@@ -36,11 +72,13 @@ export default function JoinUsForm() {
 			return;
 		}
 
+		// TODO Toast not working
 		// Toast Error //
-		toast({
-			description: "Something went wrong!",
-		});
-		console.log(result?.error);
+		// toast({
+		// 	description: "Something went wrong!",
+		// });
+
+		alert(result?.error)
 	};
 
 	const defaultFile = {
@@ -51,18 +89,6 @@ export default function JoinUsForm() {
 		file?: ReadableStream;
 		name: string;
 	}>(defaultFile);
-
-	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const file = event.target.files?.[0];
-		if (file) {
-			setFileName({
-				file: file.stream(),
-				name: file.name,
-			});
-			// register("resumeAndPortfolio");
-			console.log("file", fileName);
-		}
-	};
 
 	return (
 		<div className="w-full flex flex-col bg-[#E9E5E1] px-6 lg:px-11 py-7">
@@ -190,13 +216,9 @@ export default function JoinUsForm() {
 						<input
 							id="file-upload"
 							type="file"
-							required
 							className="hidden"
-							// {...register("resumeAndPortfolio")}
-							onChange={(e) => {
-								handleFileChange(e);
-								register("resumeAndPortfolio").onChange(e);
-							}}
+							accept=".pdf,.doc,.docx,.txt"
+							ref={inputRef}
 						/>
 						<p className="text-sm text-black text-opacity-40 text-left">
 							(File types : pdf, doc, docx, txt)
