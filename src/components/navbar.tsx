@@ -15,16 +15,16 @@ function Navbar() {
 	// Navbar Links //
 	const navLinks = [
 		{
-			text: "Project",
-			path: "/project",
+			text: "Our Work",
+			path: "/our-work",
 		},
 		{
-			text: "About Us",
-			path: "/#about",
+			text: "Contact Us",
+			path: "/contact-us",
 		},
 		{
-			text: "Contact",
-			path: "/contact",
+			text: "Join Us",
+			path: "/join-us",
 		},
 	];
 
@@ -34,6 +34,11 @@ function Navbar() {
 	// Navbar Toggle //
 	const toggleMenu = () => {
 		setOpen((prevOpen) => !prevOpen);
+	};
+
+	// Close menu when navigating //
+	const closeMenu = () => {
+		setOpen(false);
 	};
 
 	// External Link Path //
@@ -48,7 +53,11 @@ function Navbar() {
 		path: string;
 	}
 	const NavItem = ({ text, path }: NavItemProps) => {
-		return <Link href={path}>{text}</Link>;
+		return (
+			<Link href={path} onClick={closeMenu}>
+				{text}
+			</Link>
+		);
 	};
 
 	// Navbar Background //
@@ -184,7 +193,7 @@ function Navbar() {
 
 			{/* <-- ==== Navbar Desktop Start ==== --> */}
 			<nav
-				className={`hidden lg:flex fixed w-full px-sectionpxlg 2xl:px-sectionpx2xl z-[100] py-9 items-center justify-between transition-all duration-300 ${
+				className={`hidden lg:flex fixed w-full px-sectionpxlg 2xl:px-sectionpx2xl z-[100] py-7 2xl:py-8 items-center justify-between transition-all duration-300 ${
 					scrolling
 						? "bg-bgbase bg-opacity-20 backdrop-blur-2xl"
 						: "bg-transparent"
@@ -196,7 +205,7 @@ function Navbar() {
 							src={logoblack}
 							alt="Studio Narta Logo"
 							priority={true}
-							className="h-7 w-auto"
+							className="h-7 2xl:h-8 w-auto"
 						/>
 					</Link>
 				) : (
@@ -205,17 +214,17 @@ function Navbar() {
 							src={logowhite}
 							alt="Studio Narta Logo"
 							priority={true}
-							className="h-7 w-auto"
+							className="h-7 2xl:h-8 w-auto"
 						/>
 					</Link>
 				)}
 
 				{/* <-- === Navbar Links Start === --> */}
-				<div className="flex items-center justify-center gap-7">
+				<div className="flex items-center justify-center gap-[30px] 2xl:gap-8">
 					{navLinks.map((link, index) => (
 						<div
 							key={index}
-							className={`w-fit text-xl ${
+							className={`w-fit text-xl 2xl:text-2xl ${
 								scrolling ? "text-black" : "text-white"
 							}
                             

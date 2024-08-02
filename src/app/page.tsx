@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 // Import Components //
 import HeroCarousel from "@/components/hero-carousel";
-import AboutCarousel from "@/components/about-carousel";
+import OurClientCarousel from "@/components/our-client-carousel";
 
 export default function Home() {
 	return (
@@ -11,9 +13,9 @@ export default function Home() {
 			</section>
 			{/* <-- ==== Hero Section End ==== --> */}
 
-			{/* <-- ==== About Section End ==== --> */}
-			<section className="w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl pt-20 lg:pt-36">
-				<p className="text-[22px] lg:text-2xl lg:leading-relaxed text-black lg:px-16">
+			{/* <-- ==== About Studionarta Section Start ==== --> */}
+			<section className="w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl mt-[110px] lg:mt-32 2xl:mt-[140px]">
+				<p className="text-[22px] lg:text-2xl 2xl:text-[26px] lg:leading-relaxed text-black lg:px-16 2xl:px-[50px]">
 					Studionarta is a creative studio based in Malang and Jakarta
 					that values creativity and design excellence. Our team of
 					experts is dedicated to helping businesses and individuals
@@ -22,12 +24,63 @@ export default function Home() {
 					reality.
 				</p>
 			</section>
-			{/* <-- ==== About Section End ==== --> */}
+			{/* <-- ==== About Studionarta Section End ==== --> */}
 
-			<section id="about" className="w-full px-sectionpxsm pt-24 pb-28 lg:pt-36 lg:mb-52 lg:px-0 ">
+			{/* <section
+				id="about"
+				className="w-full px-sectionpxsm pt-24 pb-28 lg:pt-36 lg:mb-52 lg:px-0 "
+			>
 				<AboutCarousel />
+			</section> */}
+
+			{/* <-- ==== Our Client Section Start ==== --> */}
+			<section className="w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl mt-28 lg:mt-36">
+				<div className="w-full flex items-center justify-start">
+					<h3 className="text-[26px] lg:text-[33px] 2xl:text-[40px] text-black cursor-pointer">
+						Our Client.
+					</h3>
+				</div>
 			</section>
-			{/* <-- ==== About Section Desktop End ==== --> */}
+			<section className="w-full mt-7 lg:mt-12 2xl:mt-14">
+				<OurClientCarousel />
+			</section>
+			{/* <-- ==== Our Client Section End ==== --> */}
+
+			{/* <-- ==== Links Section Start ==== --> */}
+			<section className="w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl mt-16 lg:mt-20 mb-28 lg:mb-36">
+				<div className="flex flex-col w-full gap-2 lg:gap-4">
+					<Link href="/our-work">
+						<div className="w-full py-2 border-b-[1px] border-black border-opacity-15 lg:hover:border-opacity-35 duration-300 cursor-pointer">
+							<div className="w-fit">
+								<h3 className="text-[26px] lg:text-[33px] text-black">
+									Our Work
+								</h3>
+							</div>
+						</div>
+					</Link>
+
+					<Link href="/contact-us">
+						<div className="w-full py-2 border-b-[1px] border-black border-opacity-15 lg:hover:border-opacity-35 duration-300 cursor-pointer">
+							<div className="w-fit">
+								<h3 className="text-[26px] lg:text-[33px] text-black">
+									Contact Us
+								</h3>
+							</div>
+						</div>
+					</Link>
+
+					<Link href="/join-us">
+						<div className="w-full py-2 border-b-[1px] border-black border-opacity-15 lg:hover:border-opacity-35 duration-300 cursor-pointer">
+							<div className="w-fit">
+								<h3 className="text-[26px] lg:text-[33px] text-black">
+									Join Us
+								</h3>
+							</div>
+						</div>
+					</Link>
+				</div>
+			</section>
+			{/* <-- ==== Links Section End ==== --> */}
 		</>
 	);
 }

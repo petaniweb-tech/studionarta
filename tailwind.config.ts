@@ -19,9 +19,9 @@ const config = {
 				sectionpxsm: "22px",
 				// md //
 				// lg //
-				sectionpxlg: "200px",
+				sectionpxlg: "180px",
 				// 2xl //
-				sectionpx2xl: "160px",
+				sectionpx2xl: "180px",
 			},
 
 			colors: {
@@ -30,6 +30,10 @@ const config = {
 
 			backgroundImage: {
 				bgcontact: "url('../assets/images/img-dummy-14.jpg')",
+			},
+
+			transitionProperty: {
+				aspectratio: "aspect-ratio",
 			},
 		},
 	},
