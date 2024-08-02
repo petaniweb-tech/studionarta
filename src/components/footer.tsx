@@ -48,24 +48,24 @@ export default function Footer() {
 					</div>
 
 					<div className="flex flex-col mt-12 gap-[18px]">
-						<Link href="/#about">
+						<Link href="/our-work">
 							<div className="w-fit pb-[6px] border-b border-black border-opacity-35">
 								<p className="text-base text-neutral-500 font-supportingfont">
-									About Us
+									Our Work
 								</p>
 							</div>
 						</Link>
-						<Link href="/project">
+						<Link href="/contact-us">
 							<div className="w-fit pb-[6px] border-b border-black border-opacity-35">
 								<p className="text-base text-neutral-500 font-supportingfont">
-									Project
+									Contact Us
 								</p>
 							</div>
 						</Link>
-						<Link href="/contact">
+						<Link href="/join-us">
 							<div className="w-fit pb-[6px] border-b border-black border-opacity-35">
 								<p className="text-base text-neutral-500 font-supportingfont">
-									Contact
+									Join Us
 								</p>
 							</div>
 						</Link>
@@ -108,16 +108,16 @@ export default function Footer() {
 							src={logoblack}
 							alt="Studionarta"
 							priority={true}
-							className="w-8 h-auto"
+							className="w-8 2xl:w-9 h-auto"
 						/>
 					</div>
 
 					<div className="flex justify-between w-full">
 						<div className="flex flex-col w-full h-full">
-							<h5 className="text-xl text-black font-medium">
+							<h5 className="text-xl 2xl:text-2xl text-black font-medium">
 								Contact Us
 							</h5>
-							<p className="text-sm text-neutral-500 font-supportingfont mt-3">
+							<p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-3">
 								CP - Devina{" "}
 								<Link href="https://wa.me/628123024660">
 									<span className="hover:text-black duration-300">
@@ -126,7 +126,7 @@ export default function Footer() {
 								</Link>{" "}
 								(WhatsApp Only)
 							</p>
-							<p className="text-sm text-neutral-500 font-supportingfont mt-2">
+							<p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-2">
 								Email -{" "}
 								<span className="hover:text-black duration-300">
 									<Link
@@ -137,42 +137,42 @@ export default function Footer() {
 									</Link>
 								</span>
 							</p>
-							<div className="flex items-end justify-start gap-[14px] mt-[30px]">
-								<Link href="/#about">
-									<p className="text-[15px] text-neutral-500 leading-tight hover:text-black duration-300 font-supportingfont">
-										About Us
+							<div className="flex items-end justify-start gap-[14px] 2xl:gap-4 mt-8 2xl:mt-9">
+								<Link href="/our-work">
+									<p className="text-[15px] 2xl:text-[17px] text-neutral-500 leading-tight hover:text-black duration-300 font-supportingfont">
+										Our Work
 									</p>
 								</Link>
 
 								<div className="w-[1px] h-auto self-stretch bg-neutral-400"></div>
 
-								<Link href="/project">
-									<p className="text-[15px] text-neutral-500 leading-tight hover:text-black duration-300 font-supportingfont">
-										Project
+								<Link href="/contact-us">
+									<p className="text-[15px] 2xl:text-[17px] text-neutral-500 leading-tight hover:text-black duration-300 font-supportingfont">
+										Contact Us
 									</p>
 								</Link>
 
 								<div className="w-[1px] h-auto self-stretch bg-neutral-400"></div>
 
-								<Link href="/contact">
-									<p className="text-[15px] text-neutral-500 leading-tight hover:text-black duration-300 font-supportingfont">
-										Contact
+								<Link href="/join-us">
+									<p className="text-[15px] 2xl:text-[17px] text-neutral-500 leading-tight hover:text-black duration-300 font-supportingfont">
+										Join Us
 									</p>
 								</Link>
 							</div>
 						</div>
 
 						<div className="flex flex-col w-full h-full">
-							<h5 className="text-xl text-black font-medium">
+							<h5 className="text-xl 2xl:text-2xl text-black font-medium">
 								Office Studio
 							</h5>
-							<p className="text-sm text-neutral-500 font-supportingfont mt-3">
+							<p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-3">
 								Raya wendit barat No. 7 Malang, 65154
 							</p>
 						</div>
 
 						<div className="flex flex-col w-fit h-full whitespace-nowrap">
-							<h5 className="text-xl text-black font-medium text-nowrap">
+							<h5 className="text-xl 2xl:text-2xl text-black font-medium text-nowrap">
 								Social Media
 							</h5>
 							<Link
@@ -181,7 +181,7 @@ export default function Footer() {
 								rel="noopener noreferrer"
 							>
 								<div className="w-fit cursor-pointer">
-									<p className="text-sm text-neutral-500 hover:text-black duration-300 font-supportingfont mt-3 text-nowrap">
+									<p className="text-sm 2xl:text-base text-neutral-500 hover:text-black duration-300 font-supportingfont mt-3 text-nowrap">
 										Instagram
 									</p>
 								</div>
