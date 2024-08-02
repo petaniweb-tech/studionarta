@@ -28,18 +28,18 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 	return (
 		<>
 			{/* <-- === Breadcrumb Start === --> */}
-			<div className="sticky w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl z-[70] top-[76px] lg:top-[83px] 2xl:top-[95px] bg-bgbase py-[14px] lg:pt-[14px] lg:pb-4 2xl:pt-[15px] 2xl:pb-[17px]">
+			<div className="sticky w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl z-[70] top-[76px] lg:top-[83px] 2xl:top-[95px] bg-bgbase py-[14px] lg:pt-[14px] lg:pb-4 2xl:pt-4 2xl:pb-[18px]">
 				<DynamicBreadcrumb />
 			</div>
 			{/* <-- === Breadcrumb Start === --> */}
 
 			<section className="w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl pt-32 lg:pt-40">
 				<div className="flex flex-col gap-[14px]">
-					<h5 className="text-[28px] text-black font-medium tracking-wide">
+					<h5 className="text-3xl lg:text-[32px] 2xl:text-4xl text-black font-medium tracking-wide">
 						{project.title}
 					</h5>
 					<p
-						className="text-[15px] lg:text-sm text-black font-supportingfont opacity-60 leading-relaxed lg:leading-[1.8] lg:pt-3"
+						className="text-[15px] lg:text-sm 2xl:text-[17px] text-black font-supportingfont opacity-60 leading-relaxed lg:leading-[1.8] lg:pt-3"
 						dangerouslySetInnerHTML={{
 							__html: project.description,
 						}}
