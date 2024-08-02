@@ -1,7 +1,7 @@
 import * as React from "react";
 import { whatIsType } from "@/lib/utils";
 import Image from "next/image";
-import VideoPlayerTest from "./video-player";
+import VideoPlayer from "./video-player";
 
 const RenderAsset: React.FC<{
 	url: string;
@@ -15,7 +15,7 @@ const RenderAsset: React.FC<{
 	parentAspectClasses?: string;
 	videoAspectClasses?: string;
 	videoPlayingAspectClasses?: string;
-	ignoreAspectInHero?: boolean;
+	ignoreAspectRatio?: boolean;
 }> = ({
 	url,
 	imageAlt,
@@ -28,7 +28,7 @@ const RenderAsset: React.FC<{
 	parentAspectClasses = "aspect-square lg:aspect-[16/10]",
 	videoAspectClasses = "aspect-square lg:aspect-[16/10]",
 	videoPlayingAspectClasses = "aspect-video lg:aspect-[16/9]",
-	ignoreAspectInHero = false,
+	ignoreAspectRatio = false,
 }) => {
 	const type = whatIsType(url);
 
@@ -49,7 +49,7 @@ const RenderAsset: React.FC<{
 
 	if (type === "video") {
 		return (
-			<VideoPlayerTest
+			<VideoPlayer
 				url={url}
 				autoPlay={videoAutoPlay}
 				muted={videoMute}
@@ -59,7 +59,7 @@ const RenderAsset: React.FC<{
 				parentAspectClasses={parentAspectClasses}
 				videoAspectClasses={videoAspectClasses}
 				videoPlayingAspectClasses={videoPlayingAspectClasses}
-				ignoreAspectInHero={ignoreAspectInHero}
+				ignoreAspectRatio={ignoreAspectRatio}
 			/>
 		);
 	}

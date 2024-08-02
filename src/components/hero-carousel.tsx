@@ -76,7 +76,7 @@ export default function HeroCarousel() {
 								videoLoop={true}
 								videoMute={true}
 								showButton={false}
-								ignoreAspectInHero={true}
+								ignoreAspectRatio={true}
 							/>
 
 							<div className="absolute inset-0 flex justify-center w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl items-end pb-10 lg:pb-[70px]">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { cn } from "@/lib/utils";
 
 interface VideoPlayerProps {
 	url: string;
@@ -12,7 +13,7 @@ interface VideoPlayerProps {
 	parentAspectClasses?: string;
 	videoAspectClasses?: string;
 	videoPlayingAspectClasses?: string;
-	ignoreAspectInHero?: boolean;
+	ignoreAspectRatio?: boolean;
 }
 
 export default function VideoPlayer({
@@ -25,7 +26,7 @@ export default function VideoPlayer({
 	parentAspectClasses = "aspect-square lg:aspect-[16/10]",
 	videoAspectClasses = "aspect-square lg:aspect-[16/10]",
 	videoPlayingAspectClasses = "aspect-video lg:aspect-[16/9]",
-	ignoreAspectInHero = false,
+	ignoreAspectRatio = false,
 }: VideoPlayerProps) {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const videoRef = useRef<HTMLVideoElement>(null);
@@ -43,9 +44,14 @@ export default function VideoPlayer({
 
 	return (
 		<div
-			className={`relative bg-inherit flex items-center justify-center ${
-				ignoreAspectInHero ? "h-screen" : parentAspectClasses
-			} ${className}`}
+			className={cn(
+				"relative bg-inherit flex items-center justify-center",
+				{
+					"h-screen": ignoreAspectRatio,
+					[parentAspectClasses]: !ignoreAspectRatio,
+				},
+				className
+			)}
 		>
 			<div className="flex items-center w-full justify-center origin-center">
 				<video
@@ -56,7 +62,7 @@ export default function VideoPlayer({
 					controls={false}
 					playsInline
 					className={`object-cover object-center h-full w-full transition-aspectratio duration-700 ${
-						ignoreAspectInHero
+						ignoreAspectRatio
 							? "h-screen"
 							: isPlaying
 								? videoPlayingAspectClasses
