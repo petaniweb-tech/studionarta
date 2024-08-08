@@ -22,6 +22,7 @@ const DynamicBreadcrumb = () => {
 	const breadcrumbItems = pathnames.map((value, index) => {
 		// Build the URL for each breadcrumb item
 		const to = `/${pathnames.slice(0, index + 1).join("/")}`;
+		const label = value.replace(/-/g, " ");
 
 		// Check if it's the last segment
 		const isLast = index === pathnames.length - 1;
@@ -31,8 +32,8 @@ const DynamicBreadcrumb = () => {
 				<BreadcrumbItem>
 					{isLast ? (
 						// Render text for the last segment
-						<BreadcrumbPage>
-							{value.charAt(0).toUpperCase() + value.slice(1)}
+						<BreadcrumbPage className="capitalize">
+							{label.charAt(0).toUpperCase() + label.slice(1)}
 						</BreadcrumbPage>
 					) : (
 						// Render link for other segments
@@ -41,8 +42,8 @@ const DynamicBreadcrumb = () => {
 							className="breadcrumb-link"
 							href={to}
 						>
-							<Link href={to}>
-								{value.charAt(0).toUpperCase() + value.slice(1)}
+							<Link href={to} className="capitalize">
+								{label.charAt(0).toUpperCase() + label.slice(1)}
 							</Link>
 						</BreadcrumbLink>
 					)}

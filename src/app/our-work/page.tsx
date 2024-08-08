@@ -94,13 +94,16 @@ export default async function Ourwork() {
 											/>
 										</div>
 									)}
-									<div className="flex flex-col">
+									<div className="flex flex-col gap-2">
 										<p className="text-[22px] 2xl:text-[26px] text-black font-semibold">
 											{project.title}
 										</p>
-										{/* <p className="text-sm text-neutral-500 font-supportingfont">
-											{project.description}
-										</p> */}
+										<p
+											className="text-sm text-black text-opacity-60 font-supportingfont leading-[1.7] text-wrap"
+											dangerouslySetInnerHTML={{
+												__html: project.sub_headline,
+											}}
+										></p>
 									</div>
 									<div className="w-full h-[1px] bg-black opacity-15 lg:mb-5"></div>
 								</div>
