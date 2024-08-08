@@ -6,6 +6,7 @@ import "./globals.css";
 import ConditionalNavbar from "@/components/conditional-navbar";
 import Footer from "@/components/footer";
 import BackToTop from "@/components/back-to-top";
+import { Toaster } from "@/components/ui/toaster"
 
 const mainFont = Cormorant_Garamond({
 	subsets: ["latin"],
@@ -54,6 +55,7 @@ export default function RootLayout({
 				{children}
 				<BackToTop />
 				<Footer />
+				<Toaster />
 			</body>
 		</html>
 	);

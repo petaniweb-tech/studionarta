@@ -7,6 +7,16 @@ export const JoinUsFormSchema = z.object({
 		.min(1, { message: "Email is required." })
 		.email({ message: "Invalid email." }),
 	phone: z.string().min(1, { message: "Phone number is required." }),
+	location: z.string().min(1, { message: "Location is required." })
+});
+
+export const JoinUsPayloadSchema = z.object({
+	name: z.string().min(1, { message: "Name is required." }),
+	email: z
+		.string()
+		.min(1, { message: "Email is required." })
+		.email({ message: "Invalid email." }),
+	phone: z.string().min(1, { message: "Phone number is required." }),
 	location: z.string().min(1, { message: "Location is required." }),
 	resumeAndPortfolio: z.object({
 		name: z.string().min(1, { message: "Filename is required" }),

@@ -3,15 +3,13 @@ interface JoinUsFormEmailProps {
 	email: string;
 	phone: string;
 	location: string;
-	resumeAndPortfolio: string;
 }
 
 const JoinUsFormEmail: React.FC<Readonly<JoinUsFormEmailProps>> = ({
 	name,
 	email,
 	phone,
-	location,
-	resumeAndPortfolio,
+	location
 }) => (
 	<div>
 		<h3>Someone has applied!</h3>
@@ -22,8 +20,6 @@ const JoinUsFormEmail: React.FC<Readonly<JoinUsFormEmailProps>> = ({
 		<p>{phone}</p>
 		<h3>Location:</h3>
 		<p>{location}</p>
-		<h3>Resume & Portfolio attached</h3>
-		{/* <p>{resumeAndPortfolio}</p> */}
 	</div>
 );
 
