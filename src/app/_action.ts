@@ -29,7 +29,7 @@ export async function sendEmail(data: JoinUsFormInputs) {
     try {
       const emailData = await resend.emails.send({
         from: "noreply@petaniweb.com",
-        to: ["jobs.studionarta@gmail.com", "aliffirdaus@petaniweb.com"],
+        to: ["jobs.studionarta@gmail.com", "tech@petaniweb.com"],
         subject: "Studionarta Application",
         text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nLocation: ${location}\nResume & Portfolio: ${resumeAndPortfolio}`, // Adjust the text if necessary
         react: JoinUsFormEmail({
