@@ -3,6 +3,7 @@ export const queryProducts: string = `
   {
     title,
     description,
+    sub_headline,
     'slug' : slug.current,
     'thumbnail': images[@._type == 'image']{'url': asset->url}[0],
     position,
@@ -16,6 +17,7 @@ export const queryProductBySlug = (slug: string): string => {
     {
       title,
       description,
+      sub_headline,
       'slug' : slug.current,
       'images': images[]{'url': asset->url},
     }`;

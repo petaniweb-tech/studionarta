@@ -39,9 +39,15 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 						{project.title}
 					</h5>
 					<p
-						className="text-[15px] lg:text-sm 2xl:text-[17px] text-black font-supportingfont opacity-60 leading-relaxed lg:leading-[1.8] lg:pt-3"
+						className="text-[15px] lg:text-sm 2xl:text-[17px] text-black font-supportingfont text-opacity-60 leading-relaxed lg:leading-[1.8] lg:pt-3"
 						dangerouslySetInnerHTML={{
 							__html: project.description,
+						}}
+					></p>
+					<p
+						className="mt-[6px] lg:mt-[2px] text-[15px] lg:text-sm 2xl:text-[17px] text-black font-supportingfont text-opacity-60 leading-relaxed lg:leading-[1.8] lg:pt-3"
+						dangerouslySetInnerHTML={{
+							__html: project.sub_headline,
 						}}
 					></p>
 				</div>
