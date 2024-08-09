@@ -50,7 +50,7 @@ export default function HeroCarousel() {
 			modules={[Autoplay]}
 			loop={true}
 			autoplay={{
-				delay: 10000,
+				delay: 8000,
 				disableOnInteraction: true,
 			}}
 			onSwiper={setSwiperRef}
@@ -79,7 +79,14 @@ export default function HeroCarousel() {
 								ignoreAspectRatio={true}
 							/>
 
-							<div className="absolute inset-0 flex justify-center w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl items-end pb-10 lg:pb-[70px] h-fit self-end">
+							<div
+								className="absolute flex justify-center w-full px-sectionpxsm lg:px-sectionpxlg 2xl:px-sectionpx2xl items-end pb-10 lg:pb-[70px]"
+								style={{
+									height: "fit-content",
+									alignSelf: "flex-end",
+									bottom: 0,
+								}}
+							>
 								<div className="w-full flex items-end bg-white h-[1px] bg-opacity-70">
 									<div className="flex w-full">
 										{banners.map((_, index) => (
