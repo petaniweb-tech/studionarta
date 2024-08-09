@@ -129,7 +129,7 @@ export default function VideoPlayer({
 			{showButtonState && (
 				<div
 					className={cn(
-						"absolute inset-0 flex items-center justify-center transition-opacity duration-500 z-[100]",
+						"absolute inset-0 flex items-center justify-center transition-opacity duration-500",
 						{ "opacity-0": fadeOut, "opacity-100": !fadeOut }
 					)}
 				>
