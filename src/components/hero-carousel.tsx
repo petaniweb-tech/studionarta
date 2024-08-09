@@ -50,7 +50,7 @@ export default function HeroCarousel() {
 			modules={[Autoplay]}
 			loop={true}
 			autoplay={{
-				delay: 30000,
+				delay: 10000,
 				disableOnInteraction: true,
 			}}
 			onSwiper={setSwiperRef}
