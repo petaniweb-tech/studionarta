@@ -14,6 +14,10 @@ interface VideoPlayerProps {
 	videoAspectClasses?: string;
 	videoPlayingAspectClasses?: string;
 	ignoreAspectRatio?: boolean;
+	heroParentAspectClasses?: string;
+	heroVideoAspectClasses?: string;
+	heroVideoPlayingAspectClasses?: string;
+	videoRef?: React.RefObject<HTMLVideoElement>;
 }
 
 export default function VideoPlayer({
@@ -27,12 +31,17 @@ export default function VideoPlayer({
 	videoAspectClasses = "aspect-square lg:aspect-[16/10]",
 	videoPlayingAspectClasses = "aspect-video lg:aspect-[16/9]",
 	ignoreAspectRatio = false,
+	heroParentAspectClasses = "h-screen",
+	heroVideoAspectClasses = "h-screen",
+	heroVideoPlayingAspectClasses = "h-60",
+	videoRef,
 }: VideoPlayerProps) {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [isMuted, setIsMuted] = useState(muted);
 	const [showButtonState, setShowButtonState] = useState(showButton);
 	const [fadeOut, setFadeOut] = useState(false);
-	const videoRef = useRef<HTMLVideoElement>(null);
+	const internalVideoRef = useRef<HTMLVideoElement>(null);
+	const finalVideoRef = videoRef || internalVideoRef;
 	const timerRef = useRef<NodeJS.Timeout | null>(null);
 
 	const hideButtonWithDelay = () => {
@@ -43,21 +52,21 @@ export default function VideoPlayer({
 			setFadeOut(true);
 			setTimeout(() => {
 				setShowButtonState(false);
-			}, 300); // Match the duration of the fade-out effect
+			}, 300); // Fade Out duration
 		}, 3000);
 	};
 
 	const handlePlayPause = () => {
-		if (videoRef.current) {
+		if (finalVideoRef.current) {
 			if (isPlaying) {
-				videoRef.current.pause();
+				finalVideoRef.current.pause();
 				clearTimeout(timerRef.current as NodeJS.Timeout);
 				setFadeOut(false);
 				setShowButtonState(true);
 			} else {
-				videoRef.current.play();
+				finalVideoRef.current.play();
+				finalVideoRef.current.muted = false;
 				setIsMuted(false);
-				videoRef.current.muted = false;
 				setFadeOut(false);
 				setShowButtonState(true);
 				hideButtonWithDelay();
@@ -67,17 +76,17 @@ export default function VideoPlayer({
 	};
 
 	const handleVideoClick = () => {
-		if (videoRef.current) {
+		if (finalVideoRef.current) {
 			if (isPlaying) {
-				videoRef.current.pause();
+				finalVideoRef.current.pause();
 				clearTimeout(timerRef.current as NodeJS.Timeout);
 				setFadeOut(false);
 				setShowButtonState(true);
 				setIsPlaying(false);
 			} else {
-				videoRef.current.play();
+				finalVideoRef.current.play();
 				setIsMuted(false);
-				videoRef.current.muted = false;
+				finalVideoRef.current.muted = false;
 				setFadeOut(false);
 				setShowButtonState(true);
 				hideButtonWithDelay();
@@ -87,12 +96,27 @@ export default function VideoPlayer({
 	};
 
 	useEffect(() => {
+		if (finalVideoRef.current) {
+			finalVideoRef.current.muted = isMuted;
+		}
+	}, [isMuted]);
+
+	useEffect(() => {
+		// Programmatically trigger the video to play on component mount
+		if (finalVideoRef.current && autoPlay) {
+			finalVideoRef.current.play().catch((err) => {
+				// Handle autoplay failure (browser restrictions, etc.)
+				console.error("Autoplay failed: ", err);
+				setIsPlaying(false);
+			});
+		}
+
 		return () => {
 			if (timerRef.current) {
 				clearTimeout(timerRef.current);
 			}
 		};
-	}, []);
+	}, [autoPlay]);
 
 	return (
 		<div
@@ -108,15 +132,17 @@ export default function VideoPlayer({
 		>
 			<div className="flex items-center w-full justify-center origin-center">
 				<video
-					ref={videoRef}
+					ref={finalVideoRef}
 					autoPlay={autoPlay}
 					muted={isMuted}
 					loop={loop}
 					controls={false}
 					playsInline
-					className={`object-cover object-center h-full w-full transition-aspectratio duration-700 ${
+					className={`object-cover object-center h-full w-full transition-all duration-700 ${
 						ignoreAspectRatio
-							? "h-screen"
+							? isPlaying
+								? "min-h-[16rem] max-h-[16rem] lg:min-h-[49rem] lg:max-h-[49rem] 2xl:min-h-[50rem] 2xl:max-h-[50rem]"
+								: "min-h-[100vh] max-h-[100vh]"
 							: isPlaying
 								? videoPlayingAspectClasses
 								: videoAspectClasses

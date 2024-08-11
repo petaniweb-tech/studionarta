@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { useEffect, useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -23,6 +24,7 @@ export default function HeroCarousel() {
 	const hasFetched = useRef(false);
 	const [swiperRef, setSwiperRef] = useState<any>(null);
 	const [current, setCurrent] = useState(1);
+	const videoRefs = useRef<React.RefObject<HTMLVideoElement>[]>([]);
 
 	useEffect(() => {
 		if (!hasFetched.current) {
@@ -41,6 +43,12 @@ export default function HeroCarousel() {
 		setCurrent(swiperRef.realIndex + 1);
 
 		swiperRef.on("slideChange", () => {
+			// Pause the previous video
+			videoRefs.current.forEach((videoRef) => {
+				if (videoRef.current) {
+					videoRef.current.pause();
+				}
+			});
 			setCurrent(swiperRef.realIndex + 1);
 		});
 	}, [swiperRef]);
@@ -50,7 +58,7 @@ export default function HeroCarousel() {
 			modules={[Autoplay]}
 			loop={true}
 			autoplay={{
-				delay: 8000,
+				delay: 30000,
 				disableOnInteraction: true,
 			}}
 			onSwiper={setSwiperRef}
@@ -59,6 +67,11 @@ export default function HeroCarousel() {
 			{banners?.map((banner, index) => {
 				if (!banner?.url) {
 					return "";
+				}
+
+				if (!videoRefs.current[index]) {
+					videoRefs.current[index] =
+						React.createRef<HTMLVideoElement>();
 				}
 
 				return (
@@ -77,6 +90,7 @@ export default function HeroCarousel() {
 								videoMute={true}
 								showButton={true}
 								ignoreAspectRatio={true}
+								videoRef={videoRefs.current[index]}
 							/>
 
 							<div
