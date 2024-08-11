@@ -14,9 +14,6 @@ interface VideoPlayerProps {
 	videoAspectClasses?: string;
 	videoPlayingAspectClasses?: string;
 	ignoreAspectRatio?: boolean;
-	heroParentAspectClasses?: string;
-	heroVideoAspectClasses?: string;
-	heroVideoPlayingAspectClasses?: string;
 	videoRef?: React.RefObject<HTMLVideoElement>;
 }
 
@@ -31,9 +28,6 @@ export default function VideoPlayer({
 	videoAspectClasses = "aspect-square lg:aspect-[16/10]",
 	videoPlayingAspectClasses = "aspect-video lg:aspect-[16/9]",
 	ignoreAspectRatio = false,
-	heroParentAspectClasses = "h-screen",
-	heroVideoAspectClasses = "h-screen",
-	heroVideoPlayingAspectClasses = "h-60",
 	videoRef,
 }: VideoPlayerProps) {
 	const [isPlaying, setIsPlaying] = useState(false);

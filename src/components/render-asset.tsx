@@ -16,9 +16,6 @@ const RenderAsset: React.FC<{
 	videoAspectClasses?: string;
 	videoPlayingAspectClasses?: string;
 	ignoreAspectRatio?: boolean;
-	heroParentAspectClasses?: string;
-	heroVideoAspectClasses?: string;
-	heroVideoPlayingAspectClasses?: string;
 	videoRef?: React.RefObject<HTMLVideoElement>;
 }> = ({
 	url,
@@ -33,9 +30,6 @@ const RenderAsset: React.FC<{
 	videoAspectClasses = "aspect-square lg:aspect-[16/10]",
 	videoPlayingAspectClasses = "aspect-video lg:aspect-[16/9]",
 	ignoreAspectRatio = false,
-	heroParentAspectClasses = "h-screen",
-	heroVideoAspectClasses = "h-screen",
-	heroVideoPlayingAspectClasses = "h-60",
 	videoRef,
 }) => {
 	const type = whatIsType(url);
@@ -68,9 +62,6 @@ const RenderAsset: React.FC<{
 				videoAspectClasses={videoAspectClasses}
 				videoPlayingAspectClasses={videoPlayingAspectClasses}
 				ignoreAspectRatio={ignoreAspectRatio}
-				heroParentAspectClasses={heroParentAspectClasses}
-				heroVideoAspectClasses={heroVideoAspectClasses}
-				heroVideoPlayingAspectClasses={heroVideoPlayingAspectClasses}
 				videoRef={videoRef}
 			/>
 		);
