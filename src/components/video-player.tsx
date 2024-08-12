@@ -50,25 +50,6 @@ export default function VideoPlayer({
 		}, 3000);
 	};
 
-	const handlePlayPause = () => {
-		if (finalVideoRef.current) {
-			if (isPlaying) {
-				finalVideoRef.current.pause();
-				clearTimeout(timerRef.current as NodeJS.Timeout);
-				setFadeOut(false);
-				setShowButtonState(true);
-			} else {
-				finalVideoRef.current.play();
-				finalVideoRef.current.muted = false;
-				setIsMuted(false);
-				setFadeOut(false);
-				setShowButtonState(true);
-				hideButtonWithDelay();
-			}
-			setIsPlaying(!isPlaying);
-		}
-	};
-
 	const handleVideoClick = () => {
 		if (finalVideoRef.current) {
 			if (isPlaying) {
@@ -76,16 +57,16 @@ export default function VideoPlayer({
 				clearTimeout(timerRef.current as NodeJS.Timeout);
 				setFadeOut(false);
 				setShowButtonState(true);
-				setIsPlaying(false);
 			} else {
 				finalVideoRef.current.play();
-				setIsMuted(false);
 				finalVideoRef.current.muted = false;
+				setIsMuted(false);
 				setFadeOut(false);
 				setShowButtonState(true);
 				hideButtonWithDelay();
-				setIsPlaying(true);
 			}
+
+			setIsPlaying(!isPlaying);
 		}
 	};
 
@@ -154,7 +135,7 @@ export default function VideoPlayer({
 					)}
 				>
 					<button
-						onClick={handlePlayPause}
+						onClick={handleVideoClick}
 						className="bg-neutral-200 bg-opacity-30 backdrop-blur-lg pt-[7px] pb-2 px-5 rounded-full font-supportingfont text-white"
 					>
 						{isPlaying ? "Pause" : "Play"}

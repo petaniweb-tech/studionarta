@@ -43,10 +43,22 @@ export default function HeroCarousel() {
 		setCurrent(swiperRef.realIndex + 1);
 
 		swiperRef.on("slideChange", () => {
-			// Pause the previous video
 			videoRefs.current.forEach((videoRef) => {
 				if (videoRef.current) {
 					videoRef.current.pause();
+
+					videoRef.current.classList.remove(
+						"min-h-[16rem]",
+						"max-h-[16rem]",
+						"lg:min-h-[49rem]",
+						"lg:max-h-[49rem]",
+						"2xl:min-h-[50rem]",
+						"2xl:max-h-[50rem]"
+					);
+					videoRef.current.classList.add(
+						"min-h-[100vh]",
+						"max-h-[100vh]"
+					);
 				}
 			});
 			setCurrent(swiperRef.realIndex + 1);
