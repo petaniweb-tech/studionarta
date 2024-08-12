@@ -43,12 +43,22 @@ export default function HeroCarousel() {
 		let isManualSlide = false;
 		let timeoutId: NodeJS.Timeout | null = null;
 
+		const muteAllVideos = () => {
+			videoRefs.current.forEach((videoRef) => {
+				if (videoRef.current) {
+					videoRef.current.muted = true;
+				}
+			});
+		};
+
 		const onSlideChange = () => {
 			isManualSlide = swiperRef.touches.diff !== 0;
 
 			if (timeoutId) {
 				clearTimeout(timeoutId);
 			}
+
+			muteAllVideos();
 
 			videoRefs.current.forEach((videoRef, index) => {
 				if (videoRef.current) {
