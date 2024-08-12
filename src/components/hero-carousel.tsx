@@ -46,6 +46,7 @@ export default function HeroCarousel() {
 			videoRefs.current.forEach((videoRef) => {
 				if (videoRef.current) {
 					videoRef.current.pause();
+					videoRef.current.currentTime = 1;
 
 					videoRef.current.classList.remove(
 						"min-h-[16rem]",
