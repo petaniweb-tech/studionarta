@@ -40,14 +40,19 @@ export default function HeroCarousel() {
 			return;
 		}
 
-		setCurrent(swiperRef.realIndex + 1);
+		let isManualSlide = false;
+		let timeoutId: NodeJS.Timeout | null = null;
 
-		swiperRef.on("slideChange", () => {
-			videoRefs.current.forEach((videoRef) => {
+		const onSlideChange = () => {
+			// Detect if the slide change was manual
+			isManualSlide = swiperRef.touches.diff !== 0;
+
+			videoRefs.current.forEach((videoRef, index) => {
 				if (videoRef.current) {
 					videoRef.current.pause();
 					videoRef.current.currentTime = 1;
 
+					// Reset video size classes
 					videoRef.current.classList.remove(
 						"min-h-[16rem]",
 						"max-h-[16rem]",
@@ -60,10 +65,26 @@ export default function HeroCarousel() {
 						"min-h-[100vh]",
 						"max-h-[100vh]"
 					);
+
+					// If this is the active slide, set timeout for autoplay
+					if (!isManualSlide && swiperRef.realIndex === index) {
+						timeoutId = setTimeout(() => {
+							swiperRef.slideNext();
+						}, 12000); // 5 seconds
+					}
 				}
 			});
 			setCurrent(swiperRef.realIndex + 1);
-		});
+		};
+
+		swiperRef.on("slideChange", onSlideChange);
+
+		return () => {
+			if (timeoutId) {
+				clearTimeout(timeoutId);
+			}
+			swiperRef.off("slideChange", onSlideChange);
+		};
 	}, [swiperRef]);
 
 	return (
@@ -72,7 +93,8 @@ export default function HeroCarousel() {
 			loop={true}
 			autoplay={{
 				delay: 12000,
-				disableOnInteraction: true,
+				disableOnInteraction: false,
+				waitForTransition: true,
 			}}
 			onSwiper={setSwiperRef}
 			className="w-full h-screen"
@@ -99,7 +121,7 @@ export default function HeroCarousel() {
 								imageAlt={`banner-image-${index}`}
 								videoClassName="object-cover object-center h-screen w-full"
 								videoAutoPlay={true}
-								videoLoop={true}
+								videoLoop={false}
 								videoMute={true}
 								showButton={true}
 								ignoreAspectRatio={true}
