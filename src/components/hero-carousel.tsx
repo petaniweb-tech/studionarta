@@ -44,15 +44,17 @@ export default function HeroCarousel() {
 		let timeoutId: NodeJS.Timeout | null = null;
 
 		const onSlideChange = () => {
-			// Detect if the slide change was manual
 			isManualSlide = swiperRef.touches.diff !== 0;
+
+			if (timeoutId) {
+				clearTimeout(timeoutId);
+			}
 
 			videoRefs.current.forEach((videoRef, index) => {
 				if (videoRef.current) {
 					videoRef.current.pause();
 					videoRef.current.currentTime = 1;
 
-					// Reset video size classes
 					videoRef.current.classList.remove(
 						"min-h-[16rem]",
 						"max-h-[16rem]",
@@ -66,11 +68,28 @@ export default function HeroCarousel() {
 						"max-h-[100vh]"
 					);
 
-					// If this is the active slide, set timeout for autoplay
 					if (!isManualSlide && swiperRef.realIndex === index) {
-						timeoutId = setTimeout(() => {
-							swiperRef.slideNext();
-						}, 12000); // 5 seconds
+						const isVideoSlide =
+							videoRef.current.tagName === "VIDEO";
+
+						if (isVideoSlide) {
+							videoRef.current
+								.play()
+								.then(() => {
+									if (videoRef.current) {
+										videoRef.current.onended = () => {
+											swiperRef.slideNext();
+										};
+									}
+								})
+								.catch((err) =>
+									console.error("Video playback failed", err)
+								);
+						} else {
+							timeoutId = setTimeout(() => {
+								swiperRef.slideNext();
+							}, 12000);
+						}
 					}
 				}
 			});
