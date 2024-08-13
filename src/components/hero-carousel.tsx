@@ -52,6 +52,10 @@ export default function HeroCarousel() {
     swiperRef?.current?.swiper.slideNext();
   };
 
+  if (!banners.length) {
+    return null;
+  }
+
   return (
     <Swiper
       ref={swiperRef}
