@@ -25,6 +25,7 @@ export default function HeroCarousel() {
 
   const [banners, setBanners] = useState<Banner[]>([]);
   const [current, setCurrent] = useState(1);
+  const [isPlayVideo, setIsPlayVideo] = useState<boolean>(false)
 
   const videoRefs = useRef<React.RefObject<HTMLVideoElement>[]>([]);
 
@@ -49,7 +50,7 @@ export default function HeroCarousel() {
   };
 
   const swapSlideNext = () => {
-    swiperRef?.current?.swiper.slideNext();
+    swiperRef?.current?.swiper?.slideNext();
   };
 
   if (!banners.length) {
@@ -66,10 +67,11 @@ export default function HeroCarousel() {
           clearTimeout(timeoutRef.current);
         }
 
+        setIsPlayVideo(false)
         muteAllVideos();
 
         const videoRef = videoRefs.current[swiper.realIndex];
-        if (videoRef && videoRef.current) {
+        if (videoRef?.current) {
           videoRef.current.currentTime = 1;
           videoRef.current.classList.remove(
             "min-h-[16rem]",
@@ -83,17 +85,31 @@ export default function HeroCarousel() {
 
           videoRef.current
             .play()
+            .then()
+            .catch((err) => console.error("Video playback failed", err));
+        }
+
+        timeoutRef.current = setTimeout(swapSlideNext, 12000); // set default delay 12s
+
+        setCurrent(swiper.realIndex + 1);
+      }}
+      onClick={(swiper) => {
+        const videoRef = videoRefs.current[swiper.realIndex];
+        if (videoRef?.current) {
+          if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+          }
+
+          videoRef.current
+            .play()
             .then(() => {
               if (videoRef.current) {
+                setIsPlayVideo(true)
                 videoRef.current.onended = () => swapSlideNext();
               }
             })
             .catch((err) => console.error("Video playback failed", err));
-        } else {
-          timeoutRef.current = setTimeout(swapSlideNext, 12000); // set default delay 12s
         }
-
-        setCurrent(swiper.realIndex + 1);
       }}
       className="w-full h-screen"
     >
@@ -123,6 +139,7 @@ export default function HeroCarousel() {
                 showButton={true}
                 ignoreAspectRatio={true}
                 videoRef={videoRefs.current[index]}
+                isVideoPlay={isPlayVideo}
               />
 
               <div

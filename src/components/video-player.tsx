@@ -15,6 +15,7 @@ interface VideoPlayerProps {
 	videoPlayingAspectClasses?: string;
 	ignoreAspectRatio?: boolean;
 	videoRef?: React.RefObject<HTMLVideoElement>;
+	isVideoPlay?: boolean;
 }
 
 export default function VideoPlayer({
@@ -29,6 +30,7 @@ export default function VideoPlayer({
 	videoPlayingAspectClasses = "aspect-video lg:aspect-[16/9]",
 	ignoreAspectRatio = false,
 	videoRef,
+	isVideoPlay = false
 }: VideoPlayerProps) {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [isMuted, setIsMuted] = useState(muted);
@@ -92,6 +94,10 @@ export default function VideoPlayer({
 			}
 		};
 	}, [autoPlay]);
+
+	useEffect(() => {
+		setIsPlaying(isVideoPlay)
+	}, [isVideoPlay])
 
 	return (
 		<div
