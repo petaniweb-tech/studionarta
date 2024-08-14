@@ -10,7 +10,9 @@ const ConditionalNavbar = () => {
 		pathname === "/our-work" ||
 		pathname.startsWith("/our-work/") ||
 		pathname === "/contact-us" ||
-		pathname === "/join-us"
+		pathname === "/join-us" ||
+		pathname === "/corporate-project" ||
+		pathname.startsWith("/corporate-project/")
 	) {
 		return null;
 	}

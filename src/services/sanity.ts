@@ -16,9 +16,9 @@ const config: ClientConfig = {
 	perspective: perspective,
 };
 
-const sanityClient: SanityClient = createClient(config);
+export const sanityClient: SanityClient = createClient(config);
 
 export const fetch = async (query: string): Promise<any> => {
 	const parseQuery = groq`${query}`;
-	return sanityClient.fetch(parseQuery, {}, { cache: 'no-store' });
+	return sanityClient.fetch(parseQuery, {}, { cache: "no-store" });
 };
