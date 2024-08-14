@@ -1,10 +1,14 @@
 import Link from "next/link";
+import Image from "next/image";
+
+// Import Assets //
+import igLogo from "@/assets/images/ig-logo.png";
 
 export default function ContactUs() {
 	return (
 		<section className="w-full bg-cover bg-center bg-bgcontact h-screen mb-28 flex items-center justify-center my-auto px-sectionpxsm lg:px-sectionpxlg">
 			<div className="flex w-full items-center justify-center lg:justify-start">
-				<div className="flex flex-col w-full lg:w-[36%] h-auto px-11 pt-12 lg:pt-14 pb-14 lg:pb-16 gap-9 bg-white">
+				<div className="flex flex-col w-full lg:w-[50%] h-auto px-11 pt-12 lg:pt-14 pb-14 lg:pb-16 gap-9 bg-white">
 					<div className="flex flex-col gap-3">
 						<h5 className="text-2xl text-black font-medium">
 							Studionarta.
@@ -53,9 +57,14 @@ export default function ContactUs() {
 							rel="noopener noreferrer"
 						>
 							<div className="pb-2">
-								<p className="text-[13px] text-black opacity-65 font-supportingfont">
-									Instagram
-								</p>
+								<Image
+									src={igLogo}
+									alt={`Instagram`}
+									priority={false}
+									width={25}
+									height={25}
+									quality={100}
+								/>
 							</div>
 						</Link>
 					</div>

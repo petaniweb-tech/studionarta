@@ -10,6 +10,7 @@ import { HamburgerMenuIcon, Cross2Icon } from "@radix-ui/react-icons";
 // Import Assets //
 import logowhite from "@/assets/images/img-logowhite.png";
 import logoblack from "@/assets/images/img-logoblack.png";
+import igLogo from "@/assets/images/ig-logo.png";
 
 function Navbar() {
 	// Navbar Links //
@@ -170,7 +171,7 @@ function Navbar() {
 					</div>
 
 					<div className="w-full flex flex-col gap-3">
-						<h5 className="text-2xl text-black font-medium">
+						<h5 className="text-2xl text-black font-medium mb-2">
 							Social Media
 						</h5>
 
@@ -180,9 +181,14 @@ function Navbar() {
 							rel="noopener noreferrer"
 						>
 							<div className="flex w-fit">
-								<p className="text-base font-supportingfont text-neutral-500">
-									Instagram
-								</p>
+								<Image
+									src={igLogo}
+									alt={`Instagram`}
+									priority={false}
+									width={25}
+									height={25}
+									quality={100}
+								/>
 							</div>
 						</Link>
 					</div>

@@ -29,7 +29,7 @@ const config = {
 			},
 
 			backgroundImage: {
-				bgcontact: "url('../assets/images/img-dummy-14.jpg')",
+				bgcontact: "url('../assets/images/img-contact.jpg')",
 			},
 
 			transitionProperty: {

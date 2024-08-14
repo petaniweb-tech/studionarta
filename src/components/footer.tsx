@@ -3,6 +3,7 @@ import Image from "next/image";
 
 // Import Assets //
 import logoblack from "@/assets/images/img-logoblack.png";
+import igLogo from "@/assets/images/ig-logo.png";
 
 export default function Footer() {
 	return (
@@ -90,9 +91,14 @@ export default function Footer() {
 							rel="noopener noreferrer"
 						>
 							<div className="w-fit">
-								<p className="text-[15px] text-neutral-500 font-supportingfont">
-									Instagram
-								</p>
+								<Image
+									src={igLogo}
+									alt={`Instagram`}
+									priority={false}
+									width={25}
+									height={25}
+									quality={100}
+								/>
 							</div>
 						</Link>
 					</div>
@@ -172,7 +178,7 @@ export default function Footer() {
 						</div>
 
 						<div className="flex flex-col w-fit h-full whitespace-nowrap">
-							<h5 className="text-xl 2xl:text-2xl text-black font-medium text-nowrap">
+							<h5 className="text-xl 2xl:text-2xl text-black font-medium text-nowrap mb-2">
 								Social Media
 							</h5>
 							<Link
@@ -181,9 +187,14 @@ export default function Footer() {
 								rel="noopener noreferrer"
 							>
 								<div className="w-fit cursor-pointer">
-									<p className="text-sm 2xl:text-base text-neutral-500 hover:text-black duration-300 font-supportingfont mt-3 text-nowrap">
-										Instagram
-									</p>
+									<Image
+										src={igLogo}
+										alt={`Instagram`}
+										priority={false}
+										width={25}
+										height={25}
+										quality={100}
+									/>
 								</div>
 							</Link>
 						</div>
