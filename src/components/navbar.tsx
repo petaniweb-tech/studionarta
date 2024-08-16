@@ -86,7 +86,7 @@ function Navbar() {
 	return (
 		<>
 			{/* <-- ==== Navbar Mobile Start ==== --> */}
-			<nav className="fixed flex w-full z-[100] top-0 lg:hidden">
+			<nav className="fixed flex w-full z-[95] top-0 lg:hidden">
 				<div
 					className={`flex items-center w-full justify-between px-sectionpxsm py-[18px] transition-all duration-500 ${
 						isOpen
@@ -199,7 +199,7 @@ function Navbar() {
 
 			{/* <-- ==== Navbar Desktop Start ==== --> */}
 			<nav
-				className={`hidden lg:flex fixed w-full px-sectionpxlg 2xl:px-sectionpx2xl z-[100] py-7 2xl:py-8 items-center justify-between transition-all duration-300 ${
+				className={`hidden lg:flex fixed w-full px-sectionpxlg 2xl:px-sectionpx2xl z-[95] py-7 2xl:py-8 items-center justify-between transition-all duration-300 ${
 					scrolling
 						? "bg-bgbase bg-opacity-20 backdrop-blur-2xl"
 						: "bg-transparent"
