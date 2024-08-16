@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { fetchConfiguration } from "@/services/configurationService";
-import { ConfigurationDataType } from "@/types/configuration";
 
 // Import Components //
 import {
@@ -24,32 +24,34 @@ export default function Modal() {
 	const [open, setOpen] = useState(true);
 	const [code, setCode] = useState("");
 	const [error, setError] = useState<string | null>(null);
+	const router = useRouter();
 
 	useEffect(() => {
 		const sessionCode = sessionStorage.getItem("projectCodeVerified");
 		if (sessionCode) {
-			setOpen(false);
+			const checkCodeValidity = async () => {
+				const isValid = await fetchConfiguration(sessionCode);
+				if (isValid) {
+					setOpen(false);
+				} else {
+					sessionStorage.removeItem("projectCodeVerified");
+					router.push("/");
+				}
+			};
+			checkCodeValidity();
 		}
-	}, []);
+	}, [router]);
 
 	const handleSubmit = async () => {
 		setError(null);
 
-		const config: ConfigurationDataType | null =
-			await fetchConfiguration(code);
+		const isValid = await fetchConfiguration(code);
 
-		if (config) {
-			const currentDate = new Date();
-			const expiryDate = new Date(config.expiryDate);
-
-			if (currentDate <= expiryDate) {
-				sessionStorage.setItem("projectCodeVerified", "true");
-				setOpen(false);
-			} else {
-				setError("The code has expired.");
-			}
+		if (isValid) {
+			sessionStorage.setItem("projectCodeVerified", code);
+			setOpen(false);
 		} else {
-			setError("Invalid code.");
+			setError("The code has expired.");
 		}
 	};
 
@@ -79,6 +81,7 @@ export default function Modal() {
 					maxLength={6}
 					pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
 					onChange={(value) => setCode(value.toUpperCase())}
+					inputMode="text"
 				>
 					<InputOTPGroup className="mt-6">
 						<InputOTPSlot index={0} />
