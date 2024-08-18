@@ -21,15 +21,16 @@ import {
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 
 export default function Modal() {
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const [code, setCode] = useState("");
 	const [error, setError] = useState<string | null>(null);
 	const router = useRouter();
 
 	useEffect(() => {
-		const sessionCode = sessionStorage.getItem("projectCodeVerified");
-		if (sessionCode) {
-			const checkCodeValidity = async () => {
+		const checkSession = async () => {
+			const sessionCode = sessionStorage.getItem("projectCodeVerified");
+			if (sessionCode) {
 				const isValid = await fetchConfiguration(sessionCode);
 				if (isValid) {
 					setOpen(false);
@@ -37,9 +38,13 @@ export default function Modal() {
 					sessionStorage.removeItem("projectCodeVerified");
 					router.push("/");
 				}
-			};
-			checkCodeValidity();
-		}
+			} else {
+				setOpen(true);
+			}
+			setLoading(false);
+		};
+
+		checkSession();
 	}, [router]);
 
 	const handleSubmit = async () => {
@@ -51,7 +56,7 @@ export default function Modal() {
 			sessionStorage.setItem("projectCodeVerified", code);
 			setOpen(false);
 		} else {
-			setError("The code has expired.");
+			setError("Invalid code");
 		}
 	};
 
@@ -68,6 +73,10 @@ export default function Modal() {
 			document.removeEventListener("keydown", handleKeyDown, true);
 		};
 	}, []);
+
+	if (loading) {
+		return null; // Render nothing while checking session
+	}
 
 	return (
 		<AlertDialog open={open} onOpenChange={setOpen}>
