@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 interface VideoPlayerProps {
 	url: string;
-	autoPlay?: boolean;
+	// autoPlay?: boolean;
 	muted?: boolean;
 	loop?: boolean;
 	className?: string;
@@ -20,7 +20,7 @@ interface VideoPlayerProps {
 
 export default function VideoPlayer({
 	url,
-	autoPlay = true,
+	// autoPlay = true,
 	muted = true,
 	loop = true,
 	className = "",
@@ -30,7 +30,7 @@ export default function VideoPlayer({
 	videoPlayingAspectClasses = "aspect-video lg:aspect-[16/9]",
 	ignoreAspectRatio = false,
 	videoRef,
-	isVideoPlay = false
+	isVideoPlay = false,
 }: VideoPlayerProps) {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [isMuted, setIsMuted] = useState(muted);
@@ -78,26 +78,26 @@ export default function VideoPlayer({
 		}
 	}, [isMuted]);
 
-	useEffect(() => {
-		// Programmatically trigger the video to play on component mount
-		if (finalVideoRef.current && autoPlay) {
-			finalVideoRef.current.play().catch((err) => {
-				// Handle autoplay failure (browser restrictions, etc.)
-				console.error("Autoplay failed: ", err);
-				setIsPlaying(false);
-			});
-		}
+	// useEffect(() => {
+	// 	// Programmatically trigger the video to play on component mount
+	// 	if (finalVideoRef.current && autoPlay) {
+	// 		finalVideoRef.current.play().catch((err) => {
+	// 			// Handle autoplay failure (browser restrictions, etc.)
+	// 			console.error("Autoplay failed: ", err);
+	// 			setIsPlaying(false);
+	// 		});
+	// 	}
 
-		return () => {
-			if (timerRef.current) {
-				clearTimeout(timerRef.current);
-			}
-		};
-	}, [autoPlay]);
+	// 	return () => {
+	// 		if (timerRef.current) {
+	// 			clearTimeout(timerRef.current);
+	// 		}
+	// 	};
+	// }, [autoPlay]);
 
 	useEffect(() => {
-		setIsPlaying(isVideoPlay)
-	}, [isVideoPlay])
+		setIsPlaying(isVideoPlay);
+	}, [isVideoPlay]);
 
 	return (
 		<div
@@ -114,7 +114,7 @@ export default function VideoPlayer({
 			<div className="flex items-center w-full justify-center origin-center">
 				<video
 					ref={finalVideoRef}
-					autoPlay={autoPlay}
+					// autoPlay={autoPlay}
 					muted={isMuted}
 					loop={loop}
 					controls={false}
