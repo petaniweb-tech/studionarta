@@ -65,7 +65,7 @@ export default async function ProjectDetail({ params }: ProjectProps) {
 							imageClassName="w-screen h-full object-cover"
 							imageAlt={`${project.title}-${index}`}
 							videoClassName="w-screen h-full object-cover"
-							// videoAutoPlay={true}
+							videoAutoPlay={false}
 							videoLoop={true}
 							videoMute={true}
 							showButton={true}

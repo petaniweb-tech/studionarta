@@ -142,7 +142,7 @@ export default function HeroCarousel() {
 								imageClassName="object-cover object-center h-screen w-full"
 								imageAlt={`banner-image-${index}`}
 								videoClassName="object-cover object-center h-screen w-full"
-								// videoAutoPlay={true}
+								videoAutoPlay={false}
 								videoLoop={false}
 								videoMute={true}
 								showButton={true}
