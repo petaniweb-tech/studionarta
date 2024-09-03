@@ -20,7 +20,7 @@ interface VideoPlayerProps {
 
 export default function VideoPlayer({
 	url,
-	autoPlay = true,
+	autoPlay = false,
 	muted = true,
 	loop = true,
 	className = "",
@@ -78,22 +78,26 @@ export default function VideoPlayer({
 		}
 	}, [isMuted]);
 
-	// useEffect(() => {
-	// 	// Programmatically trigger the video to play on component mount
-	// 	if (finalVideoRef.current && autoPlay) {
-	// 		finalVideoRef.current.play().catch((err) => {
-	// 			// Handle autoplay failure (browser restrictions, etc.)
-	// 			console.error("Autoplay failed: ", err);
-	// 			setIsPlaying(false);
-	// 		});
-	// 	}
+	useEffect(() => {
+		const videoElement = finalVideoRef.current;
 
-	// 	return () => {
-	// 		if (timerRef.current) {
-	// 			clearTimeout(timerRef.current);
-	// 		}
-	// 	};
-	// }, [autoPlay]);
+		if (videoElement) {
+			videoElement.currentTime = 1;
+			videoElement.pause();
+
+			videoElement.addEventListener("loadeddata", () => {
+				videoElement.currentTime = 1;
+				videoElement.pause();
+			});
+
+			return () => {
+				videoElement.removeEventListener("loadeddata", () => {
+					videoElement.currentTime = 1;
+					videoElement.pause();
+				});
+			};
+		}
+	}, []);
 
 	useEffect(() => {
 		setIsPlaying(isVideoPlay);
@@ -114,10 +118,11 @@ export default function VideoPlayer({
 			<div className="flex items-center w-full justify-center origin-center">
 				<video
 					ref={finalVideoRef}
-					autoPlay={autoPlay}
+					autoPlay={false}
 					muted={isMuted}
 					loop={loop}
 					controls={false}
+					preload="metadata"
 					playsInline
 					className={`object-cover object-center h-full w-full transition-all duration-700 ${
 						ignoreAspectRatio
