@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 interface VideoPlayerProps {
 	url: string;
-	// autoPlay?: boolean;
+	autoPlay?: boolean;
 	muted?: boolean;
 	loop?: boolean;
 	className?: string;
@@ -20,7 +20,7 @@ interface VideoPlayerProps {
 
 export default function VideoPlayer({
 	url,
-	// autoPlay = true,
+	autoPlay = true,
 	muted = true,
 	loop = true,
 	className = "",
@@ -114,7 +114,7 @@ export default function VideoPlayer({
 			<div className="flex items-center w-full justify-center origin-center">
 				<video
 					ref={finalVideoRef}
-					// autoPlay={autoPlay}
+					autoPlay={autoPlay}
 					muted={isMuted}
 					loop={loop}
 					controls={false}

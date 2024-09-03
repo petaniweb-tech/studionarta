@@ -8,7 +8,7 @@ const RenderAsset: React.FC<{
 	imageAlt: string;
 	imageClassName: string;
 	videoClassName: string;
-	// videoAutoPlay: boolean;
+	videoAutoPlay: boolean;
 	videoMute: boolean;
 	videoLoop: boolean;
 	showButton?: boolean;
@@ -23,7 +23,7 @@ const RenderAsset: React.FC<{
 	imageAlt,
 	imageClassName,
 	videoClassName,
-	// videoAutoPlay,
+	videoAutoPlay,
 	videoLoop,
 	videoMute,
 	showButton = true,
@@ -55,7 +55,7 @@ const RenderAsset: React.FC<{
 		return (
 			<VideoPlayer
 				url={url}
-				// autoPlay={videoAutoPlay}
+				autoPlay={videoAutoPlay}
 				muted={videoMute}
 				loop={videoLoop}
 				className={videoClassName}
