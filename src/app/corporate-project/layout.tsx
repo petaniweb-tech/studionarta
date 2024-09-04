@@ -5,13 +5,15 @@ import SecondaryNavbar from "@/components/secondary-navbar";
 import Modal from "@/components/modal";
 
 // Import Components //
-import { defaultMetaData } from "@/consts/metadata-default";
+import { CorporateProjectDescription, defaultMetaData } from "@/consts/metadata-default";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const metaData = defaultMetaData;
 	metaData.title = "Our Works | Studionarta";
+	metaData.description = CorporateProjectDescription;
 	if (metaData.openGraph) {
 		metaData.openGraph.title = "Our Works | Studionarta"
+		metaData.openGraph.description = CorporateProjectDescription;
 	}
 	return metaData;
 }
