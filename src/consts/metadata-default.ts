@@ -4,7 +4,7 @@ export const defaultMetaData: Metadata = {
   title: "Studionarta",
   description:
     "Creative studio based in Malang and Jakarta that values creativity and design excellence",
-  metadataBase: new URL(`https://studionarta.vercel.app`),
+  metadataBase: process?.env?.NEXT_PUBLIC_BASE_URL ? new URL(process?.env?.NEXT_PUBLIC_BASE_URL) : new URL(`https://studionarta.vercel.app`),
   applicationName: "Studionarta",
   authors: [{ name: "PetaniWeb Team", url: "https://petaniweb.com" }],
   alternates: {
@@ -16,7 +16,7 @@ export const defaultMetaData: Metadata = {
     description:
       "Creative studio based in Malang and Jakarta that values creativity and design excellence",
     siteName: "Studionarta",
-    url: "https://studionarta.vercel.app",
+    url: process?.env?.NEXT_PUBLIC_BASE_URL,
     images: [
       {
         url: "/studionarta-og.png",
@@ -25,7 +25,8 @@ export const defaultMetaData: Metadata = {
         alt: "Studionarta",
       },
     ],
+    countryName: "Indonesia",
     locale: "en_US",
-    type: "website",
+    type: "article"
   },
 };
