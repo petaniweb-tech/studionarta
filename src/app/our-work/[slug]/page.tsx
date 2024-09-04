@@ -1,13 +1,17 @@
 // Import services
+import type { Metadata } from 'next'
 import { fetch } from "@/services/sanity";
-import { queryProductBySlug } from "@/services/projectsService";
+import { queryProductBySlug, queryProductBySlugSEO } from "@/services/projectsService";
 
 // Import data type
-import { ProjectDataType, ProjectProps } from "@/types/projectsType";
+import { ProjectDataType, ProjectDataTypeSEO, ProjectProps } from "@/types/projectsType";
 
 // Import Component
 import RenderAsset from "@/components/render-asset";
 import DynamicBreadcrumb from "@/components/dynamic-breadcrumb";
+
+// Import Const
+import { defaultMetaData } from "@/consts/metadata-default";
 
 const INDEX_DOUBLE_ASSETS = [
 	2, 3, 9, 10, 16, 17, 23, 24, 30, 31, 37, 38, 44, 45,
@@ -15,6 +19,34 @@ const INDEX_DOUBLE_ASSETS = [
 
 async function fetchData(slug: string): Promise<ProjectDataType> {
 	return fetch(queryProductBySlug(slug));
+}
+
+async function fetchSEO(slug: string): Promise<ProjectDataTypeSEO> {
+	return fetch(queryProductBySlugSEO(slug))
+}
+
+export async function generateMetadata({ params }: ProjectProps): Promise<Metadata> {
+	const project = await fetchSEO(params.slug);
+	const description = project.description.split('.')[0];
+
+	const thumbnail = project?.thumbnail?.url || "/studionarta-og.png";
+
+	const metaData = defaultMetaData;
+	metaData.title = `${project.title} - Our Work | Studionarta`;
+	metaData.description = description;
+	if (metaData.openGraph) {
+		metaData.openGraph.title = `${project.title} - Our Work | Studionarta`;
+		metaData.openGraph.description = description;
+		metaData.openGraph.images = [
+			{
+				url: thumbnail,
+				width: 1200,
+				height: 630,
+				alt: project.title,
+			}
+		]
+	}
+	return metaData
 }
 
 export default async function ProjectDetail({ params }: ProjectProps) {

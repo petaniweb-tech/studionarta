@@ -22,3 +22,13 @@ export const queryCorporateProjectBySlug = (slug: string): string => {
       'images': images[]{'url': asset->url},
     }`;
 };
+
+export const queryCorporateProjectBySlugSEO = (slug: string): string => {
+	return `
+  *[_type=='corporate_project' && slug.current == '${slug}'][0]
+    {
+      title,
+      description,
+      'thumbnail': images[@._type == 'image']{'url': asset->url}[0],
+    }`;
+};

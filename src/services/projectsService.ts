@@ -22,3 +22,13 @@ export const queryProductBySlug = (slug: string): string => {
       'images': images[]{'url': asset->url},
     }`;
 };
+
+export const queryProductBySlugSEO = (slug: string): string => {
+	return `
+  *[_type=='projects' && slug.current == '${slug}'][0]
+    {
+      title,
+      description,
+      'thumbnail': images[@._type == 'image']{'url': asset->url}[0],
+    }`;
+};

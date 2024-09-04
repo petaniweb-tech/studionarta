@@ -8,6 +8,12 @@ export interface CorporateProjectDataType {
 	video?: { url: string };
 }
 
+export interface CorporateProjectDataTypeSEO {
+	title: string;
+	description: string;
+	thumbnail?: Image;
+}
+
 export interface CorporateProjectProps {
 	params: { slug: string };
 }

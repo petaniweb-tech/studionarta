@@ -8,6 +8,9 @@ import Footer from "@/components/footer";
 import BackToTop from "@/components/back-to-top";
 import { Toaster } from "@/components/ui/toaster";
 
+// Import Const
+import { defaultMetaData } from "@/consts/metadata-default";
+
 const mainFont = Cormorant_Garamond({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700"],
@@ -20,25 +23,7 @@ const supportingFont = Montserrat({
 	variable: "--supporting-font",
 });
 
-export const metadata: Metadata = {
-	title: "Studionarta",
-	description:
-		"Creative studio based in Malang and Jakarta that values creativity and design excellence",
-	openGraph: {
-		title: "Studionarta",
-		description: "Studionarta creative studio",
-		siteName: "Studionarta",
-		images: [
-			{
-				url: "/img-logowhite.png",
-				width: 1200,
-				height: 630,
-			},
-		],
-		locale: "en_US",
-		type: "website",
-	},
-};
+export const metadata: Metadata = defaultMetaData;
 
 export default function RootLayout({
 	children,
