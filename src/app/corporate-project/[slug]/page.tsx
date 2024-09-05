@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: CorporateProjectProps): Promi
 
 	const thumbnail = project?.thumbnail?.url || "/studionarta-og.png";
 
-	const metaData = defaultMetaData;
+	const metaData = {...defaultMetaData};
 	metaData.title = `${project.title} - Corporate Project | Studionarta`;
 	metaData.description = description;
 	if (metaData.openGraph) {

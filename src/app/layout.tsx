@@ -23,7 +23,7 @@ const supportingFont = Montserrat({
 	variable: "--supporting-font",
 });
 
-export const metadata: Metadata = defaultMetaData;
+export const metadata: Metadata = {...defaultMetaData};
 
 export default function RootLayout({
 	children,

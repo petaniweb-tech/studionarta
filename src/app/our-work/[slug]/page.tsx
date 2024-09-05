@@ -31,9 +31,7 @@ export async function generateMetadata({ params }: ProjectProps): Promise<Metada
 
 	const thumbnail = project?.thumbnail?.url || "/studionarta-og.png";
 
-	const metaData = {
-		...defaultMetaData,
-	};
+	const metaData = {...defaultMetaData};
 	metaData.title = `${project.title} - Our Work | Studionarta`;
 	metaData.description = description;
 	if (metaData.openGraph) {

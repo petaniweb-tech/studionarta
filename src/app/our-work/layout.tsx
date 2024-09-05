@@ -7,7 +7,7 @@ import SecondaryNavbar from "@/components/secondary-navbar";
 import { defaultMetaData, OurWorkDescription } from "@/consts/metadata-default";
 
 export async function generateMetadata(): Promise<Metadata> {
-	const metaData = defaultMetaData;
+	const metaData = {...defaultMetaData};
 	metaData.title = "Our Works | Studionarta";
 	metaData.description = OurWorkDescription;
 	if (metaData.openGraph) {

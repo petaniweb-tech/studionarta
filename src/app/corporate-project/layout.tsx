@@ -8,7 +8,7 @@ import Modal from "@/components/modal";
 import { CorporateProjectDescription, defaultMetaData } from "@/consts/metadata-default";
 
 export async function generateMetadata(): Promise<Metadata> {
-	const metaData = defaultMetaData;
+	const metaData = {...defaultMetaData};
 	metaData.title = "Our Works | Studionarta";
 	metaData.description = CorporateProjectDescription;
 	if (metaData.openGraph) {
