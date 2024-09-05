@@ -9,12 +9,16 @@ import { CorporateProjectDescription, defaultMetaData } from "@/consts/metadata-
 
 export async function generateMetadata(): Promise<Metadata> {
 	const metaData = {...defaultMetaData};
-	metaData.title = "Our Works | Studionarta";
+	metaData.title = "Corporate Project | Studionarta";
 	metaData.description = CorporateProjectDescription;
 	if (metaData.openGraph) {
-		metaData.openGraph.title = "Our Works | Studionarta"
+		metaData.openGraph.title = "Corporate Project | Studionarta";
 		metaData.openGraph.description = CorporateProjectDescription;
 		metaData.openGraph.url = `${process?.env?.NEXT_PUBLIC_BASE_URL}/corporate-project`;
+	}
+	if (metaData.twitter) {
+		metaData.twitter.title = "Corporate Project | Studionarta";
+		metaData.twitter.description = CorporateProjectDescription;
 	}
 	return metaData;
 }

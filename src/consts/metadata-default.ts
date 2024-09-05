@@ -31,6 +31,13 @@ export const defaultMetaData: Metadata = {
     locale: "en_US",
     type: "article"
    },
+   twitter: {
+    card: "summary_large_image",
+    title: "Studionarta",
+    description:
+      "Creative studio based in Malang and Jakarta that values creativity and design excellence",
+    images: "/studionarta-og.png",
+   }
 };
 
 export const JoinUsDescription: string = "Join our creative studio in Malang and Jakarta, where passion for design meets a commitment to innovation and excellence. Be part of a dynamic team that thrives on creativity and pushes the boundaries of design.";

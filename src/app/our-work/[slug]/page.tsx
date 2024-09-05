@@ -28,16 +28,17 @@ async function fetchSEO(slug: string): Promise<ProjectDataTypeSEO> {
 export async function generateMetadata({ params }: ProjectProps): Promise<Metadata> {
 	const project = await fetchSEO(params.slug);
 	const description = project.description.split('.')[0];
+	const title = `${project.title} - Our Work | Studionarta`;
 
 	const thumbnail = project?.thumbnail?.url || "/studionarta-og.png";
 
 	const metaData = {...defaultMetaData};
-	metaData.title = `${project.title} - Our Work | Studionarta`;
+	metaData.title = title;
 	metaData.description = description;
 	if (metaData.openGraph) {
 		// @ts-ignore
 		metaData.openGraph.type = "article";
-		metaData.openGraph.title = `${project.title} - Our Work | Studionarta`;
+		metaData.openGraph.title = title;
 		metaData.openGraph.description = description;
 		metaData.openGraph.url = `${process?.env?.NEXT_PUBLIC_BASE_URL}/our-work/${params.slug}`;
 		metaData.openGraph.images = [
@@ -48,6 +49,11 @@ export async function generateMetadata({ params }: ProjectProps): Promise<Metada
 				alt: project.title,
 			}
 		]
+	}
+	if (metaData.twitter) {
+		metaData.twitter.title = title;
+		metaData.twitter.description = description;
+		metaData.twitter.images = thumbnail;
 	}
 	return metaData
 }

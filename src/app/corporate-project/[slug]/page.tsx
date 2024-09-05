@@ -31,17 +31,18 @@ async function fetchSEO(slug: string): Promise<CorporateProjectDataTypeSEO> {
 export async function generateMetadata({ params }: CorporateProjectProps): Promise<Metadata> {
 	const project = await fetchSEO(params.slug);
 	const description = project.description.split('.')[0];
+	const title = `${project.title} - Corporate Project | Studionarta`;
 
 	const thumbnail = project?.thumbnail?.url || "/studionarta-og.png";
 
 	const metaData = {...defaultMetaData};
-	metaData.title = `${project.title} - Corporate Project | Studionarta`;
+	metaData.title = title;
 	metaData.description = description;
 	if (metaData.openGraph) {
 		// @ts-ignore 
 		metaData.openGraph.type = "article";
 		metaData.openGraph.url = `${process?.env?.NEXT_PUBLIC_BASE_URL}/corporate-project/${params.slug}`;
-		metaData.openGraph.title = `${project.title} - Corporate Project | Studionarta`;
+		metaData.openGraph.title = title;
 		metaData.openGraph.description = description;
 		metaData.openGraph.images = [
 			{
@@ -51,6 +52,11 @@ export async function generateMetadata({ params }: CorporateProjectProps): Promi
 				alt: project.title,
 			}
 		]
+	}
+	if (metaData.twitter) {
+		metaData.twitter.title = title;
+		metaData.twitter.description = description;
+		metaData.twitter.images = thumbnail;
 	}
 	return metaData
 }
