@@ -1,10 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata} from "next";
+
+const baseURL = process?.env?.NEXT_PUBLIC_BASE_URL ? new URL(process?.env?.NEXT_PUBLIC_BASE_URL) : new URL(`https://studionarta.vercel.app`);
 
 export const defaultMetaData: Metadata = {
   title: "Studionarta",
   description:
     "Creative studio based in Malang and Jakarta that values creativity and design excellence",
-  metadataBase: process?.env?.NEXT_PUBLIC_BASE_URL ? new URL(process?.env?.NEXT_PUBLIC_BASE_URL) : new URL(`https://studionarta.vercel.app`),
+  metadataBase: baseURL,
   applicationName: "Studionarta",
   authors: [{ name: "PetaniWeb Team", url: "https://petaniweb.com" }],
   alternates: {
@@ -16,7 +18,7 @@ export const defaultMetaData: Metadata = {
     description:
       "Creative studio based in Malang and Jakarta that values creativity and design excellence",
     siteName: "Studionarta",
-    url: process?.env?.NEXT_PUBLIC_BASE_URL,
+    url: baseURL,
     images: [
       {
         url: "/studionarta-og.png",
@@ -28,7 +30,7 @@ export const defaultMetaData: Metadata = {
     countryName: "Indonesia",
     locale: "en_US",
     type: "article"
-  },
+   },
 };
 
 export const JoinUsDescription: string = "Join our creative studio in Malang and Jakarta, where passion for design meets a commitment to innovation and excellence. Be part of a dynamic team that thrives on creativity and pushes the boundaries of design.";

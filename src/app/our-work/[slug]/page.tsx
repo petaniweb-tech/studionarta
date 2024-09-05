@@ -31,12 +31,17 @@ export async function generateMetadata({ params }: ProjectProps): Promise<Metada
 
 	const thumbnail = project?.thumbnail?.url || "/studionarta-og.png";
 
-	const metaData = defaultMetaData;
+	const metaData = {
+		...defaultMetaData,
+	};
 	metaData.title = `${project.title} - Our Work | Studionarta`;
 	metaData.description = description;
 	if (metaData.openGraph) {
+		// @ts-ignore
+		metaData.openGraph.type = "article";
 		metaData.openGraph.title = `${project.title} - Our Work | Studionarta`;
 		metaData.openGraph.description = description;
+		metaData.openGraph.url = `${process?.env?.NEXT_PUBLIC_BASE_URL}/our-work/${params.slug}`;
 		metaData.openGraph.images = [
 			{
 				url: thumbnail,

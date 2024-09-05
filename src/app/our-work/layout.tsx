@@ -11,8 +11,9 @@ export async function generateMetadata(): Promise<Metadata> {
 	metaData.title = "Our Works | Studionarta";
 	metaData.description = OurWorkDescription;
 	if (metaData.openGraph) {
-		metaData.openGraph.title = "Our Works | Studionarta"
+		metaData.openGraph.title = "Our Works | Studionarta";
 		metaData.openGraph.description = OurWorkDescription;
+		metaData.openGraph.url = `${process?.env?.NEXT_PUBLIC_BASE_URL}/our-work`;
 	}
 	return metaData;
 }

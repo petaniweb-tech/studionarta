@@ -38,6 +38,9 @@ export async function generateMetadata({ params }: CorporateProjectProps): Promi
 	metaData.title = `${project.title} - Corporate Project | Studionarta`;
 	metaData.description = description;
 	if (metaData.openGraph) {
+		// @ts-ignore 
+		metaData.openGraph.type = "article";
+		metaData.openGraph.url = `${process?.env?.NEXT_PUBLIC_BASE_URL}/corporate-project/${params.slug}`;
 		metaData.openGraph.title = `${project.title} - Corporate Project | Studionarta`;
 		metaData.openGraph.description = description;
 		metaData.openGraph.images = [
