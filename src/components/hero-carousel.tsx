@@ -25,7 +25,6 @@ export default function HeroCarousel() {
 
   const [banners, setBanners] = useState<Banner[]>([]);
   const [current, setCurrent] = useState(1);
-  const [isPlayVideo, setIsPlayVideo] = useState<boolean>(false)
 
   const videoRefs = useRef<React.RefObject<HTMLVideoElement>[]>([]);
 
@@ -44,6 +43,7 @@ export default function HeroCarousel() {
   const muteAllVideos = () => {
     videoRefs.current.forEach((videoRef) => {
       if (videoRef.current) {
+        videoRef.current.pause();
         videoRef.current.muted = true;
       }
     });
@@ -67,7 +67,6 @@ export default function HeroCarousel() {
           clearTimeout(timeoutRef.current);
         }
 
-        setIsPlayVideo(false)
         muteAllVideos();
 
         const videoRef = videoRefs.current[swiper.realIndex];
@@ -82,10 +81,8 @@ export default function HeroCarousel() {
             "2xl:max-h-[50rem]"
           );
           videoRef.current.classList.add("min-h-[100vh]", "max-h-[100vh]");
-
           videoRef.current
             .play()
-            .then()
             .catch((err) => console.error("Video playback failed", err));
         }
 
@@ -100,15 +97,27 @@ export default function HeroCarousel() {
             clearTimeout(timeoutRef.current);
           }
 
-          videoRef.current
-            .play()
-            .then(() => {
-              if (videoRef.current) {
-                setIsPlayVideo(true)
-                videoRef.current.onended = () => swapSlideNext();
+          const validateVideo = (ref: React.RefObject<HTMLVideoElement>) => {
+            if (ref?.current) {
+              if (ref.current.paused) {
+                timeoutRef.current = setTimeout(swapSlideNext, 3000); // set delay 3s
+                ref.current.onended = null // Clean up the event listener
+              } else {
+                ref.current.onended = () => {
+                  if (ref?.current) {
+                    ref.current.pause();
+                    ref.current.onended = null; // Clean up the event listener
+                    swapSlideNext();
+                  }
+                }
               }
-            })
-            .catch((err) => console.error("Video playback failed", err));
+            }
+          }
+          // TODO: Refactor me
+          // This code is not following best practices. 
+          // Investigate how to accurately retrieve the current status of the video (playing/paused).
+          // The current implementation introduces a delay to get the status, which may not be optimal.
+          setTimeout(() => validateVideo(videoRef), 5); // set delay 5ms
         }
       }}
       className="w-full h-screen"
@@ -133,13 +142,12 @@ export default function HeroCarousel() {
                 imageClassName="object-cover object-center h-screen w-full"
                 imageAlt={`banner-image-${index}`}
                 videoClassName="object-cover object-center h-screen w-full"
-                videoAutoPlay={true}
+                videoAutoPlay={false}
                 videoLoop={false}
                 videoMute={true}
                 showButton={true}
                 ignoreAspectRatio={true}
                 videoRef={videoRefs.current[index]}
-                isVideoPlay={isPlayVideo}
               />
 
               <div

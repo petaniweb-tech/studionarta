@@ -15,7 +15,6 @@ interface VideoPlayerProps {
 	videoPlayingAspectClasses?: string;
 	ignoreAspectRatio?: boolean;
 	videoRef?: React.RefObject<HTMLVideoElement>;
-	isVideoPlay?: boolean;
 }
 
 export default function VideoPlayer({
@@ -30,7 +29,6 @@ export default function VideoPlayer({
 	videoPlayingAspectClasses = "aspect-video lg:aspect-[16/9]",
 	ignoreAspectRatio = false,
 	videoRef,
-	isVideoPlay = false
 }: VideoPlayerProps) {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [isMuted, setIsMuted] = useState(muted);
@@ -53,15 +51,16 @@ export default function VideoPlayer({
 	};
 
 	const handleVideoClick = () => {
-		if (finalVideoRef.current) {
+		const videoElement = finalVideoRef.current;
+		if (videoElement) {
 			if (isPlaying) {
-				finalVideoRef.current.pause();
+				videoElement.pause();
 				clearTimeout(timerRef.current as NodeJS.Timeout);
 				setFadeOut(false);
 				setShowButtonState(true);
 			} else {
-				finalVideoRef.current.play();
-				finalVideoRef.current.muted = false;
+				videoElement.play();
+				videoElement.muted = false;
 				setIsMuted(false);
 				setFadeOut(false);
 				setShowButtonState(true);
@@ -73,15 +72,35 @@ export default function VideoPlayer({
 	};
 
 	useEffect(() => {
-		if (finalVideoRef.current) {
-			finalVideoRef.current.muted = isMuted;
+		if (finalVideoRef?.current?.paused) {
+			setIsPlaying(false)
+		}
+	}, [finalVideoRef?.current?.paused])
+
+	useEffect(() => {
+		const videoElement = finalVideoRef.current;
+		if (videoElement) {
+			videoElement.muted = isMuted;
 		}
 	}, [isMuted]);
 
 	useEffect(() => {
 		// Programmatically trigger the video to play on component mount
-		if (finalVideoRef.current && autoPlay) {
-			finalVideoRef.current.play().catch((err) => {
+		const videoElement = finalVideoRef.current;
+		if (videoElement && autoPlay) {
+			videoElement
+			.play()
+			.then(() => {
+				videoElement.onended = () => {
+					videoElement.pause();
+					videoElement.onended = null; // Clean up the event listener
+					setIsPlaying(false);
+				}
+			  })
+			.catch((err) => {
+				if (videoElement) {
+					videoElement.onended = null; // Clean up the event listener
+				}
 				// Handle autoplay failure (browser restrictions, etc.)
 				console.error("Autoplay failed: ", err);
 				setIsPlaying(false);
@@ -94,10 +113,6 @@ export default function VideoPlayer({
 			}
 		};
 	}, [autoPlay]);
-
-	useEffect(() => {
-		setIsPlaying(isVideoPlay)
-	}, [isVideoPlay])
 
 	return (
 		<div
@@ -114,20 +129,17 @@ export default function VideoPlayer({
 			<div className="flex items-center w-full justify-center origin-center">
 				<video
 					ref={finalVideoRef}
-					autoPlay={autoPlay}
 					muted={isMuted}
 					loop={loop}
 					controls={false}
 					playsInline
-					className={`object-cover object-center h-full w-full transition-all duration-700 ${
-						ignoreAspectRatio
-							? isPlaying
-								? "min-h-[16rem] max-h-[16rem] lg:min-h-[49rem] lg:max-h-[49rem] 2xl:min-h-[50rem] 2xl:max-h-[50rem]"
-								: "min-h-[100vh] max-h-[100vh]"
-							: isPlaying
-								? videoPlayingAspectClasses
-								: videoAspectClasses
-					}`}
+					preload="metadata"
+					className={cn(
+						"object-cover object-center h-full w-full transition-all duration-700",
+						isPlaying
+							? `min-h-[16rem] max-h-[16rem] lg:min-h-[49rem] lg:max-h-[49rem] 2xl:min-h-[50rem] 2xl:max-h-[50rem] ${videoPlayingAspectClasses}`
+							: `min-h-[100vh] max-h-[100vh] ${videoAspectClasses}`
+					)}
 				>
 					<source src={url} type="video/mp4" />
 				</video>
