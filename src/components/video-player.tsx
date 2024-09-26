@@ -75,7 +75,7 @@ export default function VideoPlayer({
 		if (finalVideoRef?.current?.paused) {
 			setIsPlaying(false)
 		}
-	}, [finalVideoRef?.current?.paused])
+	}, [finalVideoRef?.current?.paused]);
 
 	useEffect(() => {
 		const videoElement = finalVideoRef.current;
