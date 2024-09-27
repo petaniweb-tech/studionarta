@@ -63,7 +63,7 @@ export default async function CorporateProjectDetail({
 							imageClassName="w-screen h-full object-cover"
 							imageAlt={`${corporateProject.title}-${index}`}
 							videoClassName="w-screen h-full object-cover"
-							videoAutoPlay={true}
+							videoAutoPlay={false}
 							videoLoop={true}
 							videoMute={true}
 							showButton={true}
