@@ -17,7 +17,6 @@ const RenderAsset: React.FC<{
 	videoPlayingAspectClasses?: string;
 	ignoreAspectRatio?: boolean;
 	videoRef?: React.RefObject<HTMLVideoElement>;
-	isVideoPlay?: boolean;
 }> = ({
 	url,
 	imageAlt,
@@ -31,8 +30,7 @@ const RenderAsset: React.FC<{
 	videoAspectClasses = "aspect-square lg:aspect-[16/10]",
 	videoPlayingAspectClasses = "aspect-video lg:aspect-[16/9]",
 	ignoreAspectRatio = false,
-	videoRef,
-	isVideoPlay
+	videoRef
 }) => {
 	const type = whatIsType(url);
 
@@ -65,7 +63,6 @@ const RenderAsset: React.FC<{
 				videoPlayingAspectClasses={videoPlayingAspectClasses}
 				ignoreAspectRatio={ignoreAspectRatio}
 				videoRef={videoRef}
-				isVideoPlay={isVideoPlay}
 			/>
 		);
 	}
