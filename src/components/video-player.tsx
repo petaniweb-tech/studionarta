@@ -34,6 +34,8 @@ export default function VideoPlayer({
 	const [isMuted, setIsMuted] = useState(muted);
 	const [showButtonState, setShowButtonState] = useState(showButton);
 	const [fadeOut, setFadeOut] = useState(false);
+	const [orientation, setOrientation] = useState('');
+
 	const internalVideoRef = useRef<HTMLVideoElement>(null);
 	const finalVideoRef = videoRef || internalVideoRef;
 	const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -114,6 +116,22 @@ export default function VideoPlayer({
 		};
 	}, [autoPlay]);
 
+	useEffect(() => {
+		const videoElement = finalVideoRef.current;
+		if (videoElement) {
+			const handleLoadedMetadata = () => {
+				const isLandscape = videoElement.videoWidth > videoElement.videoHeight;
+				setOrientation(isLandscape ? 'landscape' : 'portrait');
+			  };
+		  
+			  videoElement.addEventListener('loadedmetadata', handleLoadedMetadata);
+		  
+			  return () => {
+				videoElement.removeEventListener('loadedmetadata', handleLoadedMetadata);
+			  };
+		}
+	  }, []);
+
 	return (
 		<div
 			className={cn(
@@ -135,10 +153,11 @@ export default function VideoPlayer({
 					playsInline
 					preload="metadata"
 					className={cn(
-						"object-cover object-center h-full w-full transition-all duration-700",
-						isPlaying
-							? `min-h-[16rem] max-h-[16rem] lg:min-h-[49rem] lg:max-h-[49rem] 2xl:min-h-[50rem] 2xl:max-h-[50rem] ${videoPlayingAspectClasses}`
-							: `min-h-[100vh] max-h-[100vh] ${videoAspectClasses}`
+						`object-cover object-center h-full w-full aspect-square lg:aspect-[16/10] transition-all duration-700`,
+						{
+							"max-w-[16rem] aspect-video lg:aspect-[5/24]": isPlaying && orientation == "portrait",
+							"min-h-[16rem] max-h-[16rem] lg:min-h-[49rem] lg:max-h-[49rem] 2xl:min-h-[50rem] 2xl:max-h-[50rem] aspect-video lg:aspect-[16/9]": isPlaying && orientation == "landscape"
+						}
 					)}
 				>
 					<source src={url} type="video/mp4" />
