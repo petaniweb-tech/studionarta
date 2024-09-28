@@ -143,7 +143,7 @@ export default function VideoPlayer({
       )}
       onClick={handleVideoClick}
     >
-      <div className="flex items-center justify-center origin-center h-screen w-screen">
+      <div className="flex items-center justify-center origin-center h-full w-full">
         <video
           ref={finalVideoRef}
           muted={isMuted}
@@ -152,11 +152,12 @@ export default function VideoPlayer({
           playsInline
           preload="metadata"
           className={cn(
-            "object-cover object-center h-full w-full transition-all duration-700",
+            "object-cover object-center h-full w-full aspect-square transition-all duration-700 ease-in-out",
             {
-              "min-w-[25rem] max-w-[25rem] lg:min-w-[30rem] lg:max-w-[30rem] 2xl:min-w-[45rem] 2xl:max-w-[45rem] aspect-[9/16]": isPlaying && orientation == "portrait",
-              "min-h-[16rem] max-h-[16rem] lg:min-h-[49rem] lg:max-h-[49rem] 2xl:min-h-[50rem] 2xl:max-h-[50rem] aspect-video":isPlaying && orientation == "landscape",
-              "min-h-[100vh] max-h-[100vh] aspect-square": !isPlaying,
+              // the issue is when we set the width or height to auto it will fix the issue of cutting because the size will follow the good aspect ratio.
+              // the tradeoff is transition will be broken when we try pause of the video
+              "w-auto aspect-[9/16]": isPlaying && orientation == "portrait",  // fix this blink from play to pause to set w-auto to fix value like w-[10rem]
+              "h-auto aspect-video": isPlaying && orientation == "landscape",  // fix this blink from play to pause to set h-auto to fix value like h-[10rem]
             }
           )}
         >
@@ -169,9 +170,9 @@ export default function VideoPlayer({
           className={cn(
             "absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-in-out",
             {
-			  "opacity-0": fadeOut,
-			  "opacity-100": !fadeOut,
-			}
+              "opacity-0": fadeOut,
+              "opacity-100": !fadeOut,
+            }
           )}
         >
           <button
@@ -179,9 +180,9 @@ export default function VideoPlayer({
             className={cn(
               "bg-neutral-200 bg-opacity-30 backdrop-blur-lg pt-[7px] pb-2 px-5 rounded-full font-supportingfont text-white transition-transform duration-300 ease-in-out",
               { 
-				"scale-105": isPlaying, 
-				"scale-100": !isPlaying
-			  }
+              "scale-105": isPlaying, 
+              "scale-100": !isPlaying
+              }
             )}
           >
             {isPlaying ? "Pause" : "Play"}
