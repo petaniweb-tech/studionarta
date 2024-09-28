@@ -72,18 +72,7 @@ export default function HeroCarousel() {
         const videoRef = videoRefs.current[swiper.realIndex];
         if (videoRef?.current) {
           videoRef.current.currentTime = 1;
-          videoRef.current.classList.remove(
-            "min-h-[16rem]",
-            "max-h-[16rem]",
-            "lg:min-h-[49rem]",
-            "lg:max-h-[49rem]",
-            "2xl:min-h-[50rem]",
-            "2xl:max-h-[50rem]"
-          );
-          videoRef.current.classList.add("min-h-[100vh]", "max-h-[100vh]");
-          videoRef.current
-            .play()
-            .catch((err) => console.error("Video playback failed", err));
+          videoRef.current.pause();
         }
 
         timeoutRef.current = setTimeout(swapSlideNext, 12000); // set default delay 12s
