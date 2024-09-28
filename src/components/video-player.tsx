@@ -154,7 +154,7 @@ export default function VideoPlayer({
           className={cn(
             "object-cover object-center h-full w-full transition-all duration-700",
             {
-              "min-w-[25rem] max-w-[25rem] md:min-w-[25rem] md:max-w-[25rem] lg:min-w-[30rem] lg:max-w-[30rem] 2xl:min-h-[40rem] 2xl:max-h-[40rem] aspect-[9/16]": isPlaying && orientation == "portrait",
+              "min-w-[25rem] max-w-[25rem] lg:min-w-[30rem] lg:max-w-[30rem] 2xl:min-w-[45rem] 2xl:max-w-[45rem] aspect-[9/16]": isPlaying && orientation == "portrait",
               "min-h-[16rem] max-h-[16rem] lg:min-h-[49rem] lg:max-h-[49rem] 2xl:min-h-[50rem] 2xl:max-h-[50rem] aspect-video":isPlaying && orientation == "landscape",
               "min-h-[100vh] max-h-[100vh] aspect-square": !isPlaying,
             }
