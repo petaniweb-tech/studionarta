@@ -12,8 +12,6 @@ const RenderAsset: React.FC<{
 	videoMute: boolean;
 	videoLoop: boolean;
 	showButton?: boolean;
-	parentAspectClasses?: string;
-	ignoreAspectRatio?: boolean;
 	videoRef?: React.RefObject<HTMLVideoElement>;
 }> = ({
 	url,
@@ -24,9 +22,7 @@ const RenderAsset: React.FC<{
 	videoLoop,
 	videoMute,
 	showButton = true,
-	parentAspectClasses = "aspect-square lg:aspect-[16/10]",
-	ignoreAspectRatio = false,
-	videoRef
+	videoRef,
 }) => {
 	const type = whatIsType(url);
 
@@ -54,8 +50,6 @@ const RenderAsset: React.FC<{
 				loop={videoLoop}
 				className={videoClassName}
 				showButton={showButton}
-				parentAspectClasses={parentAspectClasses}
-				ignoreAspectRatio={ignoreAspectRatio}
 				videoRef={videoRef}
 			/>
 		);
