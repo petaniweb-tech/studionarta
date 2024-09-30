@@ -175,7 +175,7 @@ export default function VideoPlayer({
       : portraitVideoVariants;
 
   const videoVariants =
-    process?.env?.NEXT_PUBLIC_IS_USE_ASPECT_RATIO_VIDEO === "true"
+    process?.env?.NEXT_PUBLIC_IS_USED_ASPECT_RATIO_VIDEO === "true"
       ? variantBasedOnOrientation
       : landscapeVideoVariants;
 
