@@ -19,7 +19,7 @@ interface Banner {
   url: string;
 }
 
-export default function HeroCarouselTest() {
+export default function HeroCarousel() {
   const hasFetched = useRef(false);
   const swiperRef = useRef<SwiperRef>(null);
 
