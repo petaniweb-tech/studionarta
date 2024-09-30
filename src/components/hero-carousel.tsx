@@ -90,7 +90,7 @@ export default function HeroCarousel() {
             if (ref?.current) {
               if (ref.current.paused) {
                 timeoutRef.current = setTimeout(swapSlideNext, 3000); // set delay 3s
-                ref.current.onended = null // Clean up the event listener
+                ref.current.onended = null; // Clean up the event listener
               } else {
                 ref.current.onended = () => {
                   if (ref?.current) {
@@ -98,12 +98,12 @@ export default function HeroCarousel() {
                     ref.current.onended = null; // Clean up the event listener
                     swapSlideNext();
                   }
-                }
+                };
               }
             }
-          }
+          };
           // TODO: Refactor me
-          // This code is not following best practices. 
+          // This code is not following best practices.
           // Investigate how to accurately retrieve the current status of the video (playing/paused).
           // The current implementation introduces a delay to get the status, which may not be optimal.
           setTimeout(() => validateVideo(videoRef), 5); // set delay 5ms
@@ -135,7 +135,6 @@ export default function HeroCarousel() {
                 videoLoop={false}
                 videoMute={true}
                 showButton={true}
-                ignoreAspectRatio={true}
                 videoRef={videoRefs.current[index]}
               />
 

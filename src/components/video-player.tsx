@@ -2,35 +2,32 @@
 
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 interface VideoPlayerProps {
-  url: string;
+  url?: string;
   autoPlay?: boolean;
   muted?: boolean;
   loop?: boolean;
   className?: string;
   showButton?: boolean;
-  parentAspectClasses?: string;
-  ignoreAspectRatio?: boolean;
   videoRef?: React.RefObject<HTMLVideoElement>;
 }
 
 export default function VideoPlayer({
   url,
-  autoPlay = true,
+  autoPlay = false,
   muted = true,
   loop = true,
-  className = "",
-  showButton = true,
-  parentAspectClasses = "aspect-square lg:aspect-[16/10]",
-  ignoreAspectRatio = false,
+  className,
+  showButton,
   videoRef,
 }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(muted);
   const [showButtonState, setShowButtonState] = useState(showButton);
   const [fadeOut, setFadeOut] = useState(false);
-  const [orientation, setOrientation] = useState("");
+  const [orientation, setOrientation] = useState("landscape");
 
   const internalVideoRef = useRef<HTMLVideoElement>(null);
   const finalVideoRef = videoRef || internalVideoRef;
@@ -112,16 +109,19 @@ export default function VideoPlayer({
     };
   }, [autoPlay]);
 
+  // Detect orientation on video metadata load
   useEffect(() => {
     const videoElement = finalVideoRef.current;
     if (videoElement) {
       const handleLoadedMetadata = () => {
-        const isLandscape = videoElement.videoWidth > videoElement.videoHeight;
-        setOrientation(isLandscape ? "landscape" : "portrait");
+        if (videoElement.videoWidth > videoElement.videoHeight) {
+          setOrientation("landscape");
+        } else {
+          setOrientation("portrait");
+        }
       };
 
       videoElement.addEventListener("loadedmetadata", handleLoadedMetadata);
-
       return () => {
         videoElement.removeEventListener(
           "loadedmetadata",
@@ -129,66 +129,103 @@ export default function VideoPlayer({
         );
       };
     }
-  }, []);
+  }, [finalVideoRef]);
+
+  const landscapeVideoVariants = {
+    played: {
+      width: "100vw",
+      height: "auto",
+      transition: {
+        duration: 0.7,
+        ease: "easeInOut",
+      },
+    },
+    paused: {
+      width: "100vw",
+      height: "100vh",
+      transition: {
+        duration: 0.8,
+        ease: "easeInOut",
+      },
+    },
+  };
+
+  const portraitVideoVariants = {
+    played: {
+      width: "auto",
+      height: "100vh",
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+      },
+    },
+    paused: {
+      width: "100vw",
+      height: "100vh",
+      transition: {
+        duration: 1,
+        ease: "easeInOut",
+      },
+    },
+  };
+
+  const variantBasedOnOrientation =
+    orientation === "landscape"
+      ? landscapeVideoVariants
+      : portraitVideoVariants;
+
+  const videoVariants =
+    process?.env?.NEXT_PUBLIC_IS_USED_ASPECT_RATIO_VIDEO === "true"
+      ? variantBasedOnOrientation
+      : landscapeVideoVariants;
 
   return (
-    <div
-      className={cn(
-        "relative bg-inherit flex items-center justify-center",
-        {
-          "h-screen": ignoreAspectRatio,
-          [parentAspectClasses]: !ignoreAspectRatio,
-        },
-        className
-      )}
-      onClick={handleVideoClick}
-    >
-      <div className="flex items-center justify-center origin-center h-full w-full">
-        <video
-          ref={finalVideoRef}
-          muted={isMuted}
-          loop={loop}
-          controls={false}
-          playsInline
-          preload="metadata"
-          className={cn(
-            "object-cover object-center h-full w-full aspect-square transition-all duration-700 ease-in-out",
-            {
-              // the issue is when we set the width or height to auto it will fix the issue of cutting because the size will follow the good aspect ratio.
-              // the tradeoff is transition will be broken when we try pause of the video
-              "w-auto aspect-[9/16]": isPlaying && orientation == "portrait",  // fix this blink from play to pause to set w-auto to fix value like w-[10rem]
-              "h-auto aspect-video": isPlaying && orientation == "landscape",  // fix this blink from play to pause to set h-auto to fix value like h-[10rem]
-            }
-          )}
-        >
-          <source src={url} type="video/mp4" />
-        </video>
-      </div>
+    <>
+      <main
+        className="w-full h-screen relative bg-inherit flex items-center justify-center"
+        onClick={handleVideoClick}
+      >
+        <div className="flex w-full h-screen items-center justify-center">
+          <motion.video
+            ref={finalVideoRef}
+            variants={videoVariants}
+            initial="paused"
+            animate={isPlaying ? "played" : "paused"}
+            loop={loop}
+            playsInline
+            controls={false}
+            muted={isMuted}
+            className="w-screen object-cover object-center"
+          >
+            <source src={url} type="video/mp4" />
+          </motion.video>
+        </div>
 
-      {showButtonState && (
-        <div
-          className={cn(
-            "absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-in-out",
-            {
-              "opacity-0": fadeOut,
-              "opacity-100": !fadeOut,
-            }
-          )}
-        >
-          <button
-            onClick={handleVideoClick}
+        {showButtonState && (
+          <div
             className={cn(
-              "bg-neutral-200 bg-opacity-30 backdrop-blur-lg pt-[7px] pb-2 px-5 rounded-full font-supportingfont text-white transition-transform duration-300 ease-in-out",
-              { 
-              "scale-105": isPlaying, 
-              "scale-100": !isPlaying
+              "absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-in-out",
+              {
+                "opacity-0": fadeOut,
+                "opacity-100": !fadeOut,
               }
             )}
           >
-            {isPlaying ? "Pause" : "Play"}
-          </button>
-        </div>
-      )}
-    </div>
+            <button
+              onClick={handleVideoClick}
+              className={cn(
+                "bg-neutral-200 bg-opacity-30 backdrop-blur-lg pt-[7px] pb-2 px-5 rounded-full font-supportingfont text-white transition-transform duration-300 ease-in-out",
+                {
+                  "scale-105": isPlaying,
+                  "scale-100": !isPlaying,
+                }
+              )}
+            >
+              {isPlaying ? "Pause" : "Play"}
+            </button>
+          </div>
+        )}
+      </main>
+    </>
   );
 }
