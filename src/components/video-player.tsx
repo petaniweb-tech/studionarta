@@ -152,7 +152,7 @@ export default function VideoPlayer({
 
   const portraitVideoVariants = {
     played: {
-      width: "auto",
+      width: process?.env?.NEXT_PUBLIC_IS_USED_ASPECT_RATIO_VIDEO === "true" ? "auto": "100vw", // TODO: remove condition when we deal with client related this feature
       height: "100vh",
       transition: {
         duration: 1,
@@ -174,11 +174,6 @@ export default function VideoPlayer({
       ? landscapeVideoVariants
       : portraitVideoVariants;
 
-  const videoVariants =
-    process?.env?.NEXT_PUBLIC_IS_USED_ASPECT_RATIO_VIDEO === "true"
-      ? variantBasedOnOrientation
-      : landscapeVideoVariants;
-
   return (
     <>
       <main
@@ -188,7 +183,7 @@ export default function VideoPlayer({
         <div className="flex w-full h-screen items-center justify-center">
           <motion.video
             ref={finalVideoRef}
-            variants={videoVariants}
+            variants={variantBasedOnOrientation}
             initial="paused"
             animate={isPlaying ? "played" : "paused"}
             loop={loop}
