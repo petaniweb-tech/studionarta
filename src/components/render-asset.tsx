@@ -11,7 +11,6 @@ const RenderAsset: React.FC<{
   videoAutoPlay: boolean;
   videoMute: boolean;
   videoLoop: boolean;
-  ignoreMediaQueryVideo?: boolean;
   showButton?: boolean;
   videoRef?: React.RefObject<HTMLVideoElement>;
 }> = ({
@@ -23,8 +22,7 @@ const RenderAsset: React.FC<{
   videoLoop,
   videoMute,
   showButton = true,
-  videoRef,
-  ignoreMediaQueryVideo = false,
+  videoRef
 }) => {
   const type = whatIsType(url);
 
@@ -53,7 +51,6 @@ const RenderAsset: React.FC<{
         className={videoClassName}
         showButton={showButton}
         videoRef={videoRef}
-        ignoreMediaQuery={ignoreMediaQueryVideo}
       />
     );
   }

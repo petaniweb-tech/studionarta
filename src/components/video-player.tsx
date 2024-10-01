@@ -4,8 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
-import { useMediaQuery } from "@/hooks/use-media-query";
-
 interface VideoPlayerProps {
   url?: string;
   autoPlay?: boolean;
@@ -14,7 +12,6 @@ interface VideoPlayerProps {
   className?: string;
   showButton?: boolean;
   videoRef?: React.RefObject<HTMLVideoElement>;
-  ignoreMediaQuery: boolean;
 }
 
 export default function VideoPlayer({
@@ -22,16 +19,15 @@ export default function VideoPlayer({
   autoPlay = false,
   muted = true,
   loop = true,
-  className,
   showButton,
-  videoRef,
-  ignoreMediaQuery = false,
+  videoRef
 }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(muted);
   const [showButtonState, setShowButtonState] = useState(showButton);
   const [fadeOut, setFadeOut] = useState(false);
   const [orientation, setOrientation] = useState("landscape");
+  const [isLargeVideoScreen, setIsLargeVideoScreen] = useState(false);
 
   const internalVideoRef = useRef<HTMLVideoElement>(null);
   const finalVideoRef = videoRef || internalVideoRef;
@@ -118,8 +114,15 @@ export default function VideoPlayer({
     const videoElement = finalVideoRef.current;
     if (videoElement) {
       const handleLoadedMetadata = () => {
+        const viewportHeight = window.innerHeight;
+        console.log("viewportHeight", viewportHeight);
+        console.log("videoElement.videoHeight", videoElement.videoHeight)
         if (videoElement.videoWidth > videoElement.videoHeight) {
           setOrientation("landscape");
+
+          if (videoElement.videoHeight > viewportHeight) {
+            setIsLargeVideoScreen(true)
+          }
         } else {
           setOrientation("portrait");
         }
@@ -134,11 +137,9 @@ export default function VideoPlayer({
       };
     }
   }, [finalVideoRef]);
-  const isLargeScreen = useMediaQuery("(min-width: 1025px)");
-  const isUseMediaQuery = !ignoreMediaQuery && isLargeScreen;
   const landscapeVideoVariants = {
     played: {
-      width: isUseMediaQuery ? "80vw" : "100vw",
+      width: isLargeVideoScreen ? "auto" : "100vw",
       height: "auto",
       transition: {
         duration: 0.7,
