@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
+import { useMediaQuery } from "@/hooks/use-media-query";
+
 interface VideoPlayerProps {
   url?: string;
   autoPlay?: boolean;
@@ -12,6 +14,7 @@ interface VideoPlayerProps {
   className?: string;
   showButton?: boolean;
   videoRef?: React.RefObject<HTMLVideoElement>;
+  ignoreMediaQuery: boolean;
 }
 
 export default function VideoPlayer({
@@ -22,6 +25,7 @@ export default function VideoPlayer({
   className,
   showButton,
   videoRef,
+  ignoreMediaQuery = false,
 }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(muted);
@@ -130,10 +134,11 @@ export default function VideoPlayer({
       };
     }
   }, [finalVideoRef]);
-
+  const isLargeScreen = useMediaQuery("(min-width: 1025px)");
+  const isUseMediaQuery = !ignoreMediaQuery && isLargeScreen;
   const landscapeVideoVariants = {
     played: {
-      width: "100vw",
+      width: isUseMediaQuery ? "80vw" : "100vw",
       height: "auto",
       transition: {
         duration: 0.7,
@@ -152,7 +157,10 @@ export default function VideoPlayer({
 
   const portraitVideoVariants = {
     played: {
-      width: process?.env?.NEXT_PUBLIC_IS_USED_ASPECT_RATIO_VIDEO === "true" ? "auto": "100vw", // TODO: remove condition when we deal with client related this feature
+      width:
+        process?.env?.NEXT_PUBLIC_IS_USED_ASPECT_RATIO_VIDEO === "true"
+          ? "auto"
+          : "100vw",
       height: "100vh",
       transition: {
         duration: 1,
@@ -177,7 +185,7 @@ export default function VideoPlayer({
   return (
     <>
       <main
-        className="w-full h-screen relative bg-inherit flex items-center justify-center"
+        className="w-full h-screen relative bg-inherit flex items-center justify-center overflow-hidden"
         onClick={handleVideoClick}
       >
         <div className="flex w-full h-screen items-center justify-center">
@@ -190,7 +198,14 @@ export default function VideoPlayer({
             playsInline
             controls={false}
             muted={isMuted}
-            className="w-screen object-cover object-center"
+            className={cn(
+              "object-cover object-center"
+              //   isPlaying
+              //     ? orientation === "landscape"
+              //       ? "w-full h-auto aspect-video"
+              //       : "w-auto h-full"
+              //     : "w-screen h-screen"
+            )}
           >
             <source src={url} type="video/mp4" />
           </motion.video>

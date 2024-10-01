@@ -136,6 +136,7 @@ export default function HeroCarousel() {
                 videoMute={true}
                 showButton={true}
                 videoRef={videoRefs.current[index]}
+                ignoreMediaQueryVideo={false}
               />
 
               <div
