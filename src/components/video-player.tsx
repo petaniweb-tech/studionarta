@@ -14,6 +14,7 @@ interface VideoPlayerProps {
 	videoAspectClasses?: string;
 	videoPlayingAspectClasses?: string;
 	ignoreAspectRatio?: boolean;
+	firstClick: boolean;
 	videoRef?: React.RefObject<HTMLVideoElement>;
 }
 
@@ -28,12 +29,15 @@ export default function VideoPlayer({
 	videoAspectClasses = "aspect-square lg:aspect-[16/10]",
 	videoPlayingAspectClasses = "aspect-video lg:aspect-[16/9]",
 	ignoreAspectRatio = false,
+	firstClick,
 	videoRef,
 }: VideoPlayerProps) {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [isMuted, setIsMuted] = useState(muted);
 	const [showButtonState, setShowButtonState] = useState(showButton);
 	const [fadeOut, setFadeOut] = useState(false);
+	const [isFirstClick, setIsFirstClick] = useState(true);
+
 	const internalVideoRef = useRef<HTMLVideoElement>(null);
 	const finalVideoRef = videoRef || internalVideoRef;
 	const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -58,17 +62,23 @@ export default function VideoPlayer({
 				clearTimeout(timerRef.current as NodeJS.Timeout);
 				setFadeOut(false);
 				setShowButtonState(true);
-			} else {
-				videoElement.currentTime = 1;
-				videoElement.play();
-				videoElement.muted = false;
-				setIsMuted(false);
-				setFadeOut(false);
-				setShowButtonState(true);
-				hideButtonWithDelay();
+				setIsPlaying(!isPlaying);
+				return;
 			}
 
+			if (isFirstClick) {
+				videoElement.currentTime = 0;
+				setIsFirstClick(false);
+			} 
+
+			videoElement.muted = false;
+			videoElement.play();
+			setIsMuted(false);
+			setFadeOut(false);
+			setShowButtonState(true);
+			hideButtonWithDelay();
 			setIsPlaying(!isPlaying);
+			return;
 		}
 	};
 
@@ -86,22 +96,19 @@ export default function VideoPlayer({
 	}, [isMuted]);
 
 	useEffect(() => {
+		if (firstClick) {
+		  setIsFirstClick(true); // Reset isFirstClick when the prop changes
+		}
+	  }, [firstClick]);
+
+	useEffect(() => {
 		// Programmatically trigger the video to play on component mount
 		const videoElement = finalVideoRef.current;
 		if (videoElement && autoPlay) {
 			videoElement
 			.play()
-			.then(() => {
-				videoElement.onended = () => {
-					videoElement.pause();
-					videoElement.onended = null; // Clean up the event listener
-					setIsPlaying(false);
-				}
-			  })
 			.catch((err) => {
-				if (videoElement) {
-					videoElement.onended = null; // Clean up the event listener
-				}
+				videoElement.onended = null; // Clean up the event listener
 				// Handle autoplay failure (browser restrictions, etc.)
 				console.error("Autoplay failed: ", err);
 				setIsPlaying(false);
@@ -114,6 +121,24 @@ export default function VideoPlayer({
 			}
 		};
 	}, [autoPlay]);
+
+	useEffect(() => {
+		const videoElement = finalVideoRef.current;
+
+		if (videoElement) {
+			const handleVideoEnd = () => {
+				videoElement.pause();
+				setIsFirstClick(true)
+				setIsPlaying(false);
+			};
+		  
+			videoElement.addEventListener('ended', handleVideoEnd);
+		  
+			return () => {
+				videoElement.removeEventListener('ended', handleVideoEnd); // Proper cleanup
+			};
+		}
+	  }, []);
 
 	return (
 		<div

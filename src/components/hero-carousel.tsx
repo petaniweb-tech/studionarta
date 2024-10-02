@@ -43,6 +43,7 @@ export default function HeroCarousel() {
   const muteAllVideos = () => {
     videoRefs.current.forEach((videoRef) => {
       if (videoRef.current) {
+        videoRef.current.pause();
         videoRef.current.muted = true;
       }
     });
@@ -71,6 +72,7 @@ export default function HeroCarousel() {
         const videoRef = videoRefs.current[swiper.realIndex];
         if (videoRef?.current) {
           videoRef.current.currentTime = 1;
+          videoRef.current.play();
           videoRef.current.classList.remove(
             "min-h-[16rem]",
             "max-h-[16rem]",
@@ -81,8 +83,7 @@ export default function HeroCarousel() {
           );
           videoRef.current.classList.add("min-h-[100vh]", "max-h-[100vh]");
         }
-
-        timeoutRef.current = setTimeout(swapSlideNext, 12000); // set default delay 12s
+        timeoutRef.current = setTimeout(swapSlideNext, 5000); // set default delay 5s
 
         setCurrent(swiper.realIndex + 1);
       }}
@@ -105,7 +106,7 @@ export default function HeroCarousel() {
                     ref.current.onended = null; // Clean up the event listener
                     swapSlideNext();
                   }
-                }
+                } 
               }
             }
           }
@@ -138,12 +139,13 @@ export default function HeroCarousel() {
                 imageClassName="object-cover object-center h-screen w-full"
                 imageAlt={`banner-image-${index}`}
                 videoClassName="object-cover object-center h-screen w-full"
-                videoAutoPlay={true}
+                videoAutoPlay={false}
                 videoLoop={false}
                 videoMute={true}
                 showButton={true}
                 ignoreAspectRatio={true}
                 videoRef={videoRefs.current[index]}
+                firstClickVideo={current - 1 === index}
               />
 
               <div
