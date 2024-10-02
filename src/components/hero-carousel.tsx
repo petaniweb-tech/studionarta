@@ -43,7 +43,6 @@ export default function HeroCarousel() {
   const muteAllVideos = () => {
     videoRefs.current.forEach((videoRef) => {
       if (videoRef.current) {
-        videoRef.current.pause();
         videoRef.current.muted = true;
       }
     });
@@ -81,9 +80,6 @@ export default function HeroCarousel() {
             "2xl:max-h-[50rem]"
           );
           videoRef.current.classList.add("min-h-[100vh]", "max-h-[100vh]");
-          videoRef.current
-            .play()
-            .catch((err) => console.error("Video playback failed", err));
         }
 
         timeoutRef.current = setTimeout(swapSlideNext, 12000); // set default delay 12s
@@ -142,7 +138,7 @@ export default function HeroCarousel() {
                 imageClassName="object-cover object-center h-screen w-full"
                 imageAlt={`banner-image-${index}`}
                 videoClassName="object-cover object-center h-screen w-full"
-                videoAutoPlay={false}
+                videoAutoPlay={true}
                 videoLoop={false}
                 videoMute={true}
                 showButton={true}

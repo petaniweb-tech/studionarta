@@ -59,6 +59,7 @@ export default function VideoPlayer({
 				setFadeOut(false);
 				setShowButtonState(true);
 			} else {
+				videoElement.currentTime = 1;
 				videoElement.play();
 				videoElement.muted = false;
 				setIsMuted(false);
