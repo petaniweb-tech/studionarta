@@ -15,6 +15,7 @@ interface VideoPlayerProps {
 	videoPlayingAspectClasses?: string;
 	ignoreAspectRatio?: boolean;
 	firstClick: boolean;
+	isHeroCarousel?: boolean;
 	videoRef?: React.RefObject<HTMLVideoElement>;
 }
 
@@ -30,6 +31,7 @@ export default function VideoPlayer({
 	videoPlayingAspectClasses = "aspect-video lg:aspect-[16/9]",
 	ignoreAspectRatio = false,
 	firstClick,
+	isHeroCarousel = false,
 	videoRef,
 }: VideoPlayerProps) {
 	const [isPlaying, setIsPlaying] = useState(false);
@@ -41,6 +43,9 @@ export default function VideoPlayer({
 	const internalVideoRef = useRef<HTMLVideoElement>(null);
 	const finalVideoRef = videoRef || internalVideoRef;
 	const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+	const isLargeScreen =
+		typeof window !== "undefined" && window.innerWidth >= 1024;
 
 	const hideButtonWithDelay = () => {
 		if (timerRef.current) {
@@ -145,8 +150,11 @@ export default function VideoPlayer({
 			className={cn(
 				"relative bg-inherit flex items-center justify-center",
 				{
-					"h-screen": ignoreAspectRatio,
-					[parentAspectClasses]: !ignoreAspectRatio,
+					"h-screen":
+						ignoreAspectRatio || (isHeroCarousel && isLargeScreen),
+					[parentAspectClasses]:
+						!ignoreAspectRatio &&
+						!(isHeroCarousel && isLargeScreen),
 				},
 				className
 			)}
@@ -160,12 +168,19 @@ export default function VideoPlayer({
 					controls={false}
 					playsInline
 					preload="metadata"
-					className={cn(
-						"object-cover object-center h-full w-full transition-all duration-700",
-						isPlaying
-							? `min-h-[16rem] max-h-[16rem] lg:min-h-[49rem] lg:max-h-[49rem] 2xl:min-h-[50rem] 2xl:max-h-[50rem] ${videoPlayingAspectClasses}`
-							: `min-h-[100vh] max-h-[100vh] ${videoAspectClasses}`
-					)}
+					className={`object-cover object-center h-full w-full transition-all duration-700 ${
+						isHeroCarousel
+							? isLargeScreen
+								? // Large devices: always h-screen and w-screen
+									"w-screen h-screen"
+								: // Small devices: aspect ratio transition when playing
+									isPlaying
+									? "min-h-[16rem] max-h-[16rem] lg:min-h-[49rem] lg:max-h-[49rem] 2xl:min-h-[50rem] 2xl:max-h-[50rem]"
+									: "min-h-[100vh] max-h-[100vh]"
+							: isPlaying
+								? videoPlayingAspectClasses
+								: videoAspectClasses
+					}`}
 				>
 					<source src={url} type="video/mp4" />
 				</video>

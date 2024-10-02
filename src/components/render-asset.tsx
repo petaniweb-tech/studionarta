@@ -17,6 +17,7 @@ const RenderAsset: React.FC<{
 	videoPlayingAspectClasses?: string;
 	ignoreAspectRatio?: boolean;
 	firstClickVideo?: boolean;
+	isHeroCarousel?: boolean;
 	videoRef?: React.RefObject<HTMLVideoElement>;
 }> = ({
 	url,
@@ -32,6 +33,7 @@ const RenderAsset: React.FC<{
 	videoPlayingAspectClasses = "aspect-video lg:aspect-[16/9]",
 	ignoreAspectRatio = false,
 	firstClickVideo = true,
+	isHeroCarousel = false,
 	videoRef
 }) => {
 	const type = whatIsType(url);
@@ -64,8 +66,9 @@ const RenderAsset: React.FC<{
 				videoAspectClasses={videoAspectClasses}
 				videoPlayingAspectClasses={videoPlayingAspectClasses}
 				ignoreAspectRatio={ignoreAspectRatio}
-				videoRef={videoRef}
 				firstClick={firstClickVideo}
+				isHeroCarousel={isHeroCarousel}
+				videoRef={videoRef}
 			/>
 		);
 	}
