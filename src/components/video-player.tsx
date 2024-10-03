@@ -14,9 +14,9 @@ interface VideoPlayerProps {
 	videoAspectClasses?: string;
 	videoPlayingAspectClasses?: string;
 	ignoreAspectRatio?: boolean;
+	firstClick: boolean;
 	isHeroCarousel?: boolean;
 	videoRef?: React.RefObject<HTMLVideoElement>;
-	isVideoPlay?: boolean;
 }
 
 export default function VideoPlayer({
@@ -30,14 +30,16 @@ export default function VideoPlayer({
 	videoAspectClasses = "aspect-square lg:aspect-[16/10]",
 	videoPlayingAspectClasses = "aspect-video lg:aspect-[16/9]",
 	ignoreAspectRatio = false,
+	firstClick,
 	isHeroCarousel = false,
 	videoRef,
-	isVideoPlay = false,
 }: VideoPlayerProps) {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [isMuted, setIsMuted] = useState(muted);
 	const [showButtonState, setShowButtonState] = useState(showButton);
 	const [fadeOut, setFadeOut] = useState(false);
+	const [isFirstClick, setIsFirstClick] = useState(true);
+
 	const internalVideoRef = useRef<HTMLVideoElement>(null);
 	const finalVideoRef = videoRef || internalVideoRef;
 	const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -58,35 +60,60 @@ export default function VideoPlayer({
 	};
 
 	const handleVideoClick = () => {
-		if (finalVideoRef.current) {
+		const videoElement = finalVideoRef.current;
+		if (videoElement) {
 			if (isPlaying) {
-				finalVideoRef.current.pause();
+				videoElement.pause();
 				clearTimeout(timerRef.current as NodeJS.Timeout);
 				setFadeOut(false);
 				setShowButtonState(true);
-			} else {
-				finalVideoRef.current.play();
-				finalVideoRef.current.muted = false;
-				setIsMuted(false);
-				setFadeOut(false);
-				setShowButtonState(true);
-				hideButtonWithDelay();
+				setIsPlaying(!isPlaying);
+				return;
 			}
 
+			if (isFirstClick) {
+				videoElement.currentTime = 0;
+				setIsFirstClick(false);
+			} 
+
+			videoElement.muted = false;
+			videoElement.play();
+			setIsMuted(false);
+			setFadeOut(false);
+			setShowButtonState(true);
+			hideButtonWithDelay();
 			setIsPlaying(!isPlaying);
+			return;
 		}
 	};
 
 	useEffect(() => {
-		if (finalVideoRef.current) {
-			finalVideoRef.current.muted = isMuted;
+		if (finalVideoRef?.current?.paused) {
+			setIsPlaying(false)
+		}
+	}, [finalVideoRef?.current?.paused])
+
+	useEffect(() => {
+		const videoElement = finalVideoRef.current;
+		if (videoElement) {
+			videoElement.muted = isMuted;
 		}
 	}, [isMuted]);
 
 	useEffect(() => {
+		if (firstClick) {
+		  setIsFirstClick(true); // Reset isFirstClick when the prop changes
+		}
+	  }, [firstClick]);
+
+	useEffect(() => {
 		// Programmatically trigger the video to play on component mount
-		if (finalVideoRef.current && autoPlay) {
-			finalVideoRef.current.play().catch((err) => {
+		const videoElement = finalVideoRef.current;
+		if (videoElement && autoPlay) {
+			videoElement
+			.play()
+			.catch((err) => {
+				videoElement.onended = null; // Clean up the event listener
 				// Handle autoplay failure (browser restrictions, etc.)
 				console.error("Autoplay failed: ", err);
 				setIsPlaying(false);
@@ -101,8 +128,22 @@ export default function VideoPlayer({
 	}, [autoPlay]);
 
 	useEffect(() => {
-		setIsPlaying(isVideoPlay);
-	}, [isVideoPlay]);
+		const videoElement = finalVideoRef.current;
+
+		if (videoElement) {
+			const handleVideoEnd = () => {
+				videoElement.pause();
+				setIsFirstClick(true)
+				setIsPlaying(false);
+			};
+		  
+			videoElement.addEventListener('ended', handleVideoEnd);
+		  
+			return () => {
+				videoElement.removeEventListener('ended', handleVideoEnd); // Proper cleanup
+			};
+		}
+	  }, []);
 
 	return (
 		<div
@@ -122,11 +163,11 @@ export default function VideoPlayer({
 			<div className="flex items-center w-full justify-center origin-center">
 				<video
 					ref={finalVideoRef}
-					autoPlay={autoPlay}
 					muted={isMuted}
 					loop={loop}
 					controls={false}
 					playsInline
+					preload="metadata"
 					className={`object-cover object-center h-full w-full transition-all duration-700 ${
 						isHeroCarousel
 							? isLargeScreen
