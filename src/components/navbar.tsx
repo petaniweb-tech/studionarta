@@ -11,6 +11,7 @@ import { HamburgerMenuIcon, Cross2Icon } from "@radix-ui/react-icons";
 import logowhite from "@/assets/images/img-logowhite.png";
 import logoblack from "@/assets/images/img-logoblack.png";
 import igLogo from "@/assets/images/ig-logo.png";
+import linkedinLogo from "@/assets/images/linkedin.png";
 
 function Navbar() {
 	// Navbar Links //
@@ -18,6 +19,10 @@ function Navbar() {
 		{
 			text: "Our Work",
 			path: "/our-work",
+		},
+		{
+			text: "Corporate Work",
+			path: "/corporate-project",
 		},
 		{
 			text: "Contact Us",
@@ -184,6 +189,22 @@ function Navbar() {
 								<Image
 									src={igLogo}
 									alt={`Instagram`}
+									priority={false}
+									width={25}
+									height={25}
+									quality={100}
+								/>
+							</div>
+						</Link>
+						<Link
+							href="https://www.linkedin.com/in/studionarta-1b0a87307/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<div className="flex w-fit">
+								<Image
+									src={linkedinLogo}
+									alt={`Linkedin`}
 									priority={false}
 									width={25}
 									height={25}

@@ -18,6 +18,10 @@ function SecondaryNavbar() {
 			path: "/our-work",
 		},
 		{
+			text: "Corporate Work",
+			path: "/corporate-project",
+		},
+		{
 			text: "Contact Us",
 			path: "/contact-us",
 		},
@@ -159,6 +163,17 @@ function SecondaryNavbar() {
 							<div className="flex w-fit">
 								<p className="text-base font-supportingfont text-neutral-500">
 									Instagram
+								</p>
+							</div>
+						</Link>
+						<Link
+							href="https://www.linkedin.com/in/studionarta-1b0a87307/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<div className="flex w-fit">
+								<p className="text-base font-supportingfont text-neutral-500">
+									Linkedin
 								</p>
 							</div>
 						</Link>

@@ -4,7 +4,7 @@ import Image from "next/image";
 // Import Assets //
 import logoblack from "@/assets/images/img-logoblack.png";
 import igLogo from "@/assets/images/ig-logo.png";
-
+import linkedinLogo from "@/assets/images/linkedin.png";
 export default function Footer() {
 	return (
 		<>
@@ -24,10 +24,21 @@ export default function Footer() {
 						</p>
 						<div className="flex flex-col gap-2">
 							<p className="text-[15px] text-neutral-500 font-supportingfont">
-								CP - Devina{" "}
+								CP01 - Devina{" "}
 								<span>
 									<Link href="https://wa.me/628123024660">
 										+62 812 3024 660
+									</Link>
+								</span>{" "}
+								<span className="inline-block whitespace-normal">
+									(WhatsApp only)
+								</span>
+							</p>
+							<p className="text-[15px] text-neutral-500 font-supportingfont">
+								CP02 - Dio{" "}
+								<span>
+									<Link href="https://wa.me/6281803383993">
+									+62 818 0338 3993
 									</Link>
 								</span>{" "}
 								<span className="inline-block whitespace-normal">
@@ -56,6 +67,13 @@ export default function Footer() {
 								</p>
 							</div>
 						</Link>
+						<Link href="/corporate-project">
+							<div className="w-fit pb-[6px] border-b border-black border-opacity-35">
+								<p className="text-base text-neutral-500 font-supportingfont">
+									Corporate Work
+								</p>
+							</div>
+						</Link>
 						<Link href="/contact-us">
 							<div className="w-fit pb-[6px] border-b border-black border-opacity-35">
 								<p className="text-base text-neutral-500 font-supportingfont">
@@ -77,7 +95,10 @@ export default function Footer() {
 							Office Studio
 						</p>
 						<p className="text-[15px] text-neutral-500 font-supportingfont">
-							Raya wendit barat No. 7 Malang, 65154
+						Malang - Raya Wendit Barat No. 7, Malang, 65154
+						</p>
+						<p className="text-[15px] text-neutral-500 font-supportingfont">
+						Jakarta -  Pakubuwono VI No. 70, Jakarta Selatan, 12120
 						</p>
 					</div>
 
@@ -94,6 +115,22 @@ export default function Footer() {
 								<Image
 									src={igLogo}
 									alt={`Instagram`}
+									priority={false}
+									width={25}
+									height={25}
+									quality={100}
+								/>
+							</div>
+						</Link>
+						<Link
+							href="https://www.linkedin.com/in/studionarta-1b0a87307/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<div className="w-fit">
+								<Image
+									src={linkedinLogo}
+									alt={`Linkedin`}
 									priority={false}
 									width={25}
 									height={25}
@@ -124,10 +161,19 @@ export default function Footer() {
 								Contact Us
 							</h5>
 							<p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-3">
-								CP - Devina{" "}
+								CP01 - Devina{" "}
 								<Link href="https://wa.me/628123024660">
 									<span className="hover:text-black duration-300">
 										+62 812 3024 660
+									</span>
+								</Link>{" "}
+								(WhatsApp Only)
+							</p>
+							<p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-3">
+								CP02 - Dio{" "}
+								<Link href="https://wa.me/6281803383993">
+									<span className="hover:text-black duration-300">
+									+62 818 0338 3993
 									</span>
 								</Link>{" "}
 								(WhatsApp Only)
@@ -147,6 +193,14 @@ export default function Footer() {
 								<Link href="/our-work">
 									<p className="text-[15px] 2xl:text-[17px] text-neutral-500 leading-tight hover:text-black duration-300 font-supportingfont">
 										Our Work
+									</p>
+								</Link>
+
+								<div className="w-[1px] h-auto self-stretch bg-neutral-400"></div>
+
+								<Link href="/corporate-project">
+									<p className="text-[15px] 2xl:text-[17px] text-neutral-500 leading-tight hover:text-black duration-300 font-supportingfont">
+										Corporate Work
 									</p>
 								</Link>
 
@@ -173,7 +227,10 @@ export default function Footer() {
 								Office Studio
 							</h5>
 							<p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-3">
-								Raya wendit barat No. 7 Malang, 65154
+								Malang - Raya Wendit Barat No. 7, Malang, 65154
+							</p>
+							<p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-3">
+								Jakarta -  Pakubuwono VI No. 70, Jakarta Selatan, 12120
 							</p>
 						</div>
 
@@ -186,10 +243,26 @@ export default function Footer() {
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								<div className="w-fit cursor-pointer">
+								<div className="w-fit cursor-pointer mb-2">
 									<Image
 										src={igLogo}
 										alt={`Instagram`}
+										priority={false}
+										width={25}
+										height={25}
+										quality={100}
+									/>
+								</div>
+							</Link>
+							<Link
+								href="https://www.linkedin.com/in/studionarta-1b0a87307/ "
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<div className="w-fit cursor-pointer">
+									<Image
+										src={linkedinLogo}
+										alt={`Linkedin`}
 										priority={false}
 										width={25}
 										height={25}
