@@ -49,16 +49,16 @@ export default function ContactUs() {
             </div>
           </div>
 
-          <div className="flex flex-col w-full h-full">
-            <h5 className="text-xl 2xl:text-2xl text-black font-medium">
-              Office Studio
-            </h5>
-            <p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-3">
-              Malang - Raya Wendit Barat No. 7, Malang, 65154
-            </p>
-            <p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-3">
-              Jakarta - Pakubuwono VI No. 70, Jakarta Selatan, 12120
-            </p>
+          <div className="flex flex-col gap-3">
+            <h5 className="text-2xl text-black font-medium">Office Studio.</h5>
+            <div className="flex flex-col gap-2">
+              <p className="text-[13px] text-neutral-500 font-supportingfont">
+                Malang - Raya Wendit Barat No. 7, Malang, 65154
+              </p>
+              <p className="text-[13px] text-neutral-500 font-supportingfont">
+                Jakarta - Pakubuwono VI No. 70, Jakarta Selatan, 12120
+              </p>
+            </div>
           </div>
 
           <div className="flex flex-col gap-3">
