@@ -21,7 +21,7 @@ export default function Footer() {
             <p className="text-2xl text-black font-medium">Contact Us</p>
             <div className="flex flex-col gap-2">
               <p className="text-[15px] text-neutral-500 font-supportingfont">
-                CP01 - Devina{" "}
+                CP 01 - Devina{" "}
                 <span>
                   <Link href="https://wa.me/628123024660">
                     +62 812 3024 660
@@ -32,7 +32,7 @@ export default function Footer() {
                 </span>
               </p>
               <p className="text-[15px] text-neutral-500 font-supportingfont">
-                CP02 - Dio{" "}
+                CP 02 - Dio{" "}
                 <span>
                   <Link href="https://wa.me/6281803383993">
                     +62 818 0338 3993
@@ -153,7 +153,7 @@ export default function Footer() {
                 Contact Us
               </h5>
               <p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-3">
-                CP01 - Devina{" "}
+                CP 01 - Devina{" "}
                 <Link href="https://wa.me/628123024660">
                   <span className="hover:text-black duration-300">
                     +62 812 3024 660
@@ -162,7 +162,7 @@ export default function Footer() {
                 (WhatsApp Only)
               </p>
               <p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-3">
-                CP02 - Dio{" "}
+                CP 02 - Dio{" "}
                 <Link href="https://wa.me/6281803383993">
                   <span className="hover:text-black duration-300">
                     +62 818 0338 3993

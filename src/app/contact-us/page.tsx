@@ -21,7 +21,7 @@ export default function ContactUs() {
             <h5 className="text-2xl text-black font-medium">Contact.</h5>
             <div className="flex flex-col gap-2">
               <p className="text-[13px] text-neutral-500 font-supportingfont">
-                CP01 -{" "}
+                CP 01 -{" "}
                 <span className="text-black hover:underline">
                   <Link href="https://wa.me/628123024660">
                     Devina +62 812 3024 660
@@ -30,7 +30,7 @@ export default function ContactUs() {
                 (WhatsApp Only)
               </p>
               <p className="text-[13px] text-neutral-500 font-supportingfont">
-                CP02 -{" "}
+                CP 02 -{" "}
                 <span className="text-black hover:underline">
                   <Link href="https://wa.me/6281803383993">
                     Dio +62 818 0338 3993
