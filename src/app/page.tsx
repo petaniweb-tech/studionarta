@@ -59,6 +59,16 @@ export default function Home() {
 						</div>
 					</Link>
 
+					<Link href="/corporate-project">
+						<div className="w-full py-2 border-b-[1px] border-black border-opacity-15 lg:hover:border-opacity-35 duration-300 cursor-pointer">
+							<div className="w-fit">
+								<h3 className="text-[28px] lg:text-[33px] 2xl:text-[41px] text-black">
+									Corporate Work
+								</h3>
+							</div>
+						</div>
+					</Link>
+
 					<Link href="/contact-us">
 						<div className="w-full py-2 border-b-[1px] border-black border-opacity-15 lg:hover:border-opacity-35 duration-300 cursor-pointer">
 							<div className="w-fit">
