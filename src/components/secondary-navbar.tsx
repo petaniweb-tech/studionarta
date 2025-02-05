@@ -17,10 +17,10 @@ function SecondaryNavbar() {
 			text: "Our Work",
 			path: "/our-work",
 		},
-		{
-			text: "Corporate Work",
-			path: "/corporate-project",
-		},
+		// {
+		// 	text: "Corporate Work",
+		// 	path: "/corporate-project",
+		// },
 		{
 			text: "Contact Us",
 			path: "/contact-us",
