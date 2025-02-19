@@ -164,7 +164,16 @@ export default function Footer() {
                 Contact Us
               </h5>
               <p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-3">
-                CP 01 - Devina{" "}
+                Singapore - Evelyn{" "}
+                <Link href="https://wa.me/6581233280">
+                  <span className="hover:text-black duration-300">
+                    +65 8123 3280
+                  </span>
+                </Link>{" "}
+                (WhatsApp Only)
+              </p>
+              <p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-3">
+                Jakarta - Devina{" "}
                 <Link href="https://wa.me/628123024660">
                   <span className="hover:text-black duration-300">
                     +62 812 3024 660
@@ -173,7 +182,7 @@ export default function Footer() {
                 (WhatsApp Only)
               </p>
               <p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-3">
-                CP 02 - Dio{" "}
+                Malang - Dio{" "}
                 <Link href="https://wa.me/6281803383993">
                   <span className="hover:text-black duration-300">
                     +62 818 0338 3993
