@@ -74,7 +74,7 @@ export default function VideoPlayer({
 			if (isFirstClick) {
 				videoElement.currentTime = 0;
 				setIsFirstClick(false);
-			} 
+			}
 
 			videoElement.muted = false;
 			videoElement.play();
@@ -89,9 +89,9 @@ export default function VideoPlayer({
 
 	useEffect(() => {
 		if (finalVideoRef?.current?.paused) {
-			setIsPlaying(false)
+			setIsPlaying(false);
 		}
-	}, [finalVideoRef?.current?.paused])
+	}, [finalVideoRef?.current?.paused]);
 
 	useEffect(() => {
 		const videoElement = finalVideoRef.current;
@@ -102,17 +102,15 @@ export default function VideoPlayer({
 
 	useEffect(() => {
 		if (firstClick) {
-		  setIsFirstClick(true); // Reset isFirstClick when the prop changes
+			setIsFirstClick(true); // Reset isFirstClick when the prop changes
 		}
-	  }, [firstClick]);
+	}, [firstClick]);
 
 	useEffect(() => {
 		// Programmatically trigger the video to play on component mount
 		const videoElement = finalVideoRef.current;
 		if (videoElement && autoPlay) {
-			videoElement
-			.play()
-			.catch((err) => {
+			videoElement.play().catch((err) => {
 				videoElement.onended = null; // Clean up the event listener
 				// Handle autoplay failure (browser restrictions, etc.)
 				console.error("Autoplay failed: ", err);
@@ -133,17 +131,17 @@ export default function VideoPlayer({
 		if (videoElement) {
 			const handleVideoEnd = () => {
 				videoElement.pause();
-				setIsFirstClick(true)
+				setIsFirstClick(true);
 				setIsPlaying(false);
 			};
-		  
-			videoElement.addEventListener('ended', handleVideoEnd);
-		  
+
+			videoElement.addEventListener("ended", handleVideoEnd);
+
 			return () => {
-				videoElement.removeEventListener('ended', handleVideoEnd); // Proper cleanup
+				videoElement.removeEventListener("ended", handleVideoEnd); // Proper cleanup
 			};
 		}
-	  }, []);
+	}, []);
 
 	return (
 		<div
@@ -175,8 +173,8 @@ export default function VideoPlayer({
 									"w-screen h-screen"
 								: // Small devices: aspect ratio transition when playing
 									isPlaying
-									? "min-h-[16rem] max-h-[16rem] lg:min-h-[49rem] lg:max-h-[49rem] 2xl:min-h-[50rem] 2xl:max-h-[50rem]"
-									: "min-h-[100vh] max-h-[100vh]"
+									? "h-[56.25vw] lg:min-h-[49rem] lg:max-h-[49rem] 2xl:min-h-[50rem] 2xl:max-h-[50rem]"
+									: "h-screen"
 							: isPlaying
 								? videoPlayingAspectClasses
 								: videoAspectClasses
