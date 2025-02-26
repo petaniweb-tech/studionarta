@@ -174,7 +174,7 @@ export default function VideoPlayer({
 								: // Small devices: aspect ratio transition when playing
 									isPlaying
 									? "h-[56.25vw] lg:min-h-[49rem] lg:max-h-[49rem] 2xl:min-h-[50rem] 2xl:max-h-[50rem]"
-									: "h-screen"
+									: "h-[100vh]"
 							: isPlaying
 								? videoPlayingAspectClasses
 								: videoAspectClasses
