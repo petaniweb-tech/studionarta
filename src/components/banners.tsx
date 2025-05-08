@@ -13,7 +13,6 @@ const BannersComponent: React.FC<BannersProps> = async ({ type }) => {
     // Handle not found banners
     return null;
   }
-  // console.log(banners)
   return <>{banners?.map((b) => <img src={b.url} />)}</>;
 };
 

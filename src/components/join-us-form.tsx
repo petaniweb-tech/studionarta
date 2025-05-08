@@ -7,6 +7,8 @@ import { z } from "zod";
 import { JoinUsFormSchema, JoinUsPayloadSchema } from "@/lib/schema";
 import { sendEmail } from "@/app/_action";
 import { useToast } from "./ui/use-toast";
+import Script from "next/script";
+import CaptchaWidget from "./captcha-widget";
 
 export type JoinUsFormInputs = z.infer<typeof JoinUsFormSchema>;
 
@@ -17,6 +19,7 @@ export default function JoinUsForm() {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
+    setValue,
   } = useForm<JoinUsFormInputs>({
     resolver: zodResolver(JoinUsFormSchema),
   });
@@ -42,7 +45,10 @@ export default function JoinUsForm() {
   const processForm: SubmitHandler<JoinUsFormInputs> = async (data) => {
     const fileInput = inputRef.current;
     if (!fileInput || !fileInput.files || fileInput.files.length <= 0) {
-	  toast({ title: "Error form validation", description: "Resume & Portfolio is required" })
+      toast({
+        title: "Error form validation",
+        description: "Resume & Portfolio is required",
+      });
       return;
     }
 
@@ -60,14 +66,13 @@ export default function JoinUsForm() {
     const result = await sendEmail(payload);
 
     if (result?.success) {
-      console.log({ data: result.data });
-	  toast({ title: "Success", description: "Your message has been sent!" })
+      toast({ title: "Success", description: "Your message has been sent!" });
       reset();
       setFileName("");
       return;
     }
 
-	toast({ title: "Error send email", description: "Something went wrong!" });
+    toast({ title: "Error send email", description: result?.error as string });
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -219,6 +224,15 @@ export default function JoinUsForm() {
           </div>
         </div>
         {/* <-- === Attachment End === --> */}
+
+        <div>
+          <CaptchaWidget
+            callback={(validateToken) => {
+              setValue("captchaToken", validateToken);
+            }}
+          />
+        </div>
+        {errors.captchaToken ? <div>{errors.captchaToken.message}</div> : null}
 
         <div className="w-full h-[1px] bg-black opacity-15 mt-3"></div>
 

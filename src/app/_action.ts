@@ -1,9 +1,11 @@
 "use server";
 
+import { headers } from "next/headers";
 import { z } from "zod";
 import { Resend } from "resend";
 import { JoinUsPayloadSchema } from "@/lib/schema";
 import JoinUsFormEmail from "../../emails/join-us-form-email";
+import { CF_URL, CF_SITE_KEY, CF_SECRET_KEY } from "@/lib/constants";
 
 type JoinUsFormInputs = z.infer<typeof JoinUsPayloadSchema>;
 
@@ -19,9 +21,54 @@ export async function addEntry(data: JoinUsFormInputs) {
   }
 }
 
-const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
+const verifyCaptcha = async (response: string, ip: string) => {
+  try {
+    const result = await fetch(CF_URL, {
+      body: JSON.stringify({
+        sitekey: CF_SITE_KEY,
+        secret: CF_SECRET_KEY,
+        response,
+        remoteip: ip,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
+
+    const outcome = await result.json();
+    if (!outcome.success) {
+      // Turnstile failed
+      return {
+        success: false,
+        error: true,
+        message: "Invalid CAPTCHA",
+      };
+    }
+
+    // Turnstile success (HTTP 200)
+    return {
+      success: true,
+      error: false,
+      message: "",
+    };
+  } catch (err) {
+    return {
+      success: false,
+      error: true,
+      message: "Unable to verify CAPTCHA",
+    };
+  }
+};
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function sendEmail(data: JoinUsFormInputs) {
+  const ip = headers().get("x-real-ip") || "";
+  const captchaResult = await verifyCaptcha(data.captchaToken, ip);
+  if (!captchaResult.success) {
+    return { success: false, error: captchaResult.message };
+  }
+
   const result = JoinUsPayloadSchema.safeParse(data);
 
   if (result.success) {
