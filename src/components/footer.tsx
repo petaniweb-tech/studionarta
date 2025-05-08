@@ -23,9 +23,7 @@ export default function Footer() {
               <p className="text-[15px] text-neutral-500 font-supportingfont">
                 Singapore - Evelyn{" "}
                 <span>
-                  <Link href="https://wa.me/6581233280">
-                    +65 8123 3280
-                  </Link>
+                  <Link href="https://wa.me/6581233280">+65 8123 3280</Link>
                 </span>{" "}
                 <span className="inline-block whitespace-normal">
                   (WhatsApp only)
@@ -55,9 +53,12 @@ export default function Footer() {
               </p>
               <p className="text-[15px] text-neutral-500 font-supportingfont">
                 Email -{" "}
-                <span>
-                  <Link href={"mailto:hello@studionarta.com"} target="_blank">
-                    hello@studionarta.com
+                <span className="hover:text-black duration-300">
+                  <Link
+                    href={"mailto:dionartasantoso@gmail.com"}
+                    target="_blank"
+                  >
+                    dionartasantoso@gmail.com
                   </Link>
                 </span>
               </p>
@@ -193,8 +194,11 @@ export default function Footer() {
               <p className="text-sm 2xl:text-base text-neutral-500 font-supportingfont mt-2">
                 Email -{" "}
                 <span className="hover:text-black duration-300">
-                  <Link href={"mailto:hello@studionarta.com"} target="_blank">
-                    hello@studionarta.com
+                  <Link
+                    href={"mailto:dionartasantoso@gmail.com"}
+                    target="_blank"
+                  >
+                    dionartasantoso@gmail.com
                   </Link>
                 </span>
               </p>

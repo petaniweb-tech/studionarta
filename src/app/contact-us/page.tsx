@@ -29,7 +29,7 @@ export default function ContactUs() {
                 </span>{" "}
                 (WhatsApp Only)
               </p>
-               <p className="text-[13px] text-neutral-500 font-supportingfont">
+              <p className="text-[13px] text-neutral-500 font-supportingfont">
                 Jakarta -{" "}
                 <span className="text-black hover:underline">
                   <Link href="https://wa.me/628123024660">
@@ -50,8 +50,11 @@ export default function ContactUs() {
               <p className="text-[13px] text-neutral-500 font-supportingfont">
                 Email -{" "}
                 <span className="text-black hover:underline">
-                  <Link href={"mailto:hello@studionarta.com"} target="_blank">
-                    hello@studionarta.com
+                  <Link
+                    href={"mailto:dionartasantoso@gmail.com"}
+                    target="_blank"
+                  >
+                    dionartasantoso@gmail.com
                   </Link>
                 </span>
               </p>
